@@ -1,7 +1,8 @@
-
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx", // ou "react" para versões mais antigas
+    "lib": ["dom", "esnext"],
     "strict": true
   },
   "files": [],

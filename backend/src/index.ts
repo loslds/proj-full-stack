@@ -1,30 +1,25 @@
 
 import express from 'express';
-import mysql from 'mysql2';
+import cors from 'cors';
+import userRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRoutes';
 
 const app = express();
 const port = 3001;
 
-// Conexão com MySQL
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'senha',
-  database: 'nome_do_banco',
-});
+// Middleware
+app.use(cors({
+  origin: 'http://localhost:3000', // Frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+app.use(express.json());
 
-db.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar ao MySQL:', err);
-    return;
-  }
-  console.log('Conectado ao MySQL!');
-});
+// Rotas
+app.use('/api/users', userRoutes); // Rotas relacionadas a usuários
+app.use('/api/auth', authRoutes); // Rotas relacionadas à autenticação
 
-app.get('/', (req, res) => {
-  res.send('Backend funcionando!');
-});
-
+// Inicializar o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });

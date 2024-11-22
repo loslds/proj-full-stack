@@ -1,10 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+//import React from 'react';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+//import Global from './styles/global';
+
+import { createRoot } from 'react-dom/client';
+//import { BrowserRouter } from 'react-router-dom';
+
+//import { LoginProvider } from './components/contexts/LoginContext';
+//import { AppRoutes } from './components/AppRoutes';
+
+const root = createRoot(document.querySelector('#root'));
+
+root.render();
+
