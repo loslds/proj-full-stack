@@ -7,11 +7,8 @@ declare module 'styled-components' {
     colors : {
       primary : string;
       secundary : string;
-      ligthGray : string;
-      backgroundColor : string;
       textColor : string;
-      backgroundColorOn : string;
-      backgroundColorOff : string;
+      backgroundColor : string;
     }
   } 
 }

@@ -1,651 +1,470 @@
+
 import styled from "styled-components";
 
-export default Button;
-const getStyle = (cor, siz, brd, rnd) => {
-  
-  if (cor === 'primary'){
-    
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    };
-
-  } else if (cor === 'error') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    };
-
-  } else if (cor === 'success') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    };
-
-  } else if (cor === 'warning') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    };
-  
-
-
-
-
-
-
-
-
-
-
-
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    };
-  } else if (cor === 'error') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    };
-  } else if (cor === 'success') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    };
-  } else if (cor === 'warning') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    };
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    };
-  } else if (cor === 'error') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    };
-  } else if (cor === 'success') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    };
-  } else if (cor === 'warning') {
-    if (siz === 'sm' && brd === siz && rnd === brn ) {
-      return `
-        border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === siz && rnd !== brn ) {
-      return `
-        border: 1px solid;
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'sm' && brd === null && rnd === brn ) {
-      return `
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    };
-
-  
-    
-
-
-
-  } else {
-    return `
-      background: #fdfdfd;
-      color: #333333;
-    `;
-  };
-
+const sizeStyles = {
+  sd: { padding: ".2rem .5rem", borderRadius: "5px", borderWidth: "1px" },
+  md: { padding: ".5rem .7rem", borderRadius: "10px", borderWidth: "1.5px" },
+  lg: { padding: "1rem 1.2rem", borderRadius: "15px", borderWidth: "2px" },
+  bg: { padding: "1.2rem 1.5rem", borderRadius: "20px", borderWidth: "2.5px" },
 };
-  
 
+const colorStyles = {
+  primary: { background: "#1E90FF", color: "#000000" },
+  error: { background: "#f03535", color: "#000000" },
+  success: { background: "#1eff00", color: "#000000" },
+  warning: { background: "#fdf902", color: "#000000" },
+};
 
-  if (cor === 'error') {
-  
-  };
-  if (cor === 'success') {
-
-  };
-
-
-
-
-     else {
-      return `
-        background: #fdfdfd;
-        color: #333333;
-      `;
-    };
-
-      
-    
-      return `
-      border: 1px solid;
-        border-radius: 5px;
-        padding: .2rem .5rem;
-        background: #1E90FF;
-        color: #ffffff;
-      `;
-    };
-  
-  } else if (siz === 'md') {
-
-  if (cor === 'error') {
-      return `
-        padding: .2rem .5rem;
-        background: #f03535;
-        color: #ffffff;
-      `;
-    } else if (cor === 'success') {
-      return `
-        padding: .2rem .5rem;
-        background: #1eff00;
-        color: #ffffff;
-      `;
-    } else if (cor === 'warning') {
-      return `
-        padding: .2rem .5rem;
-        background: #fdf902;
-        color: #ffffff;
-      `;
-    } else if (siz === 'md') {
-
-        return `
-          padding: .2rem .5rem;
-          background: #1E90FF;
-          color: #ffffff;
-        `;
-      } else if (cor === 'error') {
-        return `
-          padding: .2rem .5rem;
-          background: #f03535;
-          color: #ffffff;
-        `;
-      } else if (cor === 'success') {
-        return `
-          padding: .2rem .5rem;
-          background: #1eff00;
-          color: #ffffff;
-        `;
-      } else if (cor === 'warning') {
-        return `
-          padding: .2rem .5rem;
-          background: #fdf902;
-          color: #ffffff;
-        `;
-      }
-
-
-
-
-
-
-
-
-
-    else {
-      return `
-        background: #fdfdfd;
-        color: #333333;
-      `;
-    };
-
-
-
-
-  } else {
-    return `
-      background: transparent;
-      color: #333333;
-    `;
-  };
-
-  
-
-
-
-  
-  
-  if (siz === 'sm') {
-    if (brd === siz) {
-      if (rdn === brd) {
-        if (cor === 'primary') {
-          return `
-            padding: .2rem .5rem;
-            border: 1px solid;
-            border-radius: 5px;
-            background: #1E90FF;
-            color: #ffffff;
-          `;
-        } else if (cor === 'error') {
-          return `
-            padding: .5rem .7rem;
-            border: 1px solid;
-            border-radius: 5px;
-            background: #f03535;
-            color: #ffffff;
-          `;
-        } else if (cor === 'success') {
-          return `
-            padding: 1rem 1.2rem;
-            border: 1px solid;
-            border-radius: 5px;
-            background: #1eff00;
-            color: #ffffff;
-          `;
-        } else if (cor === 'warning') {
-          return `
-            padding: 1.2rem 1.5rem;
-            border: 1px solid;
-            border-radius: 5px;
-            background: #fdf902;
-            color: #ffffff;
-          `;
-        } else {
-          return `
-            padding: 1.2rem 1.5rem;
-            border: 1px solid;
-            border-radius: 5px;
-            border-color: #6f6f6f;
-            color: #333333;
-         `;
-        };
-      } else {
-        if (cor === 'primary') {
-          return `
-            padding: .2rem .5rem;
-            border: 1px solid;
-            background: #1E90FF;
-            color: #ffffff;
-          `;
-        } else if (cor === 'error') {
-          return `
-            padding: .5rem .7rem;
-            border: 1px solid;
-            background: #f03535;
-            color: #ffffff;
-          `;
-        } else if (cor === 'success') {
-          return `
-            padding: 1rem 1.2rem;
-            border: 1px solid;
-            background: #1eff00;
-            color: #ffffff;
-          `;
-        } else if (cor === 'warning') {
-          return `
-            padding: 1.2rem 1.5rem;
-            border: 1px solid;
-            background: #fdf902;
-            color: #ffffff;
-          `;
-        } else {
-          return `
-            padding: 1.2rem 1.5rem;
-            border: 1px solid;
-            border-color: #6f6f6f;
-            color: #333333;
-         `;
-        };
-      } else {
-          return `
-          background: #fdfdfd;
-          border: 1px solid;
-        border-color: #6f6f6f;
-        color: #333333;
-    
-      
-
-      
-      
-        if (cor === 'primary') {
-          return `
-            padding: .2rem .5rem;
-            border: 1px solid;
-            background: #1E90FF;
-            color: #ffffff;
-          `;
-        } else if (cor === 'error') {
-          return `
-            padding: .5rem .7rem;
-            border: 1px solid;
-            background: #f03535;
-            color: #ffffff;
-          `;
-        } else if (cor === 'success') {
-          return `
-            padding: 1rem 1.2rem;
-            border: 1px solid;
-            background: #1eff00;
-            color: #ffffff;
-          `;
-        } else if (cor === 'warning') {
-          return `
-            padding: 1.2rem 1.5rem;
-            border: 1px solid;
-            background: #fdf902;
-            color: #ffffff;
-          `;
-        } else {
-          return `
-            padding: 1.2rem 1.5rem;
-            border: 1px solid;
-            border-color: #6f6f6f;
-            color: #333333;
-         `;
-        };
-
-
-
-
-      
-          
-
-      
-        if (cor === '')
-    
-        `
-      padding: .2rem .5rem;
-      
-    `
-    {}
-
-  } else if (siz === 'md') {
-    `
-    `;
-  } else if (siz === 'lg') {
-    `
-    `;
-  } else if (siz === 'bg') {
-    `
-    `; 
-  }
-  ///////////////////
-  if (brd === siz ) {
-    if (brd === 'sm') {
-      return `
-        border: 1px solid;
-      `; 
-    } else if (brd === 'md') {
-      return `
-        border: 1.5px solid;
-      `;
-    } else if (brd === 'lg') {
-      return `
-        border: 2px solid;
-      `;
-    } else if (siz === 'bg') {
-      return `
-        border: 2.5px solid;
-      `; 
-    }
-  }
-  ///////////////////
-  if (rnd === siz ) {
-    if (rnd === 'sm') {
-      return `
-
-      border-radius: 5px;
-    `; 
-    } else if (siz === 'md') {
-      return `
-        border-radius: 10px;
-      `;
-    } else if (siz === 'lg') {
-      return `
-        padding: 1rem 15px;
-      `;
-    } else if (siz === 'bg') {
-      return `
-        padding: 1.2rem 20px;
-      `; 
-    }
-  }
-  ///////////////////
-  if (cor === 'primary') {
-    return `
-      background: #1E90FF;
-      color: #ffffff;
-    `;
-  } else if (cor === 'error') {
-    return `
-      background: #f03535;
-      color: #ffffff;
-    `;
-  } else if (cor === 'success') {
-    return `
-      background: #1eff00;
-      color: #ffffff;
-    `;
-  } else if (cor === 'warning') {
-    return `
-      background: #fdf902;
-      color: #ffffff;
-    `;
-  };
+const getStyle = ({ cor, size, brd }) => {
+  const { padding, borderRadius, borderWidth } = sizeStyles[size] || {};
+  const { background, color } = colorStyles[cor] || { background: "#fdfdfd", color: "#333333" };
 
   return `
-    background: #fdfdfd;
-    color: #333333;
+    padding: ${padding || "0.5rem 1rem"};
+    border-radius: ${borderRadius || "5px"};
+    background: ${background};
+    color: ${color};
+    ${brd ? `border: ${borderWidth || "1px"} solid` : "border: none"};
   `;
 };
 
-const button = styled.button`
-  background: #fdfdfd;
-  border: 1px solid;
-  border-color: #6f6f6f;
-  color: #333333;
-  cursor: pointer;
-  ${({siz, brd, rdn, cor}) => getStyle(siz, brd, rdn,cor)};
-  `;
 
+const Button = styled.button`
+  border: none;
+  cursor: pointer;
+  ${({ cor, size, brd }) => getStyle({ cor, size, brd })}
+`;
+
+export default Button;
+
+
+// const getStyle = (cor, size, rmd, brd) => {
+//   // para cor primary
+//   if (cor === 'primary') {
+//     if ( size !== null) {
+//       if ( rmd !== null) {
+//         if ( brd !== null) {
+//           if ( size === 'sd') {
+//             return `
+//               border: 1px solid;  
+//               border-radius: 5px;
+//               padding: .2rem .5rem;
+//               background: #1E90FF;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'md') {
+//             return `
+//               border: 1.5px solid;
+//               border-radius: 10px;          
+//               padding: .5rem .7rem;
+//               background: #1E90FF;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'lg') {
+//             return `
+//               border: 2px solid;
+//               border-radius: 15px;
+//               padding: 1rem 1.2rem;
+//               background: #1E90FF;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'bg') {
+//             return `
+//               border: 2.5px solid;
+//               border-radius: 20px;
+//               padding: 1.2rem 1.5rem;
+//               background: #1E90FF;
+//               color: #000000;
+//             `;
+//           };
+//         } else if ( size === 'sd') {
+//           return `
+//             border: none;
+//             border-radius: 5px;
+//             padding: .2rem .5rem;
+//             background: #1E90FF;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'md') {
+//           return `
+//             border: none;
+//             border-radius: 10px;          
+//             padding: .5rem .7rem;
+//             background: #1E90FF;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'lg') {
+//           return `
+//             border: none;
+//             border-radius: 15px;
+//             padding: 1rem 1.2rem;
+//             background: #1E90FF;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'bg') {
+//           return `
+//             border: none;
+//             border-radius: 20px;
+//             padding: 1.2rem 1.5rem;
+//             background: #1E90FF;
+//             color: #000000;
+//           `;
+//         };
+//       } else {  
+//          if ( size === 'sd') {
+//           return `
+//           padding: .2rem .5rem;
+//           background: #1E90FF;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'md') {
+//         return `
+//           padding: .5rem .7rem;
+//           background: #1E90FF;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'lg') {
+//         return `
+//           padding: 1rem 1.2rem;
+//           background: #1E90FF;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'bg') {
+//         return `
+//           padding: 1.2rem 1.5rem;
+//           background: #1E90FF;
+//           color: #000000;
+//         `;
+//       } else {
+//         return `
+//           background: #1E90FF;
+//           color: #000000;
+//         `;
+//       };
+//     };
+//   };
+//   // para cor error
+//   if (cor === 'error') {
+//     if ( size !== null) {
+//       if ( rmd !== null) {
+//         if ( brd !== null) {
+//           if ( size === 'sd') {
+//             return `
+//               border: 1px solid;  
+//               border-radius: 5px;
+//               padding: .2rem .5rem;
+//               background: #f03535;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'md') {
+//             return `
+//               border: 1.5px solid;
+//               border-radius: 10px;          
+//               padding: .5rem .7rem;
+//               background: #f03535;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'lg') {
+//             return `
+//               border: 2px solid;
+//               border-radius: 15px;
+//               padding: 1rem 1.2rem;
+//               background: #f03535;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'bg') {
+//             return `
+//               border: 2.5px solid;
+//               border-radius: 20px;
+//               padding: 1.2rem 1.5rem;
+//               background: #f03535;
+//               color: #000000;
+//             `;
+//           };
+//         } else if ( size === 'sd') {
+//           return `
+//             border: none;
+//             border-radius: 5px;
+//             padding: .2rem .5rem;
+//             background: #f03535;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'md') {
+//           return `
+//             border: none;
+//             border-radius: 10px;          
+//             padding: .5rem .7rem;
+//             background: #f03535;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'lg') {
+//           return `
+//             border: none;
+//             border-radius: 15px;
+//             padding: 1rem 1.2rem;
+//             background: #f03535;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'bg') {
+//           return `
+//             border: none;
+//             border-radius: 20px;
+//             padding: 1.2rem 1.5rem;
+//             background: #f03535;
+//             color: #000000;
+//           `;
+//         };
+//       } else {  
+//          if ( size === 'sd') {
+//           return `
+//           padding: .2rem .5rem;
+//           background: #f03535;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'md') {
+//         return `
+//           padding: .5rem .7rem;
+//           background: #f03535;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'lg') {
+//         return `
+//           padding: 1rem 1.2rem;
+//           background: #f03535;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'bg') {
+//         return `
+//           padding: 1.2rem 1.5rem;
+//           background: #f03535;
+//           color: #000000;
+//         `;
+//       } else {
+//         return `
+//           background: #f03535;
+//           color: #000000;
+//         `;
+//       };
+//     };
+//   };
+//   // cor succsses
+//   if (cor === 'succsses') {
+//     if ( size !== null) {
+//       if ( rmd !== null) {
+//         if ( brd !== null) {
+//           if ( size === 'sd') {
+//             return `
+//               border: 1px solid;  
+//               border-radius: 5px;
+//               padding: .2rem .5rem;
+//               background: #1eff00;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'md') {
+//             return `
+//               border: 1.5px solid;
+//               border-radius: 10px;          
+//               padding: .5rem .7rem;
+//               background: #1eff00;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'lg') {
+//             return `
+//               border: 2px solid;
+//               border-radius: 15px;
+//               padding: 1rem 1.2rem;
+//               background: #1eff00;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'bg') {
+//             return `
+//               border: 2.5px solid;
+//               border-radius: 20px;
+//               padding: 1.2rem 1.5rem;
+//               background: #1eff00;
+//               color: #000000;
+//             `;
+//           };
+//         } else if ( size === 'sd') {
+//           return `
+//             border: none;
+//             border-radius: 5px;
+//             padding: .2rem .5rem;
+//             background: #1eff00;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'md') {
+//           return `
+//             border: none;
+//             border-radius: 10px;          
+//             padding: .5rem .7rem;
+//             background: #1eff00;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'lg') {
+//           return `
+//             border: none;
+//             border-radius: 15px;
+//             padding: 1rem 1.2rem;
+//             background: #1eff00;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'bg') {
+//           return `
+//             border: none;
+//             border-radius: 20px;
+//             padding: 1.2rem 1.5rem;
+//             background: #1eff00;
+//             color: #000000;
+//           `;
+//         };
+//       } else {  
+//          if ( size === 'sd') {
+//           return `
+//           padding: .2rem .5rem;
+//           background: #1eff00;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'md') {
+//         return `
+//           padding: .5rem .7rem;
+//           background: #1eff00;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'lg') {
+//         return `
+//           padding: 1rem 1.2rem;
+//           background: #1eff00;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'bg') {
+//         return `
+//           padding: 1.2rem 1.5rem;
+//           background: #1eff00;
+//           color: #000000;
+//         `;
+//       } else {
+//         return `
+//           background: #1eff00;
+//           color: #000000;
+//         `;
+//       };
+//     };
+//   };
+//   // para cor warning
+//   if (cor === 'warning') {
+//     if ( size !== null) {
+//       if ( rmd !== null) {
+//         if ( brd !== null) {
+//           if ( size === 'sd') {
+//             return `
+//               border: 1px solid;  
+//               border-radius: 5px;
+//               padding: .2rem .5rem;
+//               background: #fdf902;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'md') {
+//             return `
+//               border: 1.5px solid;
+//               border-radius: 10px;          
+//               padding: .5rem .7rem;
+//               background: #fdf902;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'lg') {
+//             return `
+//               border: 2px solid;
+//               border-radius: 15px;
+//               padding: 1rem 1.2rem;
+//               background: #fdf902;
+//               color: #000000;
+//             `;
+//           } else if ( size === 'bg') {
+//             return `
+//               border: 2.5px solid;
+//               border-radius: 20px;
+//               padding: 1.2rem 1.5rem;
+//               background: #fdf902;
+//               color: #000000;
+//             `;
+//           };
+//         } else if ( size === 'sd') {
+//           return `
+//             border: none;
+//             border-radius: 5px;
+//             padding: .2rem .5rem;
+//             background: #fdf902;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'md') {
+//           return `
+//             border: none;
+//             border-radius: 10px;          
+//             padding: .5rem .7rem;
+//             background: #fdf902;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'lg') {
+//           return `
+//             border: none;
+//             border-radius: 15px;
+//             padding: 1rem 1.2rem;
+//             background: #fdf902;
+//             color: #000000;
+//           `;
+//         } else if ( size === 'bg') {
+//           return `
+//             border: none;
+//             border-radius: 20px;
+//             padding: 1.2rem 1.5rem;
+//             background: #fdf902;
+//             color: #000000;
+//           `;
+//         };
+//       } else {  
+//          if ( size === 'sd') {
+//           return `
+//           padding: .2rem .5rem;
+//           background: #fdf902;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'md') {
+//         return `
+//           padding: .5rem .7rem;
+//           background: #fdf902;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'lg') {
+//         return `
+//           padding: 1rem 1.2rem;
+//           background: #fdf902;
+//           color: #000000;
+//         `;
+//       } else if ( size === 'bg') {
+//         return `
+//           padding: 1.2rem 1.5rem;
+//           background: #fdf902;
+//           color: #000000;
+//         `;
+//       } else {
+//         return `
+//           background: #fdf902;
+//           color: #000000;
+//         `;
+//       };
+//     };
+//   };
+
+//   return `
+//     background: #fdfdfd;
+//     color: #333333;
+//   `;
+// }
+//  const Button = styled.button`
+//   border: none;
+//   cursor: point;
+//   ${({ cor, size, rmd, brd }) => getStyle(cor, size, rmd, brd)}
+//   `;
+
+// export default Button; 

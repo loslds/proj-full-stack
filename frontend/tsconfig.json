@@ -1,13 +1,19 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "ES2020",
+    "lib": ["dom", "es2020", "dom.iterable"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx", // ou "react" para versões mais antigas
-    "lib": ["dom", "esnext"],
-    "strict": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true, // Adicione esta linha
+    "esModuleInterop": true // Garanta que isso também está configurado
   },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
