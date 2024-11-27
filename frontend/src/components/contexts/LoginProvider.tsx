@@ -11,24 +11,26 @@ type StateAcesso = {
   // diante da tb_usuario
   iduser: number; // id tb_usuario
   nome: string; // nome (tb_funcionario),(tb_cliente),(tb_consumidor)
+  usando_tb: string;
+  nmiduser: string; // nmiduser(nome ou pseudonimo)
+  pswuser: string; // pswuser (mail ou pin)
+  pinuser: string; // pinuser (outra forma de entrar
+  cadeado: boolean; // flag false/true
   avatar: string; // img tb_usuario em uso do acesso
   // mail,fonec,fonez e cpf correspondente conforme tabela:
   // (tb_funcionario),(tb_cliente),(tb_consumidor) -> tb_cadastro :->
   mail: string; // tb_cadastro -> tb_email-> mail
+  mailresg: string; // tb_cadastro -> tb_email-> mail
   fonec: string; // tb_cadastro -> tb_fone-> fonec
   fonez: string; // tb_cadastro -> tb_fone-> fonez
   cpf: string; // tb_cadastro -> tb_fone-> doc
   // diante da tabela tb_acesso
   idacesso: number; // id
-  nmiduser: string; // nmiduser(nome,pseudonimo)
-  pswuser: string; // pswuser (*******?)
-  pinuser: string; // pinuser (outra forma de entrar
-  cadeado: boolean; // flag false/true
   // diante da tabela tb_modulo
+  
   acessomodulo: string; // nome tb_modulo
   // dados para resgate para Acesso ao sistema
   // diante da tabela tb_resgate
-  mailresg: string; // tb_cadastro -> tb_email-> mailresg
   perg1: string; // tb_resgate -> primeira pergunta
   perg2: string; // tb_resgate -> segunda pergunta
   perg3: string; // tb_resgate -> terceira pergunta
@@ -64,16 +66,26 @@ export const initialData: StateAcesso = {
   nmfant: '',
   iduser: 0,
   nome: '',
-  avatar: '',
-  mail: '',
-  fonec: '',
-  fonez: '',
-  cpf: '',
-  idacesso: 0,
+  usando_tb: '',
   nmiduser: '',
   pswuser: '',
   pinuser: '',
   cadeado: false,
+  avatar: '',
+
+  mail: '',
+  mailresg: '',
+  fonec: '',
+  fonez: '',
+  cpf: '',
+
+  idacesso: 0,
+
+  nmiduser: '',
+  pswuser: '',
+  pinuser: '',
+  cadeado: false,
+
   acessomodulo: '',
   mailresg: '',
   perg1: '',
@@ -102,17 +114,23 @@ export enum AcessoUseActions {
   setPinAdm,
   setIdEmp,
   setNmFant,
+
   setIdUser,
   setNome,
+  setUsando_tb,
+  setNmIdUser,
+  setPswUser,
+  setPinUser,
+  setCadeado,
   setAvatar,
+
   setMail,
   setFoneC,
   setFoneZ,
   setCpf,
+
   setIdAcesso,
-  setNmIdUser,
-  setPswUser,
-  setPinUser,
+  
   setAcessoModulo,
   setMailResg,
   setperg1,
@@ -147,39 +165,65 @@ type AcessoContextType = {
 
 const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
   switch (action.type) {
-    case AcessoUseActions.setAuth:
-      return { ...state, auth: action.payload };
-    case AcessoUseActions.setIdAcesso:
-      return { ...state, idacesso: action.payload };
-    case AcessoUseActions.setPinAdm:
-      return { ...state, pinadm: action.payload };
+    // Page atual
     case AcessoUseActions.setPage:
       return { ...state, page: action.payload };
-    //
+    case AcessoUseActions.setPinAdm:
+      return { ...state, pinadm: action.payload };
+    // Servidor
+    case AcessoUseActions.setAuth:
+      return { ...state, auth: action.payload };
+    // set tb_empresa 
     case AcessoUseActions.setIdEmp:
       return { ...state, idemp: action.payload };
     case AcessoUseActions.setNmFant:
       return { ...state, nmfant: action.payload };
-    //
+    // set tb_usuario 
     case AcessoUseActions.setIdUser:
       return { ...state, iduser: action.payload };
-    case AcessoUseActions.setIdNmUser:
-      return { ...state, idnmuser: action.payload };
-    case AcessoUseActions.setPswUser:
-      return { ...state, pswuser: action.payload };
-    case AcessoUseActions.setPin:
-      return { ...state, pin: action.payload };
+    case AcessoUseActions.setNome:
+      return { ...state, nome: action.payload };
+    case AcessoUseActions.setUsando_tb:
+      return { ...state, usando_tb: action.payload };
+    case AcessoUseActions.setAvatar:
+      return { ...state, avatar: action.payload };
+
+
+    case AcessoUseActions.setIdAcesso:
+      return { ...state, idacesso: action.payload };
+  
+// set ( tb_funcionario,tb_cliente,tb_consumidor )
+      case AcessoUseActions.setIdNmUser:
+        return { ...state, idnmuser: action.payload };
+      case AcessoUseActions.setPswUser:
+        return { ...state, pswuser: action.payload };
+        case AcessoUseActions.setPin:
+          return { ...state, pin: action.payload };
+  
+    // set ( tb_funcionario,tb_cliente,tb_consumidor )
+    case AcessoUseActions.setNome:
+      return { ...state, nome: action.payload };
+    // <=> tb_cadastro->( tb_mail <=> tb_fone <=> tb_doc ) 
     case AcessoUseActions.setMail:
       return { ...state, mail: action.payload };
     case AcessoUseActions.setFoneC:
       return { ...state, fonec: action.payload };
     case AcessoUseActions.setFoneZ:
       return { ...state, fonez: action.payload };
+    case AcessoUseActions.setCpf:
+      return { ...state, cpf: action.payload };
+  
+
+    setMail,
+    setFoneC,
+    setFoneZ,
+    setCpf,
+    // set tb_usuario
+  
+        
     case AcessoUseActions.setAvatar:
       return { ...state, avatar: action.payload };
 
-    case AcessoUseActions.setCpf:
-      return { ...state, cpf: action.payload };
     case AcessoUseActions.setperg1:
       return { ...state, perg1: action.payload };
     case AcessoUseActions.setresp1:
