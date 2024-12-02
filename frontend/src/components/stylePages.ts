@@ -258,8 +258,48 @@ export const ContainerFooter = styled.div`
 ///////////container do swith/////////////////////
 
 /////////////////////////////////////////////
+// Container Main Pages
+export const ContainerBodyItensPage = styled.div`
+  top: 0px;
+  border: none;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  max-width: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+  background: transparent;
+`;
+/////////////// antes
+// export const ContainerCustonImagem = styled.div<TypeContainerCustonImagem>`
+//
+interface PropsContainerCustonImgPage {
+  pxheight? : string;
+  open?: boolean;
+}
+export const ContainerCustonImgPage = styled.div<PropsContainerCustonImgPage>`
+  border: 1px;
+  border-color: #ffffff;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  min-height: ${({ pxheight }) => pxheight || '50px'};
+  background: transparent;
+  color: ${props => props.theme.colors.textColor};
+  //display: flex;
+  display: ${props => (props.open ? 'flex' : 'none')};
+`;
 
 
+
+
+
+
+
+////////////////////////////////////////////
 
 export const ContainerBody = styled.div`
   border: none; /* 1px dashed red;*/

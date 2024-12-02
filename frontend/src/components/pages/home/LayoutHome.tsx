@@ -1,7 +1,7 @@
-import * as Lay from '../stylePages';
+import * as Lay from '../../stylePages';
 
-import { ContentPages } from '../ContentPages';
-import { HearderHome } from '../headers/HearderHome';
+import { ContentPages } from '../../ContentPages';
+import { HearderHome } from './HearderHome';
 
 //import { FooterHome } from '../../footers/FooterHome';
 //import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
@@ -14,9 +14,9 @@ type TypeLayoutHome = {
 
   titlepg?: string;
 
-  imgbtnhlp?: string;
-  titbtnhlp?: string;
-  onclickhlp?: () => void;
+  imgbtnhlppg?: string;
+  titbtnhlppg?: string;
+  onclickhlppg?: () => void;
 
   imgbtnopen?: string;
   titbtnopen?: string;
@@ -38,9 +38,9 @@ export const LayoutHome = ({
 
   titlepg,
 
-  imgbtnhlp,
-  titbtnhlp,
-  onclickhlp,
+  imgbtnhlppg,
+  titbtnhlppg,
+  onclickhlppg,
 
   imgbtnopen,
   titbtnopen,
@@ -62,9 +62,9 @@ export const LayoutHome = ({
         titbtnsys={titbtnsys}
         onclicksys={onclicksys}
         titlepg={titlepg}
-        imgbtnhlp={imgbtnhlp}
-        titbtnhlp={titbtnhlp}
-        onclickhlp={onclickhlp}
+        imgbtnhlppg={imgbtnhlppg}
+        titbtnhlppg={titbtnhlppg}
+        onclickhlppg={onclickhlppg}
         imgbtnopen={imgbtnopen}
         titbtnopen={titbtnopen}
         onclickopen={onclickopen}

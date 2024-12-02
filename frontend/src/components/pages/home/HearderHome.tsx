@@ -1,18 +1,18 @@
-import * as Pg from '../stylePages';
+import * as Pg from '../../stylePages';
 
 import Switch from 'react-switch';
 
-import { ContentHearderMain } from '../headers/ContentHearderMain';
-import { ContentHearderItens } from '../headers/ContentHearderItens';
-import { ContentHeaderButtonSys } from '../headers/ContentHeaderButtonSys';
+import { ContentHearderMain } from './ContentHearderMain';
+import { ContentHearderItens } from './ContentHearderItens';
+import { ContentHeaderButtonSys } from './ContentHeaderButtonSys';
 
-import { ContentHeaderTitle } from '../headers/ContentHeaderTitle';
+import { ContentHeaderTitle } from './ContentHeaderTitle';
 
-import { ContentHearderRight } from './../headers/ContentHearderRight';
+import { ContentHearderRight } from './ContentHearderRight';
 
-import { ContentHearderItensBar } from '../headers/ContentHearderItensBar';
-import { ContentPagesButtonHelp } from '../ContentPagesButtonHelp';
-import { ContentPagesButton } from '../ContentPagesButton';
+import { ContentHearderItensBar } from './ContentHearderItensBar';
+import { ContentPagesButtonHelp } from '../../ContentPagesButtonHelp';
+import { ContentPagesButton } from '../../ContentPagesButton';
 
 type PropsHearderHome = {
   imgsys?: string;
@@ -21,9 +21,9 @@ type PropsHearderHome = {
 
   titlepg?: string;
 
-  imgbtnhlp?: string;
-  titbtnhlp?: string;
-  onclickhlp?: () => void;
+  imgbtnhlppg?: string;
+  titbtnhlppg?: string;
+  onclickhlppg?: () => void;
 
   imgbtnopen?: string;
   titbtnopen?: string;
@@ -43,9 +43,9 @@ export const HearderHome = ({
 
   titlepg,
 
-  imgbtnhlp,
-  titbtnhlp,
-  onclickhlp,
+  imgbtnhlppg,
+  titbtnhlppg,
+  onclickhlppg,
 
   imgbtnopen,
   titbtnopen,
@@ -56,7 +56,7 @@ export const HearderHome = ({
   onclickreg,
 
   onchange,
-  ischeck
+  ischeck,
 }: PropsHearderHome) => {
   return (
     <ContentHearderMain>
@@ -77,11 +77,11 @@ export const HearderHome = ({
         <ContentHearderItensBar>
           {/** imagem botão do help da pagina */}
           <ContentPagesButtonHelp
-            imgbtnhlp={imgbtnhlp}
-            titbtnhlp={titbtnhlp}
-            onClickhlp={onclickhlp}
+            imgbtnhlp={imgbtnhlppg}
+            titbtnhlp={titbtnhlppg}
+            onClickhlp={onclickhlppg}
           />
-          
+
           {/** imagem botão do Acão da pagina */}
           <ContentPagesButton
             imgbtn={imgbtnopen}

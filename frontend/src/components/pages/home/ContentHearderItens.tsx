@@ -1,4 +1,4 @@
-import * as Hdr from '../stylePages';
+import * as Hdr from '../../stylePages';
 
 interface PropsContentHearderItens {
   children?: React.ReactNode | JSX.Element;

@@ -1,10 +1,9 @@
-//import { ReactNode } from 'react';
 import * as Pag from './stylePages';
 
-type TypeContentPages = {
+interface PropsContentPages {
   children?: React.ReactNode | JSX.Element;
 };
-export const ContentPages = ({ children }: TypeContentPages) => {
+export const ContentPages = ({ children }: PropsContentPages ) => {
   return (
     <Pag.ContainerPg>
       <Pag.ContainerFlexPg>{children}</Pag.ContainerFlexPg>

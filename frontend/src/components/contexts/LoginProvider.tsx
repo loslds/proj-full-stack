@@ -1,330 +1,248 @@
-import React from 'react';
+import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 
-type StateAcesso = {
-  page: string; // pagina usada no momento de execução
-  auth: string; // dong do acesso html
-  pinAdm: number; // acesso geral ao modulo gerado após estar logado
-  // diante da tb_empresa
-  idemp: number; // id selecionado
-  nmfant: string; // nome fantasia
-  // correspondente conforme tabela: (tb_funcionario),(tb_cliente),(tb_consumidor)
-  // diante da tb_usuario
-  iduser: number; // id tb_usuario
-  nome: string; // nome (tb_funcionario),(tb_cliente),(tb_consumidor)
-  usando_tb: string;
-  nmiduser: string; // nmiduser(nome ou pseudonimo)
-  pswuser: string; // pswuser (mail ou pin)
-  pinuser: string; // pinuser (outra forma de entrar
-  cadeado: boolean; // flag false/true
-  avatar: string; // img tb_usuario em uso do acesso
-  // mail,fonec,fonez e cpf correspondente conforme tabela:
-  // (tb_funcionario),(tb_cliente),(tb_consumidor) -> tb_cadastro :->
-  mail: string; // tb_cadastro -> tb_email-> mail
-  mailresg: string; // tb_cadastro -> tb_email-> mail
-  fonec: string; // tb_cadastro -> tb_fone-> fonec
-  fonez: string; // tb_cadastro -> tb_fone-> fonez
-  cpf: string; // tb_cadastro -> tb_fone-> doc
-  // diante da tabela tb_acesso
-  idacesso: number; // id
-  // diante da tabela tb_modulo
-  
-  acessomodulo: string; // nome tb_modulo
-  // dados para resgate para Acesso ao sistema
-  // diante da tabela tb_resgate
-  perg1: string; // tb_resgate -> primeira pergunta
-  perg2: string; // tb_resgate -> segunda pergunta
-  perg3: string; // tb_resgate -> terceira pergunta
-  resp1: string; // tb_resgate -> primeira resposta
-  resp2: string; // tb_resgate -> segunda resposta
-  resp3: string; // tb_resgate -> terveira resposta
-  // diante tb_nivel
+export type StateAcesso = {
+  page: string | null;
+  auth: string | null;
+  pinAdm: number;
+  id_acesso: number;
+  qdd_acesso: number;
+  ult_acesso: string | null;
+  usando_tb: string | null;
+  usando_id_tb: number;
+  modulo: string | null;
+  descnivel: string | null;
   nivel: number;
-  descnivel: string;
-  // controle para paginas de login
-  mdlogin: number;
-  nmlogin: string;
-  // controle do exesso de login
-  nrcont: number;
-  nmcont: string;
-  // controle do titulo da Pagina acessada
-  modulo: string;
-  // controle da aplicação na pagina acessada
-  aplicacao: string;
-  // controle da verificação do acesso
-  logado: boolean;
-  // controle da arquivo de logsys
-  dtini: string;
-  dtfim: string;
-  tempo: string;
+  cadeado: boolean | null;
+  mail: string | null;
+  pseudonimo: string | null;
+  psw: string | null;
+  pin_num: number;
+  pin_char: string | null;
+  avatar: Blob | null;
+  path_avatar: string | null;
+  nmarq_avatar: string | null;
+  idemp: number;
+  nmfant: string | null;
+  logo: Blob | null;
+  path_logo: string | null;
+  nmarq_logo: string | null;
+  dtini: string | null;
+  dtfim: string | null;
+  tempo: string | null;
+  logado: boolean | null;
+  mdlogin: number | null;
+  nmlogin: string | null;
+  nrcont: number | null;
+  nmcont: string | null;
+  aplicacao: string | null;
 };
 
 export const initialData: StateAcesso = {
   page: '',
   auth: '',
   pinAdm: 0,
-  idemp: 0,
-  nmfant: '',
-  iduser: 0,
-  nome: '',
+  id_acesso: 0,
+  qdd_acesso: 0,
+  ult_acesso: '',
   usando_tb: '',
-  nmiduser: '',
-  pswuser: '',
-  pinuser: '',
-  cadeado: false,
-  avatar: '',
-
-  mail: '',
-  mailresg: '',
-  fonec: '',
-  fonez: '',
-  cpf: '',
-
-  idacesso: 0,
-
-  nmiduser: '',
-  pswuser: '',
-  pinuser: '',
-  cadeado: false,
-
-  acessomodulo: '',
-  mailresg: '',
-  perg1: '',
-  perg2: '',
-  perg3: '',
-  resp1: '',
-  resp2: '',
-  resp3: '',
+  usando_id_tb: 0,
+  modulo: '',
   descnivel: '',
   nivel: 0,
+  cadeado: false,
+  mail: '',
+  pseudonimo: '',
+  psw: '',
+  pin_num: 0,
+  pin_char: '',
+  avatar: null,
+  path_avatar: '',
+  nmarq_avatar: '',
+  idemp: 0,
+  nmfant: '',
+  logo: null,
+  path_logo: '',
+  nmarq_logo: '',
+  dtini: '',
+  dtfim: '',
+  tempo: '',
+  logado: false,
   nrcont: 0,
   nmcont: '',
   mdlogin: 0,
   nmlogin: '',
-  modulo: '',
   aplicacao: '',
-  logado: false,
-  dtini: '',
-  dtfim: '',
-  tempo: '',
 };
 
 export enum AcessoUseActions {
-  setPage,
-  setAuth,
-  setPinAdm,
-  setIdEmp,
-  setNmFant,
-
-  setIdUser,
-  setNome,
-  setUsando_tb,
-  setNmIdUser,
-  setPswUser,
-  setPinUser,
-  setCadeado,
-  setAvatar,
-
-  setMail,
-  setFoneC,
-  setFoneZ,
-  setCpf,
-
-  setIdAcesso,
-  
-  setAcessoModulo,
-  setMailResg,
-  setperg1,
-  setperg2,
-  setperg3,
-  setresp1,
-  setresp2,
-  setresp3,
-  setDescNivel,
-  setNivel,
-  setNrCont,
-  setNmCont,
-  setMdLogin,
-  setNmLogin,
-  setModulo,
-  setAplicacao,
-  setLogado,
-  setDtIni,
-  setDtFim,
-  setTmp,
+  SET_PAGE = 'SET_PAGE',
+  SET_AUTH = 'SET_AUTH',
+  SET_PIN_ADM = 'SET_PIN_ADM',
+  SET_ID_ACESSO = 'SET_ID_ACESSO',
+  SET_QDD_ACESSO = 'SET_QDD_ACESSO',
+  SET_ULT_ACESSO = 'SET_ULT_ACESSO',
+  SET_USANDO_TB = 'SET_USANDO_TB',
+  SET_USANDO_ID_TB = 'SET_USANDO_TB_ID',
+  SET_MODULO = 'SET_MODULO',
+  SET_DESCRNIVEL = 'SET_DESCRNIVEL',
+  SET_NIVEL = 'SET_NIVEL',
+  SET_CADEADO = 'SET_CADEADO',
+  SET_MAIL = 'SET_PIN_CHAR',
+  SET_PSEUDONIMO = 'SET_PSEUDONIMO',
+  SET_PSW = 'SET_PSW',
+  SET_PIN_NUM = 'SET_PIN_NUM',
+  SET_PIN_CHAR = 'SET_PIN_CHAR',
+  SET_AVATAR = 'SET_AVATAR',
+  SET_PATH_AVATAR = 'SET_PATH_AVATAR',
+  SET_NMARQ_AVATAR = 'SET_NMARQ_AVATAR',
+  SET_IDEMP = 'SET_IDEMP',
+  SET_NMFANT = 'SET_NMFANT',
+  SET_LOGO = 'SET_LOGO',
+  SET_PATH_LOGO = 'SET_PATH_LOGO',
+  SET_NMARQ_LOGO = 'SET_NMARQ_LOGO',
+  SET_DATINI = 'SET_DATINI',
+  SET_DATAFIM = 'SET_DATAFIM',
+  SET_TEMPO = 'SET_TEMPO',
+  SET_LOGADO = 'SET_LOGADO',
+  SET_NRCONT = 'SET_NRCONT',
+  SET_NMCONT = 'SET_NMCONT',
+  SET_MDLOGIN = 'SET_MDLOGIN',
+  SET_NMLOGIN = 'SET_NMLOGIN',
+  SET_APLICACAO = 'SET_APLICACAO',
 }
 
-type AcessoAction = {
-  type: AcessoUseActions;
-  payload: any;
-};
-
-type AcessoContextType = {
-  state: StateAcesso;
-  dispatch: (action: AcessoAction) => void;
-};
+type AcessoAction =
+  | { type: AcessoUseActions.SET_PAGE; payload: string | null }
+  | { type: AcessoUseActions.SET_AUTH; payload: string | null }
+  | { type: AcessoUseActions.SET_PIN_ADM; payload: number }
+  | { type: AcessoUseActions.SET_ID_ACESSO; payload: number }
+  | { type: AcessoUseActions.SET_QDD_ACESSO; payload: number }
+  | { type: AcessoUseActions.SET_ULT_ACESSO; payload: string }
+  | { type: AcessoUseActions.SET_USANDO_TB; payload: string }
+  | { type: AcessoUseActions.SET_USANDO_ID_TB; payload: number }
+  | { type: AcessoUseActions.SET_MODULO; payload: string }
+  | { type: AcessoUseActions.SET_DESCRNIVEL; payload: string }
+  | { type: AcessoUseActions.SET_NIVEL; payload: number }
+  | { type: AcessoUseActions.SET_CADEADO; payload: boolean }
+  | { type: AcessoUseActions.SET_MAIL; payload: string }
+  | { type: AcessoUseActions.SET_PSEUDONIMO; payload: string }
+  | { type: AcessoUseActions.SET_PSW; payload: string }
+  | { type: AcessoUseActions.SET_PIN_NUM; payload: number }
+  | { type: AcessoUseActions.SET_PIN_CHAR; payload: string }
+  | { type: AcessoUseActions.SET_AVATAR; payload: null }
+  | { type: AcessoUseActions.SET_PATH_AVATAR; payload: string }
+  | { type: AcessoUseActions.SET_NMARQ_AVATAR; payload: string }
+  | { type: AcessoUseActions.SET_IDEMP; payload: number }
+  | { type: AcessoUseActions.SET_NMFANT; payload: string }
+  | { type: AcessoUseActions.SET_LOGO; payload: null }
+  | { type: AcessoUseActions.SET_PATH_LOGO; payload: string }
+  | { type: AcessoUseActions.SET_NMARQ_LOGO; payload: string }
+  | { type: AcessoUseActions.SET_DATINI; payload: string }
+  | { type: AcessoUseActions.SET_DATAFIM; payload: string }
+  | { type: AcessoUseActions.SET_TEMPO; payload: string }
+  | { type: AcessoUseActions.SET_LOGADO; payload: boolean }
+  | { type: AcessoUseActions.SET_NRCONT; payload: number }
+  | { type: AcessoUseActions.SET_NMCONT; payload: string }
+  | { type: AcessoUseActions.SET_MDLOGIN; payload: number }
+  | { type: AcessoUseActions.SET_NMLOGIN; payload: string }
+  | { type: AcessoUseActions.SET_APLICACAO; payload: string };
 
 const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
   switch (action.type) {
-    // Page atual
-    case AcessoUseActions.setPage:
+    case AcessoUseActions.SET_PAGE:
       return { ...state, page: action.payload };
-    case AcessoUseActions.setPinAdm:
-      return { ...state, pinadm: action.payload };
-    // Servidor
-    case AcessoUseActions.setAuth:
+    case AcessoUseActions.SET_AUTH:
       return { ...state, auth: action.payload };
-    // set tb_empresa 
-    case AcessoUseActions.setIdEmp:
-      return { ...state, idemp: action.payload };
-    case AcessoUseActions.setNmFant:
-      return { ...state, nmfant: action.payload };
-    // set tb_usuario 
-    case AcessoUseActions.setIdUser:
-      return { ...state, iduser: action.payload };
-    case AcessoUseActions.setNome:
-      return { ...state, nome: action.payload };
-    case AcessoUseActions.setUsando_tb:
+    case AcessoUseActions.SET_PIN_ADM:
+      return { ...state, pinadm: action.payload };
+    case AcessoUseActions.SET_ID_ACESSO:
+      return { ...state, id_acesso: action.payload };
+    case AcessoUseActions.SET_QDD_ACESSO:
+      return { ...state, qdd_acesso: action.payload };
+    case AcessoUseActions.SET_ULT_ACESSO:
+      return { ...state, ult_acesso: action.payload };
+    case AcessoUseActions.SET_USANDO_TB:
       return { ...state, usando_tb: action.payload };
-    case AcessoUseActions.setAvatar:
-      return { ...state, avatar: action.payload };
-
-
-    case AcessoUseActions.setIdAcesso:
-      return { ...state, idacesso: action.payload };
-  
-// set ( tb_funcionario,tb_cliente,tb_consumidor )
-      case AcessoUseActions.setIdNmUser:
-        return { ...state, idnmuser: action.payload };
-      case AcessoUseActions.setPswUser:
-        return { ...state, pswuser: action.payload };
-        case AcessoUseActions.setPin:
-          return { ...state, pin: action.payload };
-  
-    // set ( tb_funcionario,tb_cliente,tb_consumidor )
-    case AcessoUseActions.setNome:
-      return { ...state, nome: action.payload };
-    // <=> tb_cadastro->( tb_mail <=> tb_fone <=> tb_doc ) 
-    case AcessoUseActions.setMail:
-      return { ...state, mail: action.payload };
-    case AcessoUseActions.setFoneC:
-      return { ...state, fonec: action.payload };
-    case AcessoUseActions.setFoneZ:
-      return { ...state, fonez: action.payload };
-    case AcessoUseActions.setCpf:
-      return { ...state, cpf: action.payload };
-  
-
-    setMail,
-    setFoneC,
-    setFoneZ,
-    setCpf,
-    // set tb_usuario
-  
-        
-    case AcessoUseActions.setAvatar:
-      return { ...state, avatar: action.payload };
-
-    case AcessoUseActions.setperg1:
-      return { ...state, perg1: action.payload };
-    case AcessoUseActions.setresp1:
-      return { ...state, resp1: action.payload };
-    case AcessoUseActions.setperg2:
-      return { ...state, perg2: action.payload };
-    case AcessoUseActions.setresp2:
-      return { ...state, resp2: action.payload };
-    case AcessoUseActions.setperg3:
-      return { ...state, perg3: action.payload };
-    case AcessoUseActions.setresp3:
-      return { ...state, resp3: action.payload };
-
-    case AcessoUseActions.setMdVisita:
-      return { ...state, mdV: action.payload };
-    case AcessoUseActions.setNmVisita:
-      return { ...state, ndrecep: action.payload };
-    case AcessoUseActions.setNmRecep:
-      return { ...state, nmrecep: action.payload };
-    case AcessoUseActions.setMdDesig:
-      return { ...state, mddesig: action.payload };
-    case AcessoUseActions.setNmDesig:
-      return { ...state, nmdesig: action.payload };
-    case AcessoUseActions.setMdProdu:
-      return { ...state, mdprodu: action.payload };
-    case AcessoUseActions.setNmProdu:
-      return { ...state, nmprodu: action.payload };
-    case AcessoUseActions.setMdAcaba:
-      return { ...state, mdacaba: action.payload };
-    case AcessoUseActions.setNmAcaba:
-      return { ...state, nmacaba: action.payload };
-    case AcessoUseActions.setMdExped:
-      return { ...state, mdexped: action.payload };
-    case AcessoUseActions.setNmExped:
-      return { ...state, nmexped: action.payload };
-    case AcessoUseActions.setMdAdmin:
-      return { ...state, mdadmin: action.payload };
-    case AcessoUseActions.setNmAdmin:
-      return { ...state, nmadmin: action.payload };
-    case AcessoUseActions.setMdMaster:
-      return { ...state, mdmaster: action.payload };
-    case AcessoUseActions.setNmMaster:
-      return { ...state, nmmaster: action.payload };
-    case AcessoUseActions.setMdConfig:
-      return { ...state, mdconfig: action.payload };
-    case AcessoUseActions.setNmConfig:
-      return { ...state, nmconfig: action.payload };
-
-    case AcessoUseActions.setMdLogin:
-      return { ...state, mdlogin: action.payload };
-    case AcessoUseActions.setNmLogin:
-      return { ...state, nmlogin: action.payload };
-    case AcessoUseActions.setNrCont:
-      return { ...state, nrcont: action.payload };
-    case AcessoUseActions.setNmCont:
-      return { ...state, nmcont: action.payload };
-
-    case AcessoUseActions.setModulo:
+    case AcessoUseActions.SET_USANDO_ID_TB:
+      return { ...state, usando_id_tb: action.payload };
+    case AcessoUseActions.SET_MODULO:
       return { ...state, modulo: action.payload };
-    case AcessoUseActions.setAplicacao:
-      return { ...state, aplicacao: action.payload };
-    case AcessoUseActions.setDescnivel:
-      return { ...state, descnivel: action.payload };
-    case AcessoUseActions.setNivel:
+    case AcessoUseActions.SET_DESCRNIVEL:
+      return { ...state, descrnivel: action.payload };
+    case AcessoUseActions.SET_NIVEL:
       return { ...state, nivel: action.payload };
-
-    case AcessoUseActions.setLogado:
-      return { ...state, logado: action.payload };
-    case AcessoUseActions.setDtIni:
-      return { ...state, datetimei: action.payload };
-    case AcessoUseActions.setDtFim:
-      return { ...state, datetimef: action.payload };
-    case AcessoUseActions.setTmp:
+    case AcessoUseActions.SET_CADEADO:
+      return { ...state, cadeado: action.payload };
+    case AcessoUseActions.SET_MAIL:
+      return { ...state, mail: action.payload };
+    case AcessoUseActions.SET_PSEUDONIMO:
+      return { ...state, pseudonimo: action.payload };
+    case AcessoUseActions.SET_PSW:
+      return { ...state, psw: action.payload };
+    case AcessoUseActions.SET_PIN_NUM:
+      return { ...state, pin_num: action.payload };
+    case AcessoUseActions.SET_PIN_CHAR:
+      return { ...state, pin_char: action.payload };
+    case AcessoUseActions.SET_AVATAR:
+      return { ...state, avatar: action.payload };
+    case AcessoUseActions.SET_PATH_AVATAR:
+      return { ...state, path_avatar: action.payload };
+    case AcessoUseActions.SET_NMARQ_AVATAR:
+      return { ...state, nmarq_avatar: action.payload };
+    case AcessoUseActions.SET_IDEMP:
+      return { ...state, idemp: action.payload };
+    case AcessoUseActions.SET_NMFANT:
+      return { ...state, nmfant: action.payload };
+    case AcessoUseActions.SET_LOGO:
+      return { ...state, logo: action.payload };
+    case AcessoUseActions.SET_PATH_LOGO:
+      return { ...state, path_logo: action.payload };
+    case AcessoUseActions.SET_NMARQ_LOGO:
+      return { ...state, nmarq_logo: action.payload };
+    case AcessoUseActions.SET_DATINI:
+      return { ...state, data_ini: action.payload };
+    case AcessoUseActions.SET_DATAFIM:
+      return { ...state, data_fim: action.payload };
+    case AcessoUseActions.SET_TEMPO:
       return { ...state, tempo: action.payload };
-
+    case AcessoUseActions.SET_LOGADO:
+      return { ...state, logado: action.payload };
+    case AcessoUseActions.SET_NRCONT:
+      return { ...state, nrcont: action.payload };
+    case AcessoUseActions.SET_NMCONT:
+      return { ...state, nmcont: action.payload };
+    case AcessoUseActions.SET_MDLOGIN:
+      return { ...state, mdlogin: action.payload };
+    case AcessoUseActions.SET_NMLOGIN:
+      return { ...state, nmlogin: action.payload };
+    case AcessoUseActions.SET_APLICACAO:
+      return { ...state, aplicacao: action.payload };
     default:
       return state;
   }
 };
 
-const AcessoContext = React.createContext<AcessoContextType | undefined>(
-  undefined,
-);
-
-type AcessoProviderProps = {
-  children: React.ReactNode | JSX.Element;
+type AcessoContextType = {
+  state: StateAcesso;
+  dispatch: React.Dispatch<AcessoAction>;
 };
-export const AcessoProvider = ({ children }: AcessoProviderProps) => {
-  const [state, dispatch] = React.useReducer(AcessoReducer, initialData);
-  const value = { state, dispatch };
+const AcessoContext = createContext<AcessoContextType | undefined>(undefined);
+
+export const AcessoProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [state, dispatch] = useReducer(AcessoReducer, initialData);
   return (
-    <AcessoContext.Provider value={value}>{children}</AcessoContext.Provider>
+    <AcessoContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AcessoContext.Provider>
   );
 };
 
-export const AcessoUseForm = () => {
-  const context = React.useContext(AcessoContext);
-  if (context === undefined) {
-    throw new Error('"Useform" precisa ser usado dentro do Provider!');
+export const useAcessoContext = (): AcessoContextType => {
+  const context = useContext(AcessoContext);
+  if (!context) {
+    throw new Error('useAcessoContext must be used within AcessoProvider');
   }
   return context;
 };
-
-export default AcessoContext;

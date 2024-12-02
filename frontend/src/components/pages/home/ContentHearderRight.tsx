@@ -1,4 +1,4 @@
-import * as Hed from '../stylePages';
+import * as Hed from '../../stylePages';
 
 interface PropsContentHearderRight {
   children?: React.ReactNode | JSX.Element;

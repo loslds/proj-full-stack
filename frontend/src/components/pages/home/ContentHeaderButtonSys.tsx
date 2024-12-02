@@ -1,4 +1,4 @@
-import * as Hrd from '../stylePages';
+import * as Hrd from './styledHeader';
 
 interface PropsContentHeaderButtonSys {
   imgsys?: string;
