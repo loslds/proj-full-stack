@@ -1,8 +1,7 @@
+
 import { ReactNode } from 'react';
-
 import { LayoutHome } from './LayoutHome';
-
-type PropsThemeHome = {
+interface PropsThemeHome {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -69,8 +68,10 @@ export const ThemeHome = ({
       imgbtnreg={imgbtnreg}
       titbtnreg={titbtnreg}
       onclickreg={onclickreg}
+
       onchange={onchange}
       ischeck={ischeck}
+
       open={open}
     >
       {children}

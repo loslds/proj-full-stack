@@ -11,8 +11,12 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": true,
-    "allowSyntheticDefaultImports": true, // Adicione esta linha
-    "esModuleInterop": true // Garanta que isso também está configurado
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "baseUrl": ".", // Adicionado para facilitar importações relativas
+    "paths": {
+      "*": ["node_modules/*", "src/*"] // Configuração para usar aliases nos imports
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

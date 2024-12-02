@@ -14,7 +14,7 @@ import { ContentHearderItensBar } from './ContentHearderItensBar';
 import { ContentPagesButtonHelp } from '../../ContentPagesButtonHelp';
 import { ContentPagesButton } from '../../ContentPagesButton';
 
-type PropsHearderHome = {
+interface PropsHearderHome {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -35,7 +35,9 @@ type PropsHearderHome = {
 
   onchange: () => void;
   ischeck?: boolean;
-};
+
+  children?: React.ReactNode | JSX.Element;
+}
 export const HearderHome = ({
   imgsys,
   titbtnsys,

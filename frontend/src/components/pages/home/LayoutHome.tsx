@@ -7,7 +7,7 @@ import { HearderHome } from './HearderHome';
 //import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
 //import { BarSideMenuDados } from '../../sidebar/BarSideMenuDados';
 
-type TypeLayoutHome = {
+interface PropsLayoutHome {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -28,6 +28,7 @@ type TypeLayoutHome = {
 
   onchange: () => void;
   ischeck?: boolean;
+
   children?: React.ReactNode | JSX.Element;
   open?: boolean;
 };
@@ -54,7 +55,7 @@ export const LayoutHome = ({
   ischeck,
   children,
   open,
-}: TypeLayoutHome) => {
+}: PropsLayoutHome) => {
   return (
     <ContentPages>
       <HearderHome

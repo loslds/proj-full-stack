@@ -16,8 +16,8 @@ export type StateAcesso = {
   mail: string | null;
   pseudonimo: string | null;
   psw: string | null;
-  pin_num: number;
-  pin_char: string | null;
+  pinnumber: number;
+  pinchar: string | null;
   avatar: Blob | null;
   path_avatar: string | null;
   nmarq_avatar: string | null;
@@ -53,8 +53,8 @@ export const initialData: StateAcesso = {
   mail: '',
   pseudonimo: '',
   psw: '',
-  pin_num: 0,
-  pin_char: '',
+  pinnumber: 0,
+  pinchar: '',
   avatar: null,
   path_avatar: '',
   nmarq_avatar: '',
@@ -90,8 +90,8 @@ export enum AcessoUseActions {
   SET_MAIL = 'SET_PIN_CHAR',
   SET_PSEUDONIMO = 'SET_PSEUDONIMO',
   SET_PSW = 'SET_PSW',
-  SET_PIN_NUM = 'SET_PIN_NUM',
-  SET_PIN_CHAR = 'SET_PIN_CHAR',
+  SET_PINNUMBER = 'SET_PIN_NUMBER',
+  SET_PINCHAR = 'SET_PINCHAR',
   SET_AVATAR = 'SET_AVATAR',
   SET_PATH_AVATAR = 'SET_PATH_AVATAR',
   SET_NMARQ_AVATAR = 'SET_NMARQ_AVATAR',
@@ -127,8 +127,8 @@ type AcessoAction =
   | { type: AcessoUseActions.SET_MAIL; payload: string }
   | { type: AcessoUseActions.SET_PSEUDONIMO; payload: string }
   | { type: AcessoUseActions.SET_PSW; payload: string }
-  | { type: AcessoUseActions.SET_PIN_NUM; payload: number }
-  | { type: AcessoUseActions.SET_PIN_CHAR; payload: string }
+  | { type: AcessoUseActions.SET_PINNUMBER; payload: number }
+  | { type: AcessoUseActions.SET_PINCHAR; payload: string }
   | { type: AcessoUseActions.SET_AVATAR; payload: null }
   | { type: AcessoUseActions.SET_PATH_AVATAR; payload: string }
   | { type: AcessoUseActions.SET_NMARQ_AVATAR; payload: string }
@@ -179,10 +179,10 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, pseudonimo: action.payload };
     case AcessoUseActions.SET_PSW:
       return { ...state, psw: action.payload };
-    case AcessoUseActions.SET_PIN_NUM:
-      return { ...state, pin_num: action.payload };
-    case AcessoUseActions.SET_PIN_CHAR:
-      return { ...state, pin_char: action.payload };
+    case AcessoUseActions.SET_PINNUMBER:
+      return { ...state, pinnumber: action.payload };
+    case AcessoUseActions.SET_PINCHAR:
+      return { ...state, pinchar: action.payload };
     case AcessoUseActions.SET_AVATAR:
       return { ...state, avatar: action.payload };
     case AcessoUseActions.SET_PATH_AVATAR:

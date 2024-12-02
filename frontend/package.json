@@ -1,14 +1,17 @@
+
 {
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite", 
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf dist node_modules"
   },
   "dependencies": {
     "axios": "^1.7.7",
@@ -24,7 +27,7 @@
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
-    "@vitejs/plugin-react": "^4.3.3",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",

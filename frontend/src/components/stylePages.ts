@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import semimg from '../../assets/svgs/semimg.svg';
+import semimg from '../assets/svgs/semimg.svg';
 
 // containers do conteudo para paginas
 // Conatiner INICIAL

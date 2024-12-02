@@ -1,24 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import Global from './styles/styleds/Global';
-
-//import { AcessoProvider } from './components/contexts/ContextAcesso';
-
+import Global from './styles/Global';
+import { AcessoProvider } from './components/contexts/LoginProvider';
 import AppRoutes from './AppRoutes';
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Global />
-      {/* 
-      <AcessoProvider> 
+      <AcessoProvider>
         <AppRoutes />
       </AcessoProvider>
-      */}
-      <AppRoutes />
     </BrowserRouter>
   );
-}
+};
 
 export default App;
