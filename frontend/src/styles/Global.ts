@@ -7,7 +7,7 @@ export default createGlobalStyle`
   #root {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
   }
   * {
@@ -16,9 +16,9 @@ export default createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    background: #f4f4f4;
+    background: #000000;
     font-size: 14px;
-    color: #333;
+    color: #dcd6d6;
     font-family: sans-serif, Helvetica, -apple-system;
     overflow-x: hidden;
   }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import semimg from '../../../assets/svgs/semimg.svg';
+import semimg from '../../assets/svgs/semimg.svg';
 
 ///////////// HEADER /////////////////////////
 // Container Header
@@ -15,6 +15,7 @@ export const ContainerHearder = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
+  background: ${props => props.theme.colors.backgroundColor};
 `;
 // Container HEADER Itens BAR
 export const ContainerHeaderItensBar = styled.div`
@@ -27,7 +28,6 @@ export const ContainerHeaderItensBar = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
-  background: transparent;
 `;
 // Container lado Esquerdo HEADER (imagem Sys)
 export const ContainerHeaderItens = styled.div`
@@ -65,7 +65,7 @@ export const ButtonPagesImgSys = styled.button<TypeButtonPagesImgSys>`
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
+  //background-color: transparent;
   cursor: pointer;
   outline: none;
   width: 110px;
@@ -85,7 +85,7 @@ export const ContainerTitleHeader = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
   min-height: 40px;
-  background: transparent;
+  //background: transparent;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -124,14 +124,14 @@ export const ContainerHeaderButton = styled.div`
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
-  background: transparent;
+  //background: transparent;
   min-height: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   align-content: center;
-  color:  ${props => props.theme.colors.textColor};
+  color: ${props => props.theme.colors.textColor};
   &:hover {
     background-color: #e4e4e4;
    }
@@ -140,7 +140,7 @@ export const ContainerHeaderButton = styled.div`
 export const ButtonHeaderImg = styled.button<{ img?: string }>`
   border: none;
   margin: 2px 5px 2px 5px;
-  color: white;
+  color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
@@ -162,16 +162,13 @@ export const ButtonHeaderImg = styled.button<{ img?: string }>`
 /////////////////////////// fim HEADER ///////////////////////
 
 
-
-
-
 export const ContainerPagesButton = styled.div`
   border: 2px red;
   border-color: #ffffff;
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
-  background: transparent;
+  //background: transparent;
   min-height: 40px;
   display: flex;
   flex-wrap: wrap;
@@ -187,7 +184,7 @@ export const ContainerPagesButton = styled.div`
 export const ButtonPagesImg = styled.button<{ img?: string }>`
   border: none;
   margin: 2px 5px 2px 5px;
-  color: white;
+  color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
@@ -205,11 +202,6 @@ export const ButtonPagesImg = styled.button<{ img?: string }>`
   justify-content: center;
   align-items: center;
 `;
-
-
-
-
-
 
 // FIM content lado esquerdo HEADER (imagem swith e outras)
 

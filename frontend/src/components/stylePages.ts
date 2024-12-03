@@ -20,12 +20,12 @@ export const ContainerPg = styled.div`
 `;
 /** quota da flexão do corpo  sem Borda */
 export const ContainerFlexPg = styled.div`
-  border: none;
-  margin: 0px 5px 0px 5px;
+  border: 1px solid;
+  margin: 3px 5px 3px 5px;
   padding: 0px 0px 0px 0px;
   width: 980px;
   justify-content: space-between;
-  background-color: transparent;
+  // background-color: transparent;
 `;
 // fim Container INICIAL
 ///////////// HEADER /////////////////////////
@@ -100,7 +100,7 @@ export const ContainerTitleHeader = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
   min-height: 40px;
-  background: transparent;
+  //background: transparent;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -135,7 +135,7 @@ export const ContainerHearderRightFlex = styled.div`
 // Container Botões HEADER Right
 export const ContainerHeaderButton = styled.div`
   border: 2px;
-  border-color: #ffffff;
+  border-color: ${props => props.theme.colors.textColor};
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
@@ -158,7 +158,7 @@ interface PropsButtonHeaderImg {
 export const ButtonHeaderImg = styled.button<PropsButtonHeaderImg>`
   border: none;
   margin: 2px 5px 2px 5px;
-  color: white;
+  color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
@@ -192,17 +192,17 @@ export const ContainerHeaderItensBar = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
-  background: transparent;
+  //background: transparent;
 `;
 
 // Conteiner de botões das paginas
 export const ContainerPagesButton = styled.div`
   border: 2px red;
-  border-color: #ffffff;
+  border-color: ${props => props.theme.colors.textColor};
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
-  background: transparent;
+  //background: transparent;
   min-height: 40px;
   display: flex;
   flex-wrap: wrap;
@@ -221,7 +221,7 @@ interface PropsButtonPagesImg {
 export const ButtonPagesImg = styled.button<PropsButtonPagesImg>`
   border: none;
   margin: 2px 5px 2px 5px;
-  color: white;
+  color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
@@ -271,7 +271,7 @@ export const ContainerBodyItensPage = styled.div`
   justify-content: space-evenly;
   align-content: center;
   align-items: center;
-  background: transparent;
+  //background: transparent;
 `;
 /////////////// antes
 // export const ContainerCustonImagem = styled.div<TypeContainerCustonImagem>`
@@ -282,7 +282,7 @@ interface PropsContainerCustonImgPage {
 }
 export const ContainerCustonImgPage = styled.div<PropsContainerCustonImgPage>`
   border: 1px;
-  border-color: #ffffff;
+  border-color: ${props => props.theme.colors.textColor};
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
@@ -292,12 +292,6 @@ export const ContainerCustonImgPage = styled.div<PropsContainerCustonImgPage>`
   //display: flex;
   display: ${props => (props.open ? 'flex' : 'none')};
 `;
-
-
-
-
-
-
 
 ////////////////////////////////////////////
 
@@ -343,7 +337,7 @@ interface PropsContainerCustonButton {
 }
 export const ContainerCustonButton = styled.div<PropsContainerCustonButton>`
   border: 1px red;
-  border-color: #ffffff;
+  border-color: ${props => props.theme.colors.textColor};
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
@@ -365,7 +359,7 @@ interface PropsButtonCustonImg {
 export const ButtonCustonImg = styled.button<PropsButtonCustonImg>`
   border: none;
   margin: 2px 5px 2px 5px;
-  color: white;
+  color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
