@@ -1,8 +1,8 @@
-import * as Hdr from '../../stylePages';
+import * as Pg from '../../components/stylePages';
 
 interface PropsContentHearderMain {
   children?: React.ReactNode | JSX.Element;
 }
 export const ContentHearderMain = ({ children }: PropsContentHearderMain) => {
-  return <Hdr.ContainerHearder>{children}</Hdr.ContainerHearder>;
+  return <Pg.ContainerHearder>{children}</Pg.ContainerHearder>;
 };

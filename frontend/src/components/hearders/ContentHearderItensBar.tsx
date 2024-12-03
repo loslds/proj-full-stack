@@ -1,4 +1,4 @@
-import * as Hed from '../../stylePages';
+import * as Pg from '../../components/stylePages';
 
 interface PropsContentHearderItensBar {
   children?: React.ReactNode | JSX.Element;
@@ -6,5 +6,5 @@ interface PropsContentHearderItensBar {
 export const ContentHearderItensBar = ({
   children,
 }: PropsContentHearderItensBar) => {
-  return <Hed.ContainerHeaderItensBar>{children}</Hed.ContainerHeaderItensBar>;
+  return <Pg.ContainerHeaderItensBar>{children}</Pg.ContainerHeaderItensBar>;
 };

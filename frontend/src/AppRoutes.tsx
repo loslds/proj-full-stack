@@ -1,10 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { Home } from './components/pages/home/Home';
+import Home from './components/pages/Home';
 
-
-const AppRoutes: React.FC = () => {
+const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -14,3 +13,4 @@ const AppRoutes: React.FC = () => {
 };
 
 export default AppRoutes;
+

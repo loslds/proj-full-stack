@@ -1,4 +1,4 @@
-import * as Hrd from './styledHeader';
+import * as H from './styledHeader';
 
 interface PropsContentHeaderButtonSys {
   imgsys?: string;
@@ -11,13 +11,13 @@ export const ContentHeaderButtonSys = ({
   onClicksys,
 }: PropsContentHeaderButtonSys) => {
   return (
-    <Hrd.ContainerImgSys>
-      <Hrd.ButtonPagesImgSys
+    <H.ContainerImgSys>
+      <H.ButtonPagesImgSys
         img={imgsys}
         title={titlesys}
         onClick={onClicksys}
       />
-    </Hrd.ContainerImgSys>
+    </H.ContainerImgSys>
   );
 };
 export default ContentHeaderButtonSys;

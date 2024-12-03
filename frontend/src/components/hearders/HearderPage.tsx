@@ -1,9 +1,9 @@
-import * as Pg from '../../stylePages';
+import * as Pg from '../../components/stylePages';
 
 import Switch from 'react-switch';
 
-import { ContentHearderMain } from './ContentHearderMain';
-import { ContentHearderItens } from './ContentHearderItens';
+import { ContentHearderMain } from '../hearders/ContentHearderMain';
+import { ContentHearderItens } from '../hearders/ContentHearderItens';
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys';
 
 import { ContentHeaderTitle } from './ContentHeaderTitle';
@@ -11,10 +11,10 @@ import { ContentHeaderTitle } from './ContentHeaderTitle';
 import { ContentHearderRight } from './ContentHearderRight';
 
 import { ContentHearderItensBar } from './ContentHearderItensBar';
-import { ContentPagesButtonHelp } from '../../ContentPagesButtonHelp';
-import { ContentPagesButton } from '../../ContentPagesButton';
+import { ContentPagesButtonHelp } from '../ContentPagesButtonHelp';
+import { ContentPagesButton } from '../ContentPagesButton';
 
-interface PropsHearderHome {
+interface PropsHearderPage {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -38,7 +38,7 @@ interface PropsHearderHome {
 
   children?: React.ReactNode | JSX.Element;
 }
-export const HearderHome = ({
+export const HearderPage = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -59,7 +59,7 @@ export const HearderHome = ({
 
   onchange,
   ischeck,
-}: PropsHearderHome) => {
+}: PropsHearderPage) => {
   return (
     <ContentHearderMain>
       {/** imagem botão do logo da pagina */}
