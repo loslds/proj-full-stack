@@ -1,7 +1,7 @@
 import React from 'react';
 import * as MD from '../modal/stylesModal';
-import { CardModalTexto } from '../Modal/CardModalTexto';
-import { PageModalHelp } from '../Modal/PageModalHelp';
+import { CardModalTexto } from '../modal/CardModalTexto';
+import { PageModalHelp }from '../components/pages/PageModal';
 import { CardAcessoResgate } from './CardAcessoResgate';
 
 type TypeCardHelpResgate = {

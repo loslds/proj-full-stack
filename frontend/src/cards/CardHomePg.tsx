@@ -1,19 +1,19 @@
-import * as M from '../../modal/stylesModal';
-import { CardModalTexto } from '../../modal/CardModalTexto';
-import { ContentButtonModalImg } from '../../modal/CardButtonModal';
+import * as M from '../modal/stylesModal';
+import { CardModalTexto } from '../modal/CardModalTexto';
+import { ContentTextoModulos } from '../modal/ContentTextoModulos';
 
-interface PropsCardHomeSys {
-  imgcard?: string;
+interface PropsCardHomePg {
+  imgcardpg?: string;
 }
-export const CardHomeSys = ({ imgcard }: PropsCardHomeSys) => {
+export const CardHomePg = ({ imgcardpg }: PropsCardHomePg) => {
   return (
     <CardModalTexto>
-      <M.ContainerTextoModulos>
+      <ContentTextoModulos>
         <M.ContainerHeardModalMain>
-          <ContentButtonModalImg
-            imgbm={imgcard}
-            pminheight={'86px'}
-            pwidth={'88px'}
+        <M.ContainerModalImg
+            pminheight={'100px'}
+            pwidth={'220px'}
+            img={imgcardpg}
           />
         </M.ContainerHeardModalMain>
         <br />
@@ -152,7 +152,7 @@ export const CardHomeSys = ({ imgcard }: PropsCardHomeSys) => {
         </p>
         <br />
         <br />
-      </M.ContainerTextoModulos>
+      </ContentTextoModulos>
     </CardModalTexto>
   );
 };

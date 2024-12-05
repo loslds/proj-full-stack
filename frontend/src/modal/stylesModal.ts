@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import semimg from '../assets/svgs/semimg.svg';
 
 export const ContainerModalTexto = styled.div`
-  border: 1px solid blue;
+  border: none; //1px solid blue;
   padding: 0px 5px 0px 0px;
   margin: 2px 10px 2px 10px;
   width: 100%;
@@ -22,7 +22,7 @@ export const ContainerModalTexto = styled.div`
 `;
 //*
 export const ContainerTextoModulos = styled.div`
-  border: 1px solid red;
+  border: none; // solid red;
   padding: 0px 25px 0px 0px;
   margin: 2px 10px 2px 10px;
   min-height: 40px;

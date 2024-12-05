@@ -1,14 +1,14 @@
 
 import * as M from '../modal/stylesModal';
-import { CardModalTexto } from '../modal/CardModalTexto';
+import { CardModalTexto }  from '../modal/CardModalTexto';
 import { ContentTextoModulos } from '../modal/ContentTextoModulos';
  
-interface PropsCardAcessoSistema {
-  imgcard?: string;
+interface PropsCardHomeSys {
+  imgcardsys?: string;
   pminheight?: string;
   pwidth?: string;
 };
-export const CardAcessoSistema = ({ imgcard }: PropsCardAcessoSistema) => {
+export const CardHomeSys = ({ imgcardsys }: PropsCardHomeSys) => {
   return (
     <CardModalTexto>
       <ContentTextoModulos>
@@ -16,7 +16,7 @@ export const CardAcessoSistema = ({ imgcard }: PropsCardAcessoSistema) => {
           <M.ContainerModalImg
             pminheight={'100px'}
             pwidth={'220px'}
-            img={imgcard}
+            img={imgcardsys}
           />
         </M.ContainerHeardModalMain>
 
