@@ -109,12 +109,12 @@ export const ContainerModal = styled.div<PropsContainerModal>`
   border: 3px double #727272;
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
-  margin: 0px 10px 0px 10px;
+  margin: 8px 10px 8px 10px;
   color: black;
   top: ${({ ptop }) => ptop ||'62px'};
   position: fixed;
   width: ${({ pwidth }) => pwidth || '66.3%'};
-  height: ${({ pheight }) => pheight || '95%'};
+  height: ${({ pheight }) => pheight || '85%'};
   min-height: auto;
   overflow-y: auto;
   display: flex row;
@@ -205,12 +205,6 @@ export const ContainerModalTitle = styled.div`
 
 
 
-
-
-
-
-
-
 interface PropsButtonModal {
   img?: string
 }
@@ -236,7 +230,73 @@ export const ButtonImgModal = styled.button<PropsButtonModal>`
   justify-content: center;
   align-items: center;
 `;
+///
 
+export const ContainerInfoModalFlex = styled.div`
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  background-color: transparent; 
+  display: flex;
+  flex-direction: column;  /* Garantir que os itens sejam dispostos em coluna */
+  flex-wrap: wrap;
+  text-align: left; /* Alinhar o texto à esquerda */
+  font-size: 16px;
+  font-style: normal;
+  color: #000000; /* Garantir que o texto tenha a cor definida */
+  
+  h1, h2, h3, h4, h5 {
+    margin: 0px 0px 10px 0px; /* Margem para separar os títulos */
+    padding: 0px 0px 0px 0px;
+    //color: #fff;
+    font-style: normal;
+    text-decoration-color: #727272;
+  }
+  
+  h1 {
+    font-size: 20px;
+    line-height: 20px;
+    text-decoration: underline 3px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: underline 2px;
+  }
+  
+  h3 {
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: underline 1.5px;
+  }
+  
+  h4 {
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration: underline 1px;
+  }
+  
+  h5 {
+    font-size: 12px;
+    line-height: 12px;
+    text-decoration: underline 0.5px;
+  }
+  
+  p {
+    margin: 0px 0px 10px 0px;  /* Margem para separar os parágrafos */
+    padding: 0px;
+  }
+
+  link {
+    font-size: 20px;
+    line-height: 20px;
+    font-style: normal;
+
+  }
+`;
 
 ///////////////////////////////////////////////////
 

@@ -1,12 +1,12 @@
-import * as Pag from './stylePages';
+import * as Pg from './stylePages';
 
 interface PropsContentPages {
   children?: React.ReactNode | JSX.Element;
 };
 export const ContentPages = ({ children }: PropsContentPages ) => {
   return (
-    <Pag.ContainerPg>
-      <Pag.ContainerFlexPg>{children}</Pag.ContainerFlexPg>
-    </Pag.ContainerPg>
+    <Pg.ContainerPg>
+      <Pg.ContainerFlexPg>{children}</Pg.ContainerFlexPg>
+    </Pg.ContainerPg>
   );
 };

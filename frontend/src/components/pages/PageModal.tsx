@@ -15,6 +15,7 @@ interface PropsPageModal {
   imgbm?: string;
   titbm?: string;
   onclose?: () => void;
+  
   children?: React.ReactNode | JSX.Element;
 }
 export const PageModal = ({

@@ -20,7 +20,7 @@ export const ContainerPg = styled.div`
 `;
 /** quota da flexão do corpo  sem Borda */
 export const ContainerFlexPg = styled.div`
-  border: 1px solid;
+  border: none; // solid;
   margin: 3px 5px 3px 5px;
   padding: 0px 0px 0px 0px;
   width: 980px;
@@ -265,7 +265,7 @@ export const ContainerBodyItensPage = styled.div`
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
   max-width: 100%;
-  min-height: 60px;
+  //min-height: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -289,12 +289,142 @@ export const ContainerCustonImgPage = styled.div<PropsContainerCustonImgPage>`
   min-height: ${({ pxheight }) => pxheight || '50px'};
   background: transparent;
   color: ${props => props.theme.colors.textColor};
-  //display: flex;
   display: ${props => (props.open ? 'flex' : 'none')};
 `;
+// box
+interface PropsContainerCardBoxCenterPg {
+  pwidth? : string;
+}
+export const ContainerCardBoxCenterPage = styled.div<PropsContainerCardBoxCenterPg>`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  min-width: ${({ pwidth }) => pwidth || '150px'};
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-flow: row;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+`;
+//
+export const ContainerCardBoxCenterPageFlex = styled.div`
+  padding: 0px 0px 0px 0px;
+  margin: 5px 5px 5px 5px;
+  border: 3px double;
+  border-color: ${props => props.theme.colors.textColor};
+  border-radius: 10px;
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+`;
+//
+export const ContainerCardBoxTitle = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 3px double;
+  border-color: ${props => props.theme.colors.textColor};
+  background-color: #bbbbbb;
+  min-height: 25px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+//
+export const ContainerCardBoxInput = styled.div`
+  border: none;
+  padding: 2px 2px 2px 2px;
+  margin: 0px 0px 0px 0px;
+  min-width: 48%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  label {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 5px 0px 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    align-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
+  }
+  input {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 0px 0px;
+    min-width: 48%;
+    display: flex;
+    //flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    align-content: center;
+ }
+  img {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 0px 0px;
+    height: 40px;
+    height: 40px;
+  }
+  button {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 0px 0px;
+    height: 40px;
+    height: 40px;
+  }
+`;
+//
+// Estilo para o contêiner que envolve o select
+export const SelectContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 10px 0;
+`;
 
-////////////////////////////////////////////
+// Estilo para o select
+export const StyledSelect = styled.select`
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  appearance: none;
 
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+`;
+
+// Estilo para as opções dentro do select
+export const StyledOption = styled.option`
+  font-size: 16px;
+  color: #333;
+`;
+//////////////////////////////////////
 export const ContainerBody = styled.div`
   border: none; /* 1px dashed red;*/
   padding: 0px 0px 0px 0px;
