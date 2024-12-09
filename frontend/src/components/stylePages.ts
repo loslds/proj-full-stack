@@ -1,6 +1,68 @@
 import styled from 'styled-components';
-
+import { darken } from 'polished';
 import semimg from '../assets/svgs/semimg.svg';
+
+interface PropsButtonCustonImg {
+  pheight?: string;
+  pwidth?: string;
+  img?: string;
+}
+export const ButtonCustonImg = styled.button<PropsButtonCustonImg>`
+  border: none;
+  margin: 2px 5px 2px 5px;
+  color: ${props => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: ${({ pheight }) => pheight || '45px'};
+  width: ${({ pwidth }) => pwidth || '45px'};
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+interface ButtonProps {
+  bgColor?: string; // Cor de fundo
+  color?: string;   // Cor do texto
+  padding?: string; // Espaçamento interno
+  fontSize?: string; // Tamanho da fonte
+  borderRadius?: string; // Arredondamento das bordas
+  pxheight?: string; // Altura-> ou 50px
+  pxwidth?: string; // lagura
+}
+export const Button = styled.button<ButtonProps>`
+  background-color: ${(props) => props.bgColor || "#007BFF"};
+  color: ${(props) => props.color || "#000"};
+  padding: ${(props) => props.padding || "5px 20px 5px 20px"};
+  margin: ${(props) => props.padding || "5px 5px"};
+  font-size: ${(props) => props.fontSize || "16px"};
+  border: none;
+  border-radius: ${(props) => props.borderRadius || "4px"};
+  min-height: ${({ pxheight }) => pxheight || '35px'};
+  width: ${({ pxwidth }) => pxwidth || '35px'};
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${(props) => props.bgColor ? darken(0.1, props.bgColor) : "#0056b3"};
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
 
 // containers do conteudo para paginas
 // Conatiner INICIAL
@@ -442,9 +504,10 @@ export const ContainerMenu = styled.div`
 `;
 
 export const ContainerPage = styled.div`
-  border: none; /* dashed grey;*/
+  border: 2px dashed grey;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
+  min-height: 40px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -481,29 +544,31 @@ export const ContainerCustonButton = styled.div<PropsContainerCustonButton>`
    }
 `;
 
-interface PropsButtonCustonImg {
-  pheight?: string;
-  pwidth?: string;
-  img?: string;
-}
-export const ButtonCustonImg = styled.button<PropsButtonCustonImg>`
+export const ContainerCardBoxPage = styled.div`
   border: none;
-  margin: 2px 5px 2px 5px;
-  color: ${props => props.theme.colors.textColor};
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  outline: none;
-  min-height: ${({ pheight }) => pheight || '45px'};
-  width: ${({ pwidth }) => pwidth || '45px'};
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  min-height: 50px;
   display: flex;
-  flex-flow: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
 `;
+interface PropsContainerCardBoxFlexPage {
+  pwidth? : string;
+};
+export const ContainerCardBoxPageFlex = styled.div<PropsContainerCardBoxFlexPage>`
+  border: 1px dashed red;
+  border-color: ${props => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  width: ${({ pwidth }) => pwidth || '65%'};
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+`;
+

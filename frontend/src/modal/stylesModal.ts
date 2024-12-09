@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import semimg from '../assets/svgs/semimg.svg';
 
-export const ContainerModalTexto = styled.div`
+export const ContainerModalCenter = styled.div`
   border: none; //1px solid blue;
   padding: 0px 5px 0px 0px;
   margin: 2px 10px 2px 10px;
@@ -39,7 +39,7 @@ export const ContainerTextoModulos = styled.div`
   font-style: normal;
 `;
 //*
-export const ContainerHeardModalMain = styled.div`
+export const ContainerModalAround = styled.div`
   border: 0px ;
   height: 100%;
   width: 100%;
@@ -48,7 +48,7 @@ export const ContainerHeardModalMain = styled.div`
   background-color: rgba(211,211,211,.3);
   display: flex;
   flex-flow: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-content: center;
   align-items: center;
   color: black;
@@ -232,7 +232,7 @@ export const ButtonImgModal = styled.button<PropsButtonModal>`
 `;
 ///
 
-export const ContainerInfoModalFlex = styled.div`
+export const ContainerModalColumn = styled.div`
   border: none;
   height: 100%;
   width: 100%;

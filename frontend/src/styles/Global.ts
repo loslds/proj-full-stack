@@ -51,4 +51,14 @@ export default createGlobalStyle`
     font-weight: bold;
     color: #fb0000;
   }
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espaçamento entre a imagem e o texto */
+  }
+
+  span img {
+    width: 16px;
+    height: 16px; /* Tamanho da imagem */
+  }
 `;

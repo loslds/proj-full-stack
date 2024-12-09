@@ -12,8 +12,8 @@ import bt_resgate from '../../assets/svgs/bt_resgate.svg';
 import bt_close from '../../assets/svgs/bt_close.svg';
 //import jr_circ from '../../assets/svgs/jr_circ.svg';
 
-import { CardHomeSys } from '../../cards/CardHomeSys';
-import { CardHomePg } from '@/cards/CardHomePg';
+import { CardHlpHomeLogo } from '../../cards/CardHlpHomeLogo';
+import { CardHlpHomePage } from '@/cards/CardHlpHomePage';
 
 import { ContentItensBody } from '../ContentItensBody';
 import { ContentCustonImgPage } from '../ContentCustonImgPage';
@@ -40,14 +40,14 @@ const Home: React.FC = () => {
     };
   };
 
-  const [logoSys, setLogoSys] = React.useState(false);
-  const handlerLogoSys = React.useCallback(() => {
-    setLogoSys((oldState) => !oldState);
+  const [cardlogo, setCardLogo] = React.useState(false);
+  const handlerCardLogo = React.useCallback(() => {
+    setCardLogo((oldState) => !oldState);
   }, []);
 
-  const [helppage, setHelpPage] = React.useState(false);
-  const handlerHelpPage = React.useCallback(() => {
-    setHelpPage((oldState) => !oldState);
+  const [cardpage, setCardPage] = React.useState(false);
+  const handlerCardPage = React.useCallback(() => {
+    setCardPage((oldState) => !oldState);
   }, []);
 
   return (
@@ -55,11 +55,11 @@ const Home: React.FC = () => {
       <LayoutHome
         imgsys={lg_sys}
         titbtnsys="Home Sistema..."
-        onclicksys={handlerLogoSys}
+        onclicksys={handlerCardLogo}
         titlepg="Home"
         imgbtnhlppg={bt_help}
         titbtnhlppg="Help Page..."
-        onclickhlppg={handlerHelpPage}
+        onclickhlppg={handlerCardPage}
         imgbtnopen={bt_avatar}
         titbtnopen="Login..."
         onclickopen={() => {}}
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
           />
         </ContentItensBody>
 
-        {logoSys ? (
+        {cardlogo ? (
           <PageModal
             ptop={'1%'}
             pwidth={'80%'}
@@ -90,15 +90,15 @@ const Home: React.FC = () => {
             imgbm={bt_close}
             titbm="Fechar..."
             titulo={'Home Sistema.'}
-            onclose={() => setLogoSys(false)}
+            onclose={() => setCardLogo(false)}
           >
-            <CardHomeSys
-              imgcardsys={lg_sys}
-              oncloselink={() => setLogoSys(false)}
+            <CardHlpHomeLogo
+              imghlplogo={lg_sys}
+              onclosesair={() => setCardLogo(false)}
             />
           </PageModal>
         ) : null}
-        {helppage ? (
+        {cardpage ? (
           <PageModal
             ptop={'1%'}
             pwidth={'80%'}
@@ -106,11 +106,11 @@ const Home: React.FC = () => {
             imgbm={bt_close}
             titbm="Fechar..."
             titulo={'Help Conteúdo Home.'}
-            onclose={() => setHelpPage(false)}
+            onclose={() => setCardPage(false)}
           >
-            <CardHomePg
-              imgcardpg={lg_sys}
-              oncloselink={() => setHelpPage(false)}
+            <CardHlpHomePage
+              imgcardpage={lg_sys}
+              onclosesair={() => setCardPage(false)}
             />
           </PageModal>
         ) : null}

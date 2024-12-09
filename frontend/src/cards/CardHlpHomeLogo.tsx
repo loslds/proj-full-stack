@@ -1,23 +1,28 @@
 import * as M from '../modal/stylesModal';
-import { CardModalTexto } from '../modal/CardModalTexto';
-import { ContentTextoModulos } from '../modal/ContentTextoModulos';
+import { CardModalCenter } from '../modal/CardModalCenter';
+import { CardModalAround } from '@/modal/CardModalAround';
+import { CardModalTextoColumn } from '../modal/CardModalTextoColumn';
+import { CardHlpFooter } from './CardHlpFooter';
 
-interface PropsCardHomePg {
-  imgcardpg?: string;
-  oncloselink?: () => void;
+interface PropsCardHlpHomePage {
+  imghlplogo?: string;
+  onclosesair?: () => void;
 }
-export const CardHomePg = ({ imgcardpg, oncloselink }: PropsCardHomePg) => {
+export const CardHlpHomeLogo = ({
+  imghlplogo,
+  onclosesair
+}: PropsCardHlpHomePage) => {
   return (
-    <CardModalTexto>
-      <ContentTextoModulos>
-        <M.ContainerHeardModalMain>
+    <CardModalCenter>
+      <CardModalAround>
+        <CardModalAround>
           <M.ContainerModalImg
             pminheight={'80px'}
             pwidth={'220px'}
-            img={imgcardpg}
+            img={imghlplogo}
           />
-        </M.ContainerHeardModalMain>
-        <M.ContainerInfoModalFlex>
+        </CardModalAround>
+        <CardModalTextoColumn>
           <br />
           <h3>Systema de Gerenciamento .</h3>
           <p>
@@ -156,25 +161,13 @@ export const CardHomePg = ({ imgcardpg, oncloselink }: PropsCardHomePg) => {
             do Usuário em processo tiver qualquer problema em não "TER
             AUTORIZAÇÃO" para prosseguir com o processo do momento.
           </p>
-          <br />
-          <p>
-            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-          </p>
-          <label>ENCONTRARÁ UM HELP EM TODAS AS PAGINAS DESTE SISTEMA</label>
-          <p>
-            &emsp;&emsp; - Cada Pagina o Help lhe dará eXplicação adequada de
-            como utilisar o Sistema. &emsp;&emsp;&emsp;&emsp;...{' '}
-            <a href="#" onClick={oncloselink}>
-              Fechar
-            </a>
-          </p>
-          <p>
-            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-          </p>
-          <br />
-          <br />
-        </M.ContainerInfoModalFlex>
-      </ContentTextoModulos>
-    </CardModalTexto>
+          <CardHlpFooter 
+            label='ENCONTRARÁ UM HELP EM TODAS AS PAGINAS DESTE SISTEMA.'
+            texto='Cada Pagina o Help lhe dará explicação adequada de como                 utilisar o Sistema.'
+            onclosesair={onclosesair}
+            />
+        </CardModalTextoColumn>
+      </CardModalAround>
+    </CardModalCenter>
   );
 };
