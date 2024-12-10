@@ -343,7 +343,7 @@ interface PropsContainerCustonImgPage {
   open?: boolean;
 }
 export const ContainerCustonImgPage = styled.div<PropsContainerCustonImgPage>`
-  border: 1px;
+  border: none;
   border-color: ${props => props.theme.colors.textColor};
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
@@ -353,24 +353,61 @@ export const ContainerCustonImgPage = styled.div<PropsContainerCustonImgPage>`
   color: ${props => props.theme.colors.textColor};
   display: ${props => (props.open ? 'flex' : 'none')};
 `;
-// box
-interface PropsContainerCardBoxCenterPg {
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////
+// box column sem borda 100%
+////////////////////////////////
+export const ContainerCardBoxColumnPg = styled.div`
+  border: 1px solid blue;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: '100%';
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-flow: row;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+`;
+//
+export const ContainerCardBoxColumnPgFlex = styled.div`
+  padding: 0px 0px 0px 0px;
+  margin: 5px 5px 5px 5px;
+  border: none;
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  //flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+`;
+/////////////////////////////////////////////
+//////////////////////////////
+// box column com borda pwidth || '150px'
+////////////////////////////////
+interface PropsContainerCardBoxBorderPg {
   pwidth? : string;
 }
-export const ContainerCardBoxCenterPage = styled.div<PropsContainerCardBoxCenterPg>`
+export const ContainerCardBoxBorderPg = styled.div<PropsContainerCardBoxBorderPg>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-width: ${({ pwidth }) => pwidth || '150px'};
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-flow: row;
   color: ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
 `;
-//
-export const ContainerCardBoxCenterPageFlex = styled.div`
+export const ContainerCardBoxBorderPgFlex = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 5px 5px 5px;
   border: 3px double;
@@ -379,12 +416,12 @@ export const ContainerCardBoxCenterPageFlex = styled.div`
   width: 100%;
   min-height: 40px;
   display: flex;
-  flex-flow: row;
+  //flex-flow: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
 `;
-//
+/////////////////////////////////////////
 export const ContainerCardBoxTitle = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
@@ -486,6 +523,7 @@ export const StyledOption = styled.option`
   font-size: 16px;
   color: #333;
 `;
+
 //////////////////////////////////////
 export const ContainerBody = styled.div`
   border: none; /* 1px dashed red;*/
@@ -543,16 +581,82 @@ export const ContainerCustonButton = styled.div<PropsContainerCustonButton>`
     background-color: #e4e4e4;
    }
 `;
-
-export const ContainerCardBoxPage = styled.div`
+////////////////////////////////////////////////////////
+// inicio
+// ContentCardPage -> {ContainerCardPage,ContainerCardPageFlex}
+/////////////////////////////////////////////////////////
+export const ContainerCardPage = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
-  min-height: 50px;
+  //min-height: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+`;
+interface PropsContainerCardMainFlex {
+  pwidth? : string;
+};
+export const ContainerCardPageFlex = styled.div<PropsContainerCardMainFlex>`
+  border: 3px double;
+  border-radius: 10px;
+  border-color: ${props => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  width: ${({ pwidth }) => pwidth || '65%'};
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+`;
+////////////////////////////////////////////////////////
+// fim ContentCardPage
+// inicio ContentCardPageTitle -> ContainerCardPageTitle
+/////////////////////////////////////////////////////////
+export const ContainerCardPageTitle = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 3px double;
+  border-color: ${props => props.theme.colors.textColor};
+  background-color: #bbbbbb;
+  min-height: 25px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+////////////////////////////////////////////////////////
+// fim ContentCardPageTitle
+// inicio  -> 
+/////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+export const ContainerCardBoxPage = styled.div`
+  border: 2px solid #1116f2;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  height: 150px;
+  //display: flex;
+  //flex-wrap: wrap;
+  //justify-content: center;
+  //align-content: center;
+  //align-items: center;
   color: ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
 `;
@@ -561,12 +665,12 @@ interface PropsContainerCardBoxFlexPage {
 };
 export const ContainerCardBoxPageFlex = styled.div<PropsContainerCardBoxFlexPage>`
   border: 1px dashed red;
-  border-color: ${props => props.theme.colors.textColor};
+  //border-color: ${props => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
   width: ${({ pwidth }) => pwidth || '65%'};
   display: flex;
-  flex-flow: row;
+  //flex-flow: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
