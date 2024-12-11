@@ -1,10 +1,10 @@
 import * as M from '../modal/stylesModal';
 import { CardModalCenter } from '../modal/CardModalCenter';
-import { CardModalAround } from '@/modal/CardModalAround';
+import { CardModalAround } from '../modal/CardModalAround';
 import { CardModalTextoColumn } from '../modal/CardModalTextoColumn';
 import { CardHlpFooter } from './CardHlpFooter';
 
-interface PropsCardHlpHome {
+interface PropsCardHlpHomePage {
   imgcardpage?: string;
   pminheight?: string;
   pwidth?: string;
@@ -12,8 +12,8 @@ interface PropsCardHlpHome {
 }
 export const CardHlpHomePage = ({
   imgcardpage,
-  onclosesair
-}: PropsCardHlpHome) => {
+  onclosesair,
+}: PropsCardHlpHomePage) => {
   return (
     <CardModalCenter>
       <CardModalAround>
@@ -23,7 +23,6 @@ export const CardHlpHomePage = ({
           img={imgcardpage}
         />
       </CardModalAround>
-
       <CardModalTextoColumn>
         <h2>Sintase do Sistema.</h2>
         <p>
@@ -64,8 +63,7 @@ export const CardHlpHomePage = ({
           do seu "ACESSO":
         </p>
         <p>
-          {' '}
-          Em seu Cadastramento, foi solicitado que vc disponibilizasse as
+          &emsp; Em seu Cadastramento, foi solicitado que vc disponibilizasse as
           seguintes informações:
         </p>
         <h4>Informações para Cadastro.:</h4>
@@ -120,15 +118,14 @@ export const CardHlpHomePage = ({
         </p>
         <p>&emsp;&emsp; - Será solicitada as respostas para para as mesmas.</p>
         <br />
-        <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
         <p>
-          Assim que for Conferidas as Informações de seu resgate,o Sistema irá
-          redirecionar você para Alteração do seu Acesso ao Sistema.
+          Assim que for Conferidas as Informações de seu Login ou Resgate, o
+          Sistema irá redirecionar você para Atividades do Sistema.
         </p>
         <CardHlpFooter
           label="PÁGINA-> HOME."
-          texto="Concluido o Novo Acesso, será redirecionado para a Pagina
-          Principal(HOME)."
+          texto="Assim que Logado for, Sistema retorna a Pagina HOME onde poderá clicar
+          na imagem de sua atividade e usufluir do Sistema."
           onclosesair={onclosesair}
         />
         <br />

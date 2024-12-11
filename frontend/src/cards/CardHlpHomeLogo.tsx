@@ -1,6 +1,6 @@
 import * as M from '../modal/stylesModal';
 import { CardModalCenter } from '../modal/CardModalCenter';
-import { CardModalAround } from '@/modal/CardModalAround';
+import { CardModalAround } from '../modal/CardModalAround';
 import { CardModalTextoColumn } from '../modal/CardModalTextoColumn';
 import { CardHlpFooter } from './CardHlpFooter';
 
@@ -10,7 +10,7 @@ interface PropsCardHlpHomePage {
 }
 export const CardHlpHomeLogo = ({
   imghlplogo,
-  onclosesair
+  onclosesair,
 }: PropsCardHlpHomePage) => {
   return (
     <CardModalCenter>
@@ -51,8 +51,12 @@ export const CardHlpHomeLogo = ({
           <p>&emsp;&emsp; - Segue abaixo os conteúdos deste sistema.</p>
           <br />
           <label>Conteúdo.</label>
-          &emsp;&emsp; - Foi dividido em setores a Execução para produzir. Para
-          conseguir ter um controle geral, foi criado os seguintes SETORES.
+          <br />
+          <p>
+            &emsp;&emsp; - Foi dividido em setores a Execução para produzir.
+            Para conseguir ter um controle geral, foi criado os seguintes
+            "SETORES".
+          </p>
           <br />
           <h3>RECEPÇÃO</h3>
           <p>
@@ -60,14 +64,15 @@ export const CardHlpHomeLogo = ({
             de Serviço, e informar com detalhes:
           </p>
           <p>
-            &emsp;&emsp;&emsp; Dados do Cliênte, no mínimo: Nome, Telefone e/ou
-            WatsZap, mesmo que o Cliênte envie por: MOTOBOY OU UBER(s) o
+            &emsp;&emsp;&emsp; - Dados do Cliênte, no mínimo: Nome, Telefone
+            e/ou WatsZap, mesmo que o Cliênte envie por: MOTOBOY OU UBER(s) o
             material a ser processado. Após o recebimento, deverá o mesmo ser
             identificado e conferido, e somente depois será encaminhado conforme
             a necessidade, se já tiver o Design e for aprovado pelo Cliênte, irá
             para Produção automaticamente, senão será enviado para o setor de
             Design.
           </p>
+          <br />
           <h3>DESIGN</h3>
           <p>
             &emsp;&emsp; - O Sistema mostrará que a Ordem de Serviço para
@@ -77,6 +82,7 @@ export const CardHlpHomeLogo = ({
             para a Recepção devidos algo mais a satisfazer a conclusão do
             esperado Produto.
           </p>
+          <br />
           <h3>PRODUÇÃO</h3>
           <p>
             &emsp;&emsp; - Na Produção, deverá ser informado ao Sistema o
@@ -91,6 +97,7 @@ export const CardHlpHomeLogo = ({
             &emsp;&emsp; - No momento que o Sistema receber essas informações,
             automaticamente aparecera no Setor de Acabamento.
           </p>
+          <br />
           <h3>ACABAMENTO</h3>
           &emsp;&emsp; - No Acabamento, deverá ser informado ao Sistema o
           momento de Inicio do trabalho e no seu termino comumente.
@@ -103,6 +110,7 @@ export const CardHlpHomeLogo = ({
             &emsp;&emsp; - No momento que o Sistema receber essas informações,
             automaticamente aparecera no Setor de Expedição.
           </p>
+          <br />
           <h3>EXPEDIÇÃO</h3>
           <p>
             &emsp;&emsp; - Ao receber o Material, deverá tomar as devidas
@@ -143,17 +151,20 @@ export const CardHlpHomeLogo = ({
             &emsp;&emsp; - No momento que o Sistema receber essas informações,
             automaticamente aparecera no Setor de Administração.
           </p>
+          <br />
           <h3>ADIMINISTRAÇÃO</h3>
           <p>
             &emsp;&emsp; - Setor responsável pelas faturas da Empresa. Acesso
             este que terá devido as informações coletadas pelo Sistema.
           </p>
+          <br />
           <h3>CONFIGURAÇÃO</h3>
           <p>
             &emsp;&emsp; - Setor que tem acesso a todos os Bancos de Dados do
             Sistema. ESte tem a Finalidade do usuário que poderá: Criar e gerar
             novos processos no BAnco de Dados do Sistema.
           </p>
+          <br />
           <h3>MASTER</h3>
           <p>
             &emsp;&emsp; - Setor que tem ACESSO GLOBAL no Sistema, da o direito
@@ -161,11 +172,11 @@ export const CardHlpHomeLogo = ({
             do Usuário em processo tiver qualquer problema em não "TER
             AUTORIZAÇÃO" para prosseguir com o processo do momento.
           </p>
-          <CardHlpFooter 
-            label='ENCONTRARÁ UM HELP EM TODAS AS PAGINAS DESTE SISTEMA.'
-            texto='Cada Pagina o Help lhe dará explicação adequada de como                 utilisar o Sistema.'
+          <CardHlpFooter
+            label="ENCONTRARÁ UM HELP EM TODAS AS PAGINAS DESTE SISTEMA."
+            texto="Cada Pagina o Help lhe dará explicação adequada de como                 utilisar o Sistema."
             onclosesair={onclosesair}
-            />
+          />
         </CardModalTextoColumn>
       </CardModalAround>
     </CardModalCenter>

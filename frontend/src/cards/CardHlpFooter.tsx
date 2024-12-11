@@ -21,7 +21,8 @@ export const CardHlpFooter = ({
       </p>
       <label>{label}</label>
       <p>
-      &emsp;&emsp; - {texto} &emsp;&emsp;&emsp; <a href="#" onClick={onclosesair}>
+        &emsp;&emsp; - {texto} &emsp;&emsp;&emsp;
+        <a href="#" onClick={onclosesair}>
           Fechar...
         </a>
       </p>

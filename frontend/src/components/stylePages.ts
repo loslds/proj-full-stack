@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
+//import { darken } from 'polished';
 import semimg from '../assets/svgs/semimg.svg';
 
 interface PropsButtonCustonImg {
@@ -117,58 +117,58 @@ export const ContainerHeaderItens = styled.div`
   align-content: center;
 `;
 // Container imagem do Systema no inicio e após selecionar Empresa imagem da impresa //
-// export const ContainerImgSys = styled.div`
-//   border: none;
-//   border-radius: 5px;
-//   padding: 0px 0px 0px 0px;
-//   margin: 3px 7px 3px 7px;
-//   background: #fff;
-//   display: flex;
-//   justify-content: left;
-//   align-items: center;
-//   align-content: center;
-// `;
+export const ContainerImgSys = styled.div`
+  border: none;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 3px 7px 3px 7px;
+  background: #fff;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+`;
 // Botão com imagem do Systema no inicio
 // Botão com imagem da Empresa após executando Empresa selecioda 
-// interface PropsButtonPagesImgSys {
-//   img?: string;
-// }
-// export const ButtonPagesImgSys = styled.button<PropsButtonPagesImgSys>`
-//   border: none;
-//   margin: 0px 0px 0px 0px;
-//   color: ${props => props.theme.colors.textColor};
-//   font-size: 12px;
-//   font-weight: bold;
-//   font-family: 'Courier New', Courier, monospace;
-//   background-color: transparent;
-//   cursor: pointer;
-//   outline: none;
-//   width: 110px;
-//   height: 40px;
-//   display: flex;
-//   flex-flow: nowrap;
-//   justify-content: center;
-//   align-items: center;
-//   background-image: url(${({ img }) => img || semimg});
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: center;
-// `;
+interface PropsButtonPagesImgSys {
+  img?: string;
+}
+export const ButtonPagesImgSys = styled.button<PropsButtonPagesImgSys>`
+  border: none;
+  margin: 0px 0px 0px 0px;
+  color: ${props => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  width: 110px;
+  height: 40px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`;
 // termino do painel Esquerdo HEARD
 
 // Container CENTRO (Titulo da Pagina )
-// export const ContainerTitleHeader = styled.div`
-//   border: none; /*1px dashed red;*/
-//   padding: 0px 0px 0px 0px;
-//   margin: 5px 10px 5px 10px;
-//   min-height: 40px;
-//   //background: transparent;
-//   display: flex;
-//   flex-flow: row wrap;
-//   justify-content: center;
-//   align-items: center;
-//   align-content: center;
-// `;
+export const ContainerTitleHeader = styled.div`
+  border: none; /*1px dashed red;*/
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  min-height: 40px;
+  //background: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
 // Container lado Direito HEADER (Botões)
 export const ContainerHearderRightFlex = styled.div`
   border: none;
@@ -511,6 +511,40 @@ export const StyledOption = styled.option`
   color: #333;
 `;
 
+export const EmailInput = styled.input.attrs({ type: 'email' })`
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  &::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+
+  &:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: #888;
+  }
+`;
+
+
 //////////////////////////////////////
 export const ContainerBody = styled.div`
   border: none; /* 1px dashed red;*/
@@ -577,7 +611,7 @@ export const ContainerCardPage = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
-  //min-height: 20px;
+  min-height: 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -624,8 +658,39 @@ export const ContainerCardPageTitle = styled.div`
 `;
 ////////////////////////////////////////////////////////
 // fim ContentCardPageTitle
-// inicio  -> 
+// ContentCardPageMain -> {ContainerCardPageMain,ContainerCardPageMainFlex}
 /////////////////////////////////////////////////////////
+interface PropsContainerCardMain {
+  open?: boolean;
+}
+export const ContainerCardPageMain = styled.div<PropsContainerCardMain>`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  //min-height: 20px;
+  display: ${props => (props.open ? 'flex' : 'none')};
+  flex-wrap: wrap;
+  justify-content: center;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+`;
+interface PropsContainerCardMainFlex {
+  pwidth? : string;
+};
+export const ContainerCardPageMainFlex = styled.div<PropsContainerCardMainFlex>`
+  border: 2px solid red;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  width: ${({ pwidth }) => pwidth || '100%'};
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+`;
+////////////////////////////////////////////////////////
+// fim ContentCardPageMain
 
 
 

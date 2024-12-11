@@ -1,6 +1,6 @@
 import * as M from '../modal/stylesModal';
 import { CardModalCenter } from '../modal/CardModalCenter';
-import { CardModalAround } from '@/modal/CardModalAround';
+import { CardModalAround } from '../modal/CardModalAround';
 import { CardModalTextoColumn } from '../modal/CardModalTextoColumn';
 
 interface PropsCardDesemvolver {

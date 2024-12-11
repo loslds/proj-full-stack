@@ -60,12 +60,12 @@ const Home: React.FC = () => {
         imgbtnhlppg={bt_help}
         titbtnhlppg="Help Page..."
         onclickhlppg={handlerCardPage}
-        imgbtnopen={bt_avatar}
-        titbtnopen="Login..."
-        onclickopen={() => {}}
-        imgbtnreg={bt_resgate}
-        titbtnreg="Resgatar Acesso..."
-        onclickreg={goto('/resgatar')}
+        imgbtnlogin={bt_avatar}
+        titbtnlogin="Login..."
+        onclicklogin={() => {}}
+        imgbtnresg={bt_resgate}
+        titbtnresg="Resgatar Acesso..."
+        onclickresg={goto('/resgatar')}
         onchange={ToggleTheme}
         ischeck={ischeck}
       >

@@ -1,5 +1,4 @@
-import * as H from './../stylePages';
-
+import * as H from './styledHeader';
 interface PropsContentHearderRight {
   children?: React.ReactNode | JSX.Element;
 }

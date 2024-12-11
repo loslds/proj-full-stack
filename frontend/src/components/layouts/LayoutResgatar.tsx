@@ -18,9 +18,9 @@ interface PropsLayoutResgatar {
   titbtnhlppg?: string;
   onclickhlppg?: () => void;
 
-  imgbtnopen?: string;
-  titbtnopen?: string;
-  onclickopen?: () => void;
+  imgbtnaborta?: string;
+  titbtnaborta?: string;
+  onclickaborta?: () => void;
 
 //  imgbtnreg?: string;
 //  titbtnreg?: string;
@@ -42,9 +42,9 @@ const LayoutResgatar = ({
   titbtnhlppg,
   onclickhlppg,
 
-  imgbtnopen,
-  titbtnopen,
-  onclickopen,
+  imgbtnaborta,
+  titbtnaborta,
+  onclickaborta,
 
 //  imgbtnreg,
 //  titbtnreg,
@@ -68,9 +68,9 @@ const LayoutResgatar = ({
         titbtnhlppg={titbtnhlppg}
         onclickhlppg={onclickhlppg}
 
-        imgbtnopen={imgbtnopen}
-        titbtnopen={titbtnopen}
-        onclickopen={onclickopen}
+        imgbtnaborta={imgbtnaborta}
+        titbtnaborta={titbtnaborta}
+        onclickaborta={onclickaborta}
 
 //        imgbtnreg={imgbtnreg}
 //        titbtnreg={titbtnreg}

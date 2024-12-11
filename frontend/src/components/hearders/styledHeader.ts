@@ -6,7 +6,7 @@ import semimg from '../../assets/svgs/semimg.svg';
 // Container Header
 export const ContainerHearder = styled.div`
   top: 0px;
-  border: none; 
+  border: 1px solid red; 
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
   width: 100%;
@@ -16,18 +16,6 @@ export const ContainerHearder = styled.div`
   justify-content: space-between;
   align-content: center;
   background: ${props => props.theme.colors.backgroundColor};
-`;
-// Container HEADER Itens BAR
-export const ContainerHeaderItensBar = styled.div`
-  border: none;
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  max-width: 100%;
-  min-height: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: center;
 `;
 // Container lado Esquerdo HEADER (imagem Sys)
 export const ContainerHeaderItens = styled.div`
@@ -117,10 +105,23 @@ export const ContainerHearderRightFlex = styled.div`
   justify-content: space-between;
   align-content: center;
 `;
-// Container Botões HEADER Right
+// Container HEADER Itens BAR
+export const ContainerHeaderItensBar = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  max-width: 100%;
+  min-height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+`;
+
+// Conteiner de botões das paginas Header Right
 export const ContainerHeaderButton = styled.div`
   border: 2px;
-  border-color: #ffffff;
+  border-color: ${props => props.theme.colors.textColor};
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
@@ -131,13 +132,16 @@ export const ContainerHeaderButton = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  color: ${props => props.theme.colors.textColor};
+  color:  ${props => props.theme.colors.textColor};
   &:hover {
     background-color: #e4e4e4;
    }
 `;
-// Botão HEADER Imagem Right
-export const ButtonHeaderImg = styled.button<{ img?: string }>`
+// Botões das paginas com Imagens
+interface PropsButtonHeaderImg {
+  img?: string;
+}
+export const ButtonHeaderImg = styled.button<PropsButtonHeaderImg>`
   border: none;
   margin: 2px 5px 2px 5px;
   color: ${props => props.theme.colors.textColor};
@@ -151,58 +155,63 @@ export const ButtonHeaderImg = styled.button<{ img?: string }>`
   background-position: center;
   cursor: pointer;
   outline: none;
-  min-height: 40px;
-  width: 40px;
+  min-height: 45px;
+  width: 45px;
   display: flex;
   flex-flow: nowrap;
   justify-content: center;
   align-items: center;
 `;
+///////////////////////
+
+
+
+
 
 
 /////////////////////////// fim HEADER ///////////////////////
 
 
-// export const ContainerPagesButton = styled.div`
-//   border: 2px red;
-//   border-color: #ffffff;
-//   border-radius: 5px;
-//   padding: 0px 0px 0px 0px;
-//   margin: 2px 2px 2px 2px;
-//   //background: transparent;
-//   min-height: 40px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   align-items: center;
-//   align-content: center;
-//   color:  ${props => props.theme.colors.textColor};
-//   &:hover {
-//     background-color: #e4e4e4;
-//    }
-// `;
+export const ContainerPagesButton = styled.div`
+  border: 2px red;
+  border-color: #ffffff;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  //background: transparent;
+  min-height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  &:hover {
+    background-color: #e4e4e4;
+   }
+`;
 
-// export const ButtonPagesImg = styled.button<{ img?: string }>`
-//   border: none;
-//   margin: 2px 5px 2px 5px;
-//   color: ${props => props.theme.colors.textColor};
-//   font-size: 12px;
-//   font-weight: bold;
-//   font-family: 'Courier New', Courier, monospace;
-//   background-color: transparent;
-//   background-image: url(${({ img }) => img || semimg});
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: center;
-//   cursor: pointer;
-//   outline: none;
-//   min-height: 45px;
-//   width: 45px;
-//   display: flex;
-//   flex-flow: nowrap;
-//   justify-content: center;
-//   align-items: center;
-// `;
+export const ButtonPagesImg = styled.button<{ img?: string }>`
+  border: none;
+  margin: 2px 5px 2px 5px;
+  color: ${props => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: 45px;
+  width: 45px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 // FIM content lado esquerdo HEADER (imagem swith e outras)
 

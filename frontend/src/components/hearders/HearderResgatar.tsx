@@ -1,62 +1,40 @@
-import * as Hdr from './styledHeader';
+import * as H from './styledHeader';
 
 import Switch from 'react-switch';
-
 import { ContentHearderMain } from './ContentHearderMain';
 import { ContentHearderItens } from './ContentHearderItens';
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys';
-
 import { ContentHeaderTitle } from './ContentHeaderTitle';
-
 import { ContentHearderRight } from './ContentHearderRight';
-
 import { ContentHearderItensBar } from './ContentHearderItensBar';
 import { ContentPagesButtonHelp } from '../ContentPagesButtonHelp';
 import { ContentPagesButton } from '../ContentPagesButton';
-
 interface PropsHearderResgatar {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
-
   titlepg?: string;
-
   imgbtnhlppg?: string;
   titbtnhlppg?: string;
   onclickhlppg?: () => void;
-
-  imgbtnopen?: string;
-  titbtnopen?: string;
-  onclickopen?: () => void;
-
-  // imgbtnreg?: string;
-  // titbtnreg?: string;
-  // onclickreg?: () => void;
-
+  imgbtnaborta?: string;
+  titbtnaborta?: string;
+  onclickaborta?: () => void;
   onchange: () => void;
   ischeck?: boolean;
-
   children?: React.ReactNode | JSX.Element;
 }
 const HearderResgatar = ({
   imgsys,
   titbtnsys,
   onclicksys,
-
   titlepg,
-
   imgbtnhlppg,
   titbtnhlppg,
   onclickhlppg,
-
-  imgbtnopen,
-  titbtnopen,
-  onclickopen,
-
-  //  imgbtnreg,
-  //  titbtnreg,
-  //  onclickreg,
-
+  imgbtnaborta,
+  titbtnaborta,
+  onclickaborta,
   onchange,
   ischeck,
 }: PropsHearderResgatar) => {
@@ -84,11 +62,11 @@ const HearderResgatar = ({
             onClickhlp={onclickhlppg}
           />
 
-          {/** imagem botão do Acão da pagina */}
+          {/** imagem botão do Acão Abortar da pagina */}
           <ContentPagesButton
-            imgbtn={imgbtnopen}
-            titbtn={titbtnopen}
-            onClick={onclickopen}
+            imgbtn={imgbtnaborta}
+            titbtn={titbtnaborta}
+            onClick={onclickaborta}
           />
 
           {/** imagem botão do Restate da pagina 
@@ -100,7 +78,7 @@ const HearderResgatar = ({
           */}
 
           {/** botão switch do Padrão fundo Preto ou Branco */}
-          <Hdr.ContainerHeaderButton>
+          <H.ContainerHeaderButton>
             <Switch
               onChange={onchange}
               checked={ischeck === true ? false : true}
@@ -115,7 +93,7 @@ const HearderResgatar = ({
               offColor="#b0b0b0"
               borderRadius={10}
             />
-          </Hdr.ContainerHeaderButton>
+          </H.ContainerHeaderButton>
         </ContentHearderItensBar>
       </ContentHearderRight>
     </ContentHearderMain>
