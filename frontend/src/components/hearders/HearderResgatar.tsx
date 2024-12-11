@@ -1,4 +1,4 @@
-import * as Pg from '../stylePages';
+import * as Hdr from './styledHeader';
 
 import Switch from 'react-switch';
 
@@ -100,7 +100,7 @@ const HearderResgatar = ({
           */}
 
           {/** botão switch do Padrão fundo Preto ou Branco */}
-          <Pg.ContainerPagesButton>
+          <Hdr.ContainerHeaderButton>
             <Switch
               onChange={onchange}
               checked={ischeck === true ? false : true}
@@ -115,7 +115,7 @@ const HearderResgatar = ({
               offColor="#b0b0b0"
               borderRadius={10}
             />
-          </Pg.ContainerPagesButton>
+          </Hdr.ContainerHeaderButton>
         </ContentHearderItensBar>
       </ContentHearderRight>
     </ContentHearderMain>

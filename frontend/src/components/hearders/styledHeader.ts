@@ -159,49 +159,50 @@ export const ButtonHeaderImg = styled.button<{ img?: string }>`
   align-items: center;
 `;
 
+
 /////////////////////////// fim HEADER ///////////////////////
 
 
-export const ContainerPagesButton = styled.div`
-  border: 2px red;
-  border-color: #ffffff;
-  border-radius: 5px;
-  padding: 0px 0px 0px 0px;
-  margin: 2px 2px 2px 2px;
-  //background: transparent;
-  min-height: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  color:  ${props => props.theme.colors.textColor};
-  &:hover {
-    background-color: #e4e4e4;
-   }
-`;
+// export const ContainerPagesButton = styled.div`
+//   border: 2px red;
+//   border-color: #ffffff;
+//   border-radius: 5px;
+//   padding: 0px 0px 0px 0px;
+//   margin: 2px 2px 2px 2px;
+//   //background: transparent;
+//   min-height: 40px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   align-items: center;
+//   align-content: center;
+//   color:  ${props => props.theme.colors.textColor};
+//   &:hover {
+//     background-color: #e4e4e4;
+//    }
+// `;
 
-export const ButtonPagesImg = styled.button<{ img?: string }>`
-  border: none;
-  margin: 2px 5px 2px 5px;
-  color: ${props => props.theme.colors.textColor};
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  outline: none;
-  min-height: 45px;
-  width: 45px;
-  display: flex;
-  flex-flow: nowrap;
-  justify-content: center;
-  align-items: center;
-`;
+// export const ButtonPagesImg = styled.button<{ img?: string }>`
+//   border: none;
+//   margin: 2px 5px 2px 5px;
+//   color: ${props => props.theme.colors.textColor};
+//   font-size: 12px;
+//   font-weight: bold;
+//   font-family: 'Courier New', Courier, monospace;
+//   background-color: transparent;
+//   background-image: url(${({ img }) => img || semimg});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center;
+//   cursor: pointer;
+//   outline: none;
+//   min-height: 45px;
+//   width: 45px;
+//   display: flex;
+//   flex-flow: nowrap;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 // FIM content lado esquerdo HEADER (imagem swith e outras)
 

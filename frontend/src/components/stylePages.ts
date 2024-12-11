@@ -29,40 +29,40 @@ export const ButtonCustonImg = styled.button<PropsButtonCustonImg>`
   align-items: center;
 `;
 
-interface ButtonProps {
-  bgColor?: string; // Cor de fundo
-  color?: string;   // Cor do texto
-  padding?: string; // Espaçamento interno
-  fontSize?: string; // Tamanho da fonte
-  borderRadius?: string; // Arredondamento das bordas
-  pxheight?: string; // Altura-> ou 50px
-  pxwidth?: string; // lagura
-}
-export const Button = styled.button<ButtonProps>`
-  background-color: ${(props) => props.bgColor || "#007BFF"};
-  color: ${(props) => props.color || "#000"};
-  padding: ${(props) => props.padding || "5px 20px 5px 20px"};
-  margin: ${(props) => props.padding || "5px 5px"};
-  font-size: ${(props) => props.fontSize || "16px"};
-  border: none;
-  border-radius: ${(props) => props.borderRadius || "4px"};
-  min-height: ${({ pxheight }) => pxheight || '35px'};
-  width: ${({ pxwidth }) => pxwidth || '35px'};
-  display: flex;
-  flex-wrap: wrap;
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s;
+// interface ButtonProps {
+//   bgColor?: string; // Cor de fundo
+//   color?: string;   // Cor do texto
+//   padding?: string; // Espaçamento interno
+//   fontSize?: string; // Tamanho da fonte
+//   borderRadius?: string; // Arredondamento das bordas
+//   pxheight?: string; // Altura-> ou 50px
+//   pxwidth?: string; // lagura
+// }
+// export const Button = styled.button<ButtonProps>`
+//   background-color: ${(props) => props.bgColor || "#007BFF"};
+//   color: ${(props) => props.color || "#000"};
+//   padding: ${(props) => props.padding || "5px 20px 5px 20px"};
+//   margin: ${(props) => props.padding || "5px 5px"};
+//   font-size: ${(props) => props.fontSize || "16px"};
+//   border: none;
+//   border-radius: ${(props) => props.borderRadius || "4px"};
+//   min-height: ${({ pxheight }) => pxheight || '35px'};
+//   width: ${({ pxwidth }) => pxwidth || '35px'};
+//   display: flex;
+//   flex-wrap: wrap;
+//   cursor: pointer;
+//   outline: none;
+//   transition: background-color 0.3s;
 
-  &:hover {
-    background-color: ${(props) => props.bgColor ? darken(0.1, props.bgColor) : "#0056b3"};
-  }
+//   &:hover {
+//     background-color: ${(props) => props.bgColor ? darken(0.1, props.bgColor) : "#0056b3"};
+//   }
 
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-`;
+//   &:disabled {
+//     background-color: #ccc;
+//     cursor: not-allowed;
+//   }
+// `;
 
 // containers do conteudo para paginas
 // Conatiner INICIAL
@@ -117,72 +117,59 @@ export const ContainerHeaderItens = styled.div`
   align-content: center;
 `;
 // Container imagem do Systema no inicio e após selecionar Empresa imagem da impresa //
-export const ContainerImgSys = styled.div`
-  border: none;
-  border-radius: 5px;
-  padding: 0px 0px 0px 0px;
-  margin: 3px 7px 3px 7px;
-  background: #fff;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  align-content: center;
-`;
+// export const ContainerImgSys = styled.div`
+//   border: none;
+//   border-radius: 5px;
+//   padding: 0px 0px 0px 0px;
+//   margin: 3px 7px 3px 7px;
+//   background: #fff;
+//   display: flex;
+//   justify-content: left;
+//   align-items: center;
+//   align-content: center;
+// `;
 // Botão com imagem do Systema no inicio
 // Botão com imagem da Empresa após executando Empresa selecioda 
-interface PropsButtonPagesImgSys {
-  img?: string;
-}
-export const ButtonPagesImgSys = styled.button<PropsButtonPagesImgSys>`
-  border: none;
-  margin: 0px 0px 0px 0px;
-  color: ${props => props.theme.colors.textColor};
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  width: 110px;
-  height: 40px;
-  display: flex;
-  flex-flow: nowrap;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-`;
+// interface PropsButtonPagesImgSys {
+//   img?: string;
+// }
+// export const ButtonPagesImgSys = styled.button<PropsButtonPagesImgSys>`
+//   border: none;
+//   margin: 0px 0px 0px 0px;
+//   color: ${props => props.theme.colors.textColor};
+//   font-size: 12px;
+//   font-weight: bold;
+//   font-family: 'Courier New', Courier, monospace;
+//   background-color: transparent;
+//   cursor: pointer;
+//   outline: none;
+//   width: 110px;
+//   height: 40px;
+//   display: flex;
+//   flex-flow: nowrap;
+//   justify-content: center;
+//   align-items: center;
+//   background-image: url(${({ img }) => img || semimg});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center;
+// `;
 // termino do painel Esquerdo HEARD
 
 // Container CENTRO (Titulo da Pagina )
-export const ContainerTitleHeader = styled.div`
-  border: none; /*1px dashed red;*/
-  padding: 0px 0px 0px 0px;
-  margin: 5px 10px 5px 10px;
-  min-height: 40px;
-  //background: transparent;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-`;
+// export const ContainerTitleHeader = styled.div`
+//   border: none; /*1px dashed red;*/
+//   padding: 0px 0px 0px 0px;
+//   margin: 5px 10px 5px 10px;
+//   min-height: 40px;
+//   //background: transparent;
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
+//   align-items: center;
+//   align-content: center;
+// `;
 // Container lado Direito HEADER (Botões)
-export const ContainerHeaderRight = styled.div`
-  border: 2px solid;
-  border-radius: 8px;
-  border-color: ${props => props.theme.colors.textColor};
-  padding: 0px 0px 0px 0px;
-  margin: 0px 2px 0px 2px;
-  //background: transparent;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: right;
-  align-items: center;
-  align-content: center;
-`;
 export const ContainerHearderRightFlex = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
