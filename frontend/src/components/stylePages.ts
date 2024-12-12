@@ -408,7 +408,10 @@ export const ContainerCardBoxBorderPgFlex = styled.div`
   justify-content: center;
   align-content: center;
 `;
-/////////////////////////////////////////
+//////////////////////////////////////
+// fim do ContainerCardBoxTitle
+// inicio do ContentCardBoxTitle - ContainerCardBoxTitle
+///////////////////////////////////////
 export const ContainerCardBoxTitle = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
@@ -428,6 +431,10 @@ export const ContainerCardBoxTitle = styled.div`
   align-content: center;
 `;
 //
+//////////////////////////////////////
+// fim do ContainerCardBoxTitle
+// inicio ContainerCardBoxInput
+///////////////////////////////////////
 export const ContainerCardBoxInput = styled.div`
   border: none;
   padding: 2px 2px 2px 2px;
@@ -476,8 +483,18 @@ export const ContainerCardBoxInput = styled.div`
     height: 40px;
   }
 `;
-//
+//////////////////////////////////////
+// fim do Container-> ContainerCardBoxInput
+// inicio do Styled -> Select Option 
+///////////////////////////////////////
 // Estilo para o contêiner que envolve o select
+export const SelectMainContainer = styled.div`
+  border: 1px solid skyblue;
+  display: flex;
+  align-content: space-between;
+  align-items: flex-start;
+  margin: 0px 0px;
+`;
 export const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -485,7 +502,6 @@ export const SelectContainer = styled.div`
   gap: 8px;
   margin: 10px 0;
 `;
-
 // Estilo para o select
 export const StyledSelect = styled.select`
   width: 100%;
@@ -497,20 +513,21 @@ export const StyledSelect = styled.select`
   border-radius: 4px;
   background-color: #f9f9f9;
   appearance: none;
-
   &:focus {
     border-color: #007bff;
     box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
     outline: none;
   }
 `;
-
 // Estilo para as opções dentro do select
 export const StyledOption = styled.option`
   font-size: 16px;
   color: #333;
 `;
-
+//////////////////////////////////////
+// fim do Styled -> Option 
+// inicio do EmailInput
+///////////////////////////////////////
 export const EmailInput = styled.input.attrs({ type: 'email' })`
   width: 100%;
   max-width: 400px;
@@ -522,27 +539,147 @@ export const EmailInput = styled.input.attrs({ type: 'email' })`
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
-
   &:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
-
   &::placeholder {
     color: #aaa;
     font-style: italic;
   }
-
   &:disabled {
     background-color: #e9ecef;
     cursor: not-allowed;
     opacity: 0.7;
   }
-
   &:hover:not(:disabled) {
     border-color: #888;
   }
 `;
+export const FoneInput = styled.input.attrs({ type: 'text' })`
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  &::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  &:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  &:hover:not(:disabled) {
+    border-color: #888;
+  }
+`;
+
+export const CpfInput = styled.input.attrs({ type: 'text' })`
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  &::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  &:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  &:hover:not(:disabled) {
+    border-color: #888;
+  }
+`;
+//////////////////////////////////////
+// fim do EmailInput 
+// inicio do ContentSidePageBottomLabel -> ContainerBtnSRigthPage
+///////////////////////////////////////
+export const ContainerBtnSRigthPage = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 5px 2px 5px;
+  min-width: 35px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: center;
+  align-content: center;
+ `;
+//////////////////////////////////////
+// fim do ContentSidePageBottomLabel
+// inicio do ContentSidePageBottonButtom -> ContainerCustonBtnPage-> ButtonDefaulImgPage
+///////////////////////////////////////
+interface PropsContainerCustonBtnPage {
+  pxheight?: string;
+}
+export const ContainerCustonBtnPage = styled.div<PropsContainerCustonBtnPage>`
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  min-height: ${({ pxheight }) => pxheight || '50px'};
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  &:hover {
+    background: #e4e4e4;
+   }
+`;
+type TypeButtonDefaulImgPage = {
+  img?: string;
+};
+export const ButtonDefaulImgPage = styled.button<TypeButtonDefaulImgPage>`
+  border: 2px;
+  border-radius: 3px;
+  margin: 2px 5px 2px 5px;
+  color: ${(props) => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url( ${ ( {img} ) => img ? img : semimg });
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  height: 30px;
+  min-width: 30px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+//////////////////////////////////////
+// fim do ContentSidePageBottonButtom
+// inicio do  
+///////////////////////////////////////
+
 
 
 //////////////////////////////////////

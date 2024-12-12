@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
-import * as Md from '../../modal/stylesModal';
 import * as Pg from '../stylePages';
 
 import { ThemeProvider } from 'styled-components';
@@ -11,33 +10,35 @@ import LayoutResgatar from '../layouts/LayoutResgatar';
 import lg_resgate from '../../assets/svgs/lg_resgate.svg';
 import bt_help from '../../assets/svgs/bt_help.svg';
 import bt_abortar from '../../assets/svgs/bt_abortar.svg';
-import bt_resgate from '../../assets/svgs/bt_resgate.svg';
 import bt_close from '../../assets/svgs/bt_close.svg';
-
+import bt_setaesq from '../../assets/svgs/bt_setaesq.svg';
+import bt_setadir from '../../assets/svgs/bt_setadir.svg';
 import { CardHlpResgateLogo } from '../../cards/CardHlpResgateLogo';
 import { CardHlpResgatePage } from '../../cards/CardHlpResgatePage';
 
+import {
+  isValidarEmail,
+  isValidarCell,
+  isValidarCpf,
+  VerPergResp,
+} from '../../funcs/ErroEdicao';
 import { ContentCardPageMain } from '../ContentCardPageMain';
-
 import { ContentCardPage } from '../ContentCardPage';
 import { ContentCardPageTitle } from '../ContentCardPageTitle';
 import { ContentCardBoxDialogo } from '../ContentCardBoxDialogo';
 import { ContentCardDialogoTitle } from '../ContentCardDialogoTitle';
+import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel';
+import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton';
 
-import { ContentItensBody } from '../ContentItensBody';
-
-import { ContentCardBoxBorderPg } from '../ContentCardBoxBorderPg';
-import { ContentCardBoxTitle } from '../ContentCardBoxTitle';
 //import { ContentCardBoxPageCenter } from '../ContentCardBoxPageCenter';
-import { CardModalTextoColumn } from '../../modal/CardModalTextoColumn';
 
-import bt_visitante from '../../assets/svgs/bt_visitante.svg';
+//import bt_visitante from '../../assets/svgs/bt_visitante.svg';
 
 import { PageModal } from './PageModal';
 
 const Resgatar: React.FC = () => {
-  const [theme, setTheme] = React.useState(light);
-  const [ischeck, setIscheck] = React.useState(false);
+  const [theme, setTheme] = useState(light);
+  const [ischeck, setIscheck] = useState(false);
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -55,25 +56,42 @@ const Resgatar: React.FC = () => {
     };
   };
 
-  const [logoRes, setLogoRes] = React.useState(false);
-  const handlerLogoRes = React.useCallback(() => {
+  const [logoRes, setLogoRes] = useState(false);
+  const handlerLogoRes = useCallback(() => {
     setLogoRes((oldState) => !oldState);
   }, []);
 
-  const [helppageres, setHelpPageRes] = React.useState(false);
-  const handlerHelpPageRes = React.useCallback(() => {
+  const [helppageres, setHelpPageRes] = useState(false);
+  const handlerHelpPageRes = useCallback(() => {
     setHelpPageRes((oldState) => !oldState);
   }, []);
 
-  const [passo1, setPasso1] = React.useState(true);
-  const [passo2, setPasso2] = React.useState(false);
-  const [passo3, setPasso3] = React.useState(false);
-  const [msgerro, setMsgErro] = React.useState('');
+  const [mdlog, setMdlog] = useState(0);
+  const [nmlog, setNmlog] = useState('');
+  const [boolstart, setBoolStart] = useState(false);
+  const [boolmail, setBoolMail] = useState(false);
+  const [boolcell, setBoolCell] = useState(false);
+  const [boolresp, setBoolResp] = useState(false);
+  const [boolConf, setBoolConf] = useState(false);
 
-  const [btnabortar, setBtnAbortar] = React.useState(true);
-  const [btncontinua, setBtnContinua] = React.useState(false);
-  const [opcaores, setOpcaoRes] = React.useState(0);
-  const [descropcaores, setDescrOpcaoRes] = React.useState('');
+  const [proxmd, setProxMd] = useState(false);
+  const [confirma, setConfirma] = useState(false);
+  const [idempr, setIdEmpr] = useState(0);
+  const [cpf, setCpf] = useState('');
+
+  const [nmempr, setNmEmpr] = useState('');
+  const [email, setEmail] = useState('');
+  const [cell, setCell] = useState('');
+
+  const [perg1, setPerg1] = useState('Qual o Veículo que mais gosta ?');
+  const [resp1, setResp1] = useState('');
+  const [perg2, setPerg2] = useState('Qual o Nome que você acha bonito ?');
+  const [resp2, setResp2] = useState('');
+  const [perg3, setPerg3] = useState('Que animal você mais gosta ?');
+  const [resp3, setResp3] = useState('');
+
+  const [msgerro, setMsgErro] = useState('');
+
   const DescrOpc = [
     'Opções:',
     'E-mail.',
@@ -82,55 +100,83 @@ const Resgatar: React.FC = () => {
     'Celular via Whatsapp.',
     'Peguntas.',
   ];
-  const [opcemail, setOpcEmail] = React.useState('');
-  const [opcidempr, setOpcIdEmpr] = React.useState(0);
-  const [opcnmempr, setOpcNmEmpr] = React.useState('');
 
-  const handleValidationMail = () => {
-    const isValidEmail = (email: string): boolean => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    };
-
-    if (passo2) {
-      if (isValidEmail(opcemail)) {
-        setPasso2(false);
-        setPasso3(true);
-        setBtnContinua(true);
-        setMsgErro('Sucesso!');
-      } else {
-        setMsgErro('Erro de Edição do Email...');
-        setBtnContinua(false);
+  useEffect(() => {
+    setNmlog(DescrOpc[mdlog]);
+    if (mdlog === 0 || idempr === 0 || cpf === '') {
+      setBoolStart(true);
+      setProxMd(false);
+    } else {
+      if (mdlog === 0 && idempr > 0 && cpf !== '') {
+        setProxMd(true);
+      } else if ((mdlog === 1 || mdlog === 2) && email !== '') {
+        setBoolStart(false);
+        setBoolMail(true);
+        setProxMd(true);
+      } else if ((mdlog === 3 || mdlog === 4) && cell !== '') {
+        setBoolMail(false);
+        setBoolCell(true);
+        setProxMd(true);
+      } else if (mdlog === 5 && resp1 !== '' && resp2 !== '' && resp3 !== '') {
+        setBoolCell(false);
+        setBoolResp(true);
+        setProxMd(false);
+      } else if (mdlog === 6) {
+        setBoolResp(false);
+        setBoolConf(true);
+        setConfirma(true);
       }
     }
-  };
+  }, [mdlog, proxmd, idempr, cpf, email, cell, resp1, resp2, resp3]);
 
-  React.useEffect(() => {
-    setDescrOpcaoRes(DescrOpc[opcaores]);
-    if (opcaores === 0) {
-      setPasso1(true);
-      setPasso2(false);
-      setPasso3(false);
-      setOpcEmail('');
-      setOpcIdEmpr(0);
-      setOpcNmEmpr('');
-      setBtnContinua(false);
-    }
-    if (passo1) {
-      if (opcaores > 0) {
-        setPasso1(false);
-        setPasso2(true);
-        setBtnContinua(true);
+  const handlerButtonProximo = useCallback(() => {
+    setMsgErro('');
+    if (mdlog === 0) {
+      if (!isValidarCpf(cpf)) {
+        setMsgErro('Erro na Edição do CPF, ou Inválido...');
       } else {
-        setBtnContinua(false);
+        setMdlog(1);
       }
+    } else if (mdlog === 1 || mdlog === 2) {
+      if (!isValidarEmail(email)) {
+        setMsgErro('Erro na Edição do email, ou Inválido...');
+      } else {
+        setMdlog(3);
+      }
+    } else if (mdlog === 3 || mdlog === 4) {
+      if (!isValidarCell(cell)) {
+        setMsgErro('Erro na Edição do Nº Telefone, ou Inválido...');
+      } else {
+        setMdlog(5);
+      }
+    } else if (mdlog === 5) {
+      if (resp1 === '' || resp2 === '' || resp3 === '') {
+        if (resp1 === '') {
+          setMsgErro('Erro, Responda Pergunta...');
+        } else if (resp2 === '') {
+          setMsgErro('Erro, Responda Pergunta...');
+        } else if (resp3 === '') {
+          setMsgErro('Erro, Responda Pergunta...');
+        }
+      } else {
+        if (resp1 !== '') {
+          if (!VerPergResp(perg1, resp1)) {
+            setMsgErro('Erro, Resposta errada...');
+          }
+        } else if (resp2 !== '') {
+          if (!VerPergResp(perg2, resp2)) {
+            setMsgErro('Erro, Resposta errada...');
+          }
+        } else if (resp3 !== '') {
+          if (!VerPergResp(perg3, resp3)) {
+            setMsgErro('Erro, Resposta errada...');
+          }
+        }
+      }
+    } else if (mdlog === 6) {
+      setMdlog(6);
     }
-    if (passo2) {
-      handleValidationMail();
-    }
-    if (passo3) {
-    }
-  }, [opcaores, descropcaores, opcemail, btncontinua, passo1, passo2, passo3]);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -148,66 +194,200 @@ const Resgatar: React.FC = () => {
         onchange={ToggleTheme}
         ischeck={ischeck}
       >
-        <ContentCardPageMain open={true}>
-          <ContentCardBoxDialogo>
-            <ContentCardDialogoTitle>
-              <h3>Ok, pronto para Resgatar o seu acesso ao Sistema?'</h3>
-            </ContentCardDialogoTitle>
-            {passo1 && opcaores === 0 ? (
+        {boolstart ? (
+          <ContentCardPageMain open={boolstart}>
+            <ContentCardBoxDialogo>
+              <ContentCardDialogoTitle>
+                <h3>Ok, pronto para Resgatar o seu acesso ao Sistema?'</h3>
+              </ContentCardDialogoTitle>
               <div>
                 <h4>1º - Passo: </h4>
                 <p>
-                  &emsp;Precisamos que nos indique a maneira pelo qual deseja
-                  resgatar.
+                  &emsp;Precisamos que nos indique a empresa e maneira pelo qual
+                  deseja resgatar e o seu C.P.F.
                 </p>
               </div>
-            ) : null}
-            {passo2 ? (
+              <ContentCardPage pwidth="100%">
+                <ContentCardPageTitle>
+                  <h2>Opções para Resgate.</h2>
+                </ContentCardPageTitle>
+                <Pg.SelectContainer>
+                  <label htmlFor="resgate-select">Selecione Opção :</label>
+                  <Pg.StyledSelect
+                    id="resgate-select"
+                    name="opcao"
+                    defaultValue={mdlog}
+                    onChange={(e) => setMdlog(parseInt(e.target.value))}
+                  >
+                    <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
+                    <Pg.StyledOption value={1}>E-mail.</Pg.StyledOption>
+                    <Pg.StyledOption value={2}>E-mail Resgate.</Pg.StyledOption>
+                    <Pg.StyledOption value={3}>
+                      Celular via SMS.
+                    </Pg.StyledOption>
+                    <Pg.StyledOption value={4}>
+                      Celular via Whatsapp.
+                    </Pg.StyledOption>
+                    <Pg.StyledOption value={5}>Perguntas.</Pg.StyledOption>
+                  </Pg.StyledSelect>
+                </Pg.SelectContainer>
+                <Pg.SelectContainer>
+                  <label htmlFor="resgate-select">Selecione Empresa :</label>
+                  <Pg.StyledSelect
+                    id="empresa-select"
+                    name="empresa"
+                    defaultValue={idempr}
+                    onChange={(e) => setIdEmpr(parseInt(e.target.value))}
+                  >
+                    <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
+                    <Pg.StyledOption value={1}>Jr.Bordados.</Pg.StyledOption>
+                    <Pg.StyledOption value={2}>Rb-Serviços.</Pg.StyledOption>
+                  </Pg.StyledSelect>
+                </Pg.SelectContainer>
+                <form>
+                  <label htmlFor="resgate-select"> Edite C.P.F. :</label>
+                  <Pg.CpfInput
+                    id="cpf"
+                    placeholder="Digite o seu C.P.F."
+                    defaultValue={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                  />
+                  <div>{msgerro}</div>
+                </form>
+              </ContentCardPage>
+            </ContentCardBoxDialogo>
+          </ContentCardPageMain>
+        ) : null}
+
+        {boolmail ? (
+          <ContentCardPageMain open={boolmail}>
+            <ContentCardBoxDialogo>
+              <ContentCardDialogoTitle>
+                <h3>Ok, pronto para Resgatar o seu acesso ao Sistema?'</h3>
+              </ContentCardDialogoTitle>
               <div>
                 <h4>2º - Passo: </h4>
                 <p>&emsp;Precisamos que nos indique um Email para Resgate.</p>
               </div>
-            ) : null}
-          </ContentCardBoxDialogo>
-          <ContentCardPage pwidth="30%">
-            <ContentCardPageTitle>
-              <h2>Opções para Resgate.</h2>
-            </ContentCardPageTitle>
-            {passo1 && opcaores === 0 ? (
-              <Pg.SelectContainer>
-                <label htmlFor="resgate-select">Selecione uma opção:</label>
-                <Pg.StyledSelect
-                  id="resgate-select"
-                  name="opcao"
-                  defaultValue={opcaores}
-                  onChange={(e) => setOpcaoRes(parseInt(e.target.value))}
-                >
-                  <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
-                  <Pg.StyledOption value={1}>E-mail.</Pg.StyledOption>
-                  <Pg.StyledOption value={2}>E-mail Resgate.</Pg.StyledOption>
-                  <Pg.StyledOption value={3}>Celular via SMS.</Pg.StyledOption>
-                  <Pg.StyledOption value={4}>
-                    Celular via Whatsapp.
-                  </Pg.StyledOption>
-                  <Pg.StyledOption value={5}>Perguntas.</Pg.StyledOption>
-                </Pg.StyledSelect>
-              </Pg.SelectContainer>
-            ) : null}
-            {passo2 && (opcaores >= 1 || opcaores <= 2) ? (
+            </ContentCardBoxDialogo>
+            <ContentCardPage pwidth="30%">
+              <ContentCardPageTitle>
+                <h2>Email para Resgate.</h2>
+              </ContentCardPageTitle>
               <form>
                 <label htmlFor="resgate-email">Email:</label>
                 <Pg.EmailInput
                   id="email"
                   placeholder="Digite seu email"
-                  onChange={(e) => setOpcEmail(e.target.value)}
+                  defaultValue={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <div>{msgerro}</div>
               </form>
-            ) : null}
-          </ContentCardPage>
-        </ContentCardPageMain>
+            </ContentCardPage>
+          </ContentCardPageMain>
+        ) : null}
+
+        {boolcell ? (
+          <ContentCardPageMain open={boolmail}>
+            <ContentCardBoxDialogo>
+              <ContentCardDialogoTitle>
+                <h3>Ok, pronto para Resgatar o seu acesso ao Sistema?'</h3>
+              </ContentCardDialogoTitle>
+              <div>
+                <h4>3º - Passo: </h4>
+                <p>
+                  &emsp;Precisamos que nos indique Nº Fone-Celular para Resgate.
+                </p>
+              </div>
+            </ContentCardBoxDialogo>
+            <ContentCardPage pwidth="30%">
+              <ContentCardPageTitle>
+                <h2>Nº do Celular para Resgate.</h2>
+              </ContentCardPageTitle>
+              <form>
+                <label htmlFor="resgate-fone">Nº Fone-Celular:</label>
+                <Pg.EmailInput
+                  id="fone"
+                  placeholder="Digite seu Nº Fone-Celular"
+                  defaultValue={cell}
+                  onChange={(e) => setCell(e.target.value)}
+                />
+                <div>{msgerro}</div>
+              </form>
+            </ContentCardPage>
+          </ContentCardPageMain>
+        ) : null}
+
+        {boolresp ? (
+          <ContentCardPageMain open={boolresp}>
+            <ContentCardBoxDialogo>
+              <ContentCardDialogoTitle>
+                <h3>Ok, pronto para Resgatar o seu acesso ao Sistema?'</h3>
+              </ContentCardDialogoTitle>
+              <div>
+                <h4>4º - Passo: </h4>
+                <p>&emsp;Precisamos das Respostas para Resgate.</p>
+              </div>
+            </ContentCardBoxDialogo>
+            <ContentCardPage>
+              <ContentCardPageTitle>
+                <h2>Respostas para Resgate.</h2>
+              </ContentCardPageTitle>
+              <form>
+                <label htmlFor="perg-1"> 1º Pergunta: {perg1}.</label>
+                <Pg.EmailInput
+                  id="perg1"
+                  placeholder="Digite a sua Respósta"
+                  defaultValue={resp1}
+                  onChange={(e) => setResp1(e.target.value)}
+                />
+                <div>{msgerro}</div>
+              </form>
+              <form>
+                <label htmlFor="perg-2"> 2º Pergunta: {perg2}.</label>
+                <Pg.EmailInput
+                  id="perg2"
+                  placeholder="Digite a sua Respósta"
+                  defaultValue={resp2}
+                  onChange={(e) => setResp2(e.target.value)}
+                />
+                <div>{msgerro}</div>
+              </form>
+              <form>
+                <label htmlFor="perg-3"> 3º Pergunta: {perg3}.</label>
+                <Pg.EmailInput
+                  id="perg3"
+                  placeholder="Digite a sua Respósta"
+                  defaultValue={resp3}
+                  onChange={(e) => setResp3(e.target.value)}
+                />
+                <div>{msgerro}</div>
+              </form>
+            </ContentCardPage>
+          </ContentCardPageMain>
+        ) : null}
 
         <Pg.DivisionPgHztal />
+
+        <ContentSidePageBottonLabel istitl={true} title={'Voltar.: '}>
+          <ContentSidePageBottonButton
+            pxheight={'40px'}
+            img={bt_setaesq}
+            titbtn={'Volta...'}
+            onclick={goto('/')}
+          />
+        </ContentSidePageBottonLabel>
+        {proxmd ? (
+          <ContentSidePageBottonLabel istitl={true} title={'Proximo ? '}>
+            <ContentSidePageBottonButton
+              pxheight={'40px'}
+              img={bt_setadir}
+              titbtn={'Próximo...'}
+              onclick={handlerButtonProximo}
+            />
+          </ContentSidePageBottonLabel>
+        ) : null}
 
         {logoRes ? (
           <PageModal
@@ -248,134 +428,3 @@ const Resgatar: React.FC = () => {
 };
 
 export default Resgatar;
-
-{
-  /*
-   <ContentCardBoxDialogo>
-<ContentCardDialogoTitle>
-  <h3>Ok, pronto para Resgatar o seu acesso ao Sistema?'</h3>
-</ContentCardDialogoTitle>
-<h4>1º - Passo: </h4>
-<p>
-  &emsp;Precisamos que nos indique a maneira pelo qual deseja resgatar.
-</p>
-</ContentCardBoxDialogo>
-
-<ContentCardPage pwidth="30%">
-<ContentCardPageTitle>
-  <h2>Opções para Resgate.</h2>
-</ContentCardPageTitle>
-<Pg.SelectContainer>
-  <label htmlFor="resgate-select">Selecione uma opção:</label>
-  <Pg.StyledSelect
-    id="resgate-select"
-    name="opcao"
-    defaultValue={opcaores}
-    onChange={(e) => setOpcaoRes(parseInt(e.target.value))}
-  >
-    <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
-    <Pg.StyledOption value={1}>E-mail.</Pg.StyledOption>
-    <Pg.StyledOption value={2}>E-mail Resgate.</Pg.StyledOption>
-    <Pg.StyledOption value={3}>Celular via SMS.</Pg.StyledOption>
-    <Pg.StyledOption value={4}>Celular via Whatsapp.</Pg.StyledOption>
-    <Pg.StyledOption value={5}>Perguntas.</Pg.StyledOption>
-  </Pg.StyledSelect>
-</Pg.SelectContainer>
-</ContentCardPage>
-<Pg.DivisionPgHztal />
-<ContentCardBoxDialogo>
-<ContentCardDialogoTitle>
-  <h3>Acione em CONTINUAR, ou ABORTE Resgate.</h3>
-</ContentCardDialogoTitle>
-<ContentCardPage pwidth="100px">aaaa</ContentCardPage>
-</ContentCardBoxDialogo> 
-*/
-}
-
-// <Pg.ContainerCardBoxBorderPg>
-
-// <h3>Ok, estamos pronto para Resgatar o seu acesso ao Sistema.</h3>
-// <br />
-// <p>
-//   Estamos pronto para iniciar o seu acesso. Precisamos que nos
-//   indique a maneira pelo qual deseja resgatar.
-// </p>
-
-// </Pg.ContainerCardBoxBorderPg>
-
-// <Pg.ContainerCardBoxColumnPg>
-// <Pg.ContainerCardBoxColumnPgFlex>
-//   <ContentCardBoxBorderPg pwidth="200px">
-//     <ContentCardBoxTitle>
-//       <h4>{'Modo de Resgate'}</h4>
-//     </ContentCardBoxTitle>
-//     <Pg.SelectContainer>
-//       <label htmlFor="resgate-select">Selecione uma opção:</label>
-//       <Pg.StyledSelect
-//         id="resgate-select"
-//         name="opcao"
-//         defaultValue={opcoesres}
-//         onChange={(e) => setOpcoesRes(parseInt(e.target.value))}
-//       >
-//         <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
-//         <Pg.StyledOption value={1}>E-mail.</Pg.StyledOption>
-//         <Pg.StyledOption value={2}>E-mail Resgate.</Pg.StyledOption>
-//         <Pg.StyledOption value={3}>
-//           Celular via SMS.
-//         </Pg.StyledOption>
-//         <Pg.StyledOption value={4}>
-//           Celular via Whatsapp.
-//         </Pg.StyledOption>
-//         <Pg.StyledOption value={5}>Perguntas.</Pg.StyledOption>
-//       </Pg.StyledSelect>
-//     </Pg.SelectContainer>
-//   </ContentCardBoxBorderPg>
-
-//   <ContentCardBoxBorderPg pwidth="200px">
-//     <ContentCardBoxTitle>
-//       <h4>{'Modo de Edição'}</h4>
-//     </ContentCardBoxTitle>
-//     <Pg.SelectContainer>
-//       <label htmlFor="resgate-select">Selecione uma opção:</label>
-//       <Pg.StyledSelect
-//         id="resgate-select"
-//         name="opcao"
-//         defaultValue={opcoesres}
-//         onChange={(e) => setOpcoesRes(parseInt(e.target.value))}
-//       >
-//         <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
-//         <Pg.StyledOption value={1}>E-mail.</Pg.StyledOption>
-//         <Pg.StyledOption value={2}>E-mail Resgate.</Pg.StyledOption>
-//         <Pg.StyledOption value={3}>
-//           Celular via SMS.
-//         </Pg.StyledOption>
-//         <Pg.StyledOption value={4}>
-//           Celular via Whatsapp.
-//         </Pg.StyledOption>
-//         <Pg.StyledOption value={5}>Perguntas.</Pg.StyledOption>
-//       </Pg.StyledSelect>
-//     </Pg.SelectContainer>
-//   </ContentCardBoxBorderPg>
-
-//   <ContentCardBoxBorderPg pwidth="200px">
-//     asasasa
-//   </ContentCardBoxBorderPg>
-// </Pg.ContainerCardBoxColumnPgFlex>
-// </Pg.ContainerCardBoxColumnPg>
-
-// <SelectContainer>
-//   <label htmlFor="resgate-select">Selecione uma opção:</label>
-//   <StyledSelect
-//     id="resgate-select"
-//     name="opcao"
-//     defaultValue={opcoesres}
-//     onChange={(e) => setOpcoesRes(parseInt(e.target.value))}
-//   >
-//     <StyledOption value={0}>Opções:</StyledOption>
-//     <StyledOption value={1}>E-mail.</StyledOption>
-//     <StyledOption value={2}>E-mail Resgate.</StyledOption>
-//     <StyledOption value={3}>Celular via SMS.</StyledOption>
-//     <StyledOption value={4}>Celular via Whatsapp.</StyledOption>
-//     <StyledOption value={5}>Perguntas.</StyledOption>
-//   </StyledSelect>
-// </SelectContainer>
