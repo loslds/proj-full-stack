@@ -438,10 +438,10 @@ export const ContainerCardBoxTitle = styled.div`
 export const ContainerCardBoxInput = styled.div`
   border: none;
   padding: 2px 2px 2px 2px;
-  margin: 0px 0px 0px 0px;
-  min-width: 48%;
+  margin: 3px 5px 0px 0px;
+  min-width: 35%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -455,11 +455,11 @@ export const ContainerCardBoxInput = styled.div`
     justify-content: left;
     align-items: center;
     align-content: center;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: normal;
     line-height: normal;
   }
-  input {
+  /* input {
     padding: 2px 2px 2px 2px;
     margin: 0px 0px 0px 0px;
     min-width: 48%;
@@ -469,7 +469,7 @@ export const ContainerCardBoxInput = styled.div`
     justify-content: left;
     align-items: center;
     align-content: center;
- }
+ } */
   img {
     padding: 2px 2px 2px 2px;
     margin: 0px 0px 0px 0px;
@@ -500,14 +500,14 @@ export const SelectContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  margin: 10px 0;
+  margin: 10px 10px;
 `;
 // Estilo para o select
 export const StyledSelect = styled.select`
   width: 100%;
   max-width: 300px;
   padding: 8px 12px;
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -556,10 +556,11 @@ export const EmailInput = styled.input.attrs({ type: 'email' })`
     border-color: #888;
   }
 `;
+
 export const FoneInput = styled.input.attrs({ type: 'text' })`
   width: 100%;
   max-width: 200px;
-  padding: 10px 15px;
+  padding: 8px 12px;
   font-size: 16px;
   color: #333;
   background-color: #f9f9f9;
@@ -589,6 +590,7 @@ export const CpfInput = styled.input.attrs({ type: 'text' })`
   width: 100%;
   max-width: 200px;
   padding: 10px 15px;
+  margin: 10px 10px ;
   font-size: 16px;
   color: #333;
   background-color: #f9f9f9;

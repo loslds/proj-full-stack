@@ -248,7 +248,7 @@ export const ContainerModalColumn = styled.div`
   color: #000000; /* Garantir que o texto tenha a cor definida */
   
   h1, h2, h3, h4, h5 {
-    margin: 0px 0px 10px 0px; /* Margem para separar os títulos */
+    margin: 10px 10px 10px 10px; /* Margem para separar os títulos */
     padding: 0px 0px 0px 0px;
     //color: #fff;
     font-style: normal;
@@ -297,7 +297,28 @@ export const ContainerModalColumn = styled.div`
 
   }
 `;
-
+///////////////
+interface PropsContainerModalErro {
+  pminheight?: string;
+  pwidth?: string;
+};
+export const ContainerModalErro = styled.div<PropsContainerModalErro>`
+  border: 0px;
+  padding: 0px 5px 0px 0px;
+  margin: 2px 10px 2px 10px;
+  min-height: ${({ pminheight }) => pminheight || '10%'};// min-height: 130px;
+  width: ${({ pwidth }) => pwidth || '10%'}; // width: 150px;
+  overflow-y: auto;
+  display: flex row;
+  flex-wrap: wrap;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+`;
 ///////////////////////////////////////////////////
 
 

@@ -1,3 +1,25 @@
+// filtra em TB_RESGATE
+// idempr === id_empresa;
+// nmempr === id_empresa;
+// cpf === cpf_origem
+// se encontrar continua a filtrar
+// caso mdlog === 1             (opção E-mail.)
+// mail === mail_origem
+// caso mdlog === 2             (opção E-mail Resgate.)
+// mail === mailresg_origem
+// caso mdlog === 3             (opção Celular via SMS.)
+// cell === fn_sms
+// caso mdlog === 4             (opção Celular via Whatsapp.)
+// cell === fn_zap
+// caso mdlog === 5            (opção Peguntas.)
+// perg1 === perg_1
+// perg2 === perg_2
+// perg3 === perg_3
+// resg1 === resg_1
+// resg2 === resg_2
+// resg3 === resg_3
+// se tiver mais que um login filtra o de mesmo modulo
+
 import React, { useState, useCallback, useEffect } from 'react';
 
 import * as Pg from '../stylePages';
@@ -15,11 +37,13 @@ import bt_setaesq from '../../assets/svgs/bt_setaesq.svg';
 import bt_setadir from '../../assets/svgs/bt_setadir.svg';
 import { CardHlpResgateLogo } from '../../cards/CardHlpResgateLogo';
 import { CardHlpResgatePage } from '../../cards/CardHlpResgatePage';
+import { CardModalErro } from '../../cards/CardModalErro';
 
 import {
   isValidarEmail,
   isValidarCell,
-  isValidarCpf,
+  isCpfValid,
+  isExistsCPF,
   VerPergResp,
 } from '../../funcs/ErroEdicao';
 import { ContentCardPageMain } from '../ContentCardPageMain';
@@ -27,16 +51,43 @@ import { ContentCardPage } from '../ContentCardPage';
 import { ContentCardPageTitle } from '../ContentCardPageTitle';
 import { ContentCardBoxDialogo } from '../ContentCardBoxDialogo';
 import { ContentCardDialogoTitle } from '../ContentCardDialogoTitle';
+import { ContainerSBItensModMn } from '../sidebar/ContainerSBItensModMn';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton';
-
-//import { ContentCardBoxPageCenter } from '../ContentCardBoxPageCenter';
-
-//import bt_visitante from '../../assets/svgs/bt_visitante.svg';
-
 import { PageModal } from './PageModal';
 
 const Resgatar: React.FC = () => {
+  const [mdlog, setMdlog] = useState(0);
+  const [nmlog, setNmlog] = useState('');
+  const [boolstart, setBoolStart] = useState(false);
+  const [boolmail, setBoolMail] = useState(false);
+  const [boolcell, setBoolCell] = useState(false);
+  const [boolresp, setBoolResp] = useState(false);
+  const [btncontinua, setBtnContinua] = useState(false);
+  const [boolconf, setBoolConf] = useState(false);
+  const [btnconfirma, setBtnConfirma] = useState(false);
+  const [idempr, setIdEmpr] = useState(0);
+  const [cpf, setCpf] = useState('');
+  const [email, setEmail] = useState('');
+  const [cell, setCell] = useState('');
+  const [perg1, setPerg1] = useState('Qual o Veículo que mais gosta ?');
+  const [resp1, setResp1] = useState('');
+  const [perg2, setPerg2] = useState('Qual o Nome que você acha bonito ?');
+  const [resp2, setResp2] = useState('');
+  const [perg3, setPerg3] = useState('Que animal você mais gosta ?');
+  const [resp3, setResp3] = useState('');
+  const [msgerro, setMsgErro] = useState('');
+  const [boolerro, setBoolErro] = useState(false);
+
+  const DescrOpc = [
+    'Opções:',
+    'E-mail.',
+    'E-mail Resgate',
+    'Celular via SMS.',
+    'Celular via Whatsapp.',
+    'Peguntas.',
+  ];
+
   const [theme, setTheme] = useState(light);
   const [ischeck, setIscheck] = useState(false);
   const ToggleTheme = () => {
@@ -66,117 +117,106 @@ const Resgatar: React.FC = () => {
     setHelpPageRes((oldState) => !oldState);
   }, []);
 
-  const [mdlog, setMdlog] = useState(0);
-  const [nmlog, setNmlog] = useState('');
-  const [boolstart, setBoolStart] = useState(false);
-  const [boolmail, setBoolMail] = useState(false);
-  const [boolcell, setBoolCell] = useState(false);
-  const [boolresp, setBoolResp] = useState(false);
-  const [boolConf, setBoolConf] = useState(false);
-
-  const [proxmd, setProxMd] = useState(false);
-  const [confirma, setConfirma] = useState(false);
-  const [idempr, setIdEmpr] = useState(0);
-  const [cpf, setCpf] = useState('');
-
-  const [nmempr, setNmEmpr] = useState('');
-  const [email, setEmail] = useState('');
-  const [cell, setCell] = useState('');
-
-  const [perg1, setPerg1] = useState('Qual o Veículo que mais gosta ?');
-  const [resp1, setResp1] = useState('');
-  const [perg2, setPerg2] = useState('Qual o Nome que você acha bonito ?');
-  const [resp2, setResp2] = useState('');
-  const [perg3, setPerg3] = useState('Que animal você mais gosta ?');
-  const [resp3, setResp3] = useState('');
-
-  const [msgerro, setMsgErro] = useState('');
-
-  const DescrOpc = [
-    'Opções:',
-    'E-mail.',
-    'E-mail Resgate',
-    'Celular via SMS.',
-    'Celular via Whatsapp.',
-    'Peguntas.',
-  ];
-
   useEffect(() => {
-    setNmlog(DescrOpc[mdlog]);
-    if (mdlog === 0 || idempr === 0 || cpf === '') {
-      setBoolStart(true);
-      setProxMd(false);
+    setBoolStart(true);
+    const newNmlog = DescrOpc[mdlog];
+    setNmlog(newNmlog);
+    if (boolstart) {
+      if (!nmlog || idempr === 0 || !cpf) {
+        if (!nmlog) {
+          setMsgErro('Erro... Falta informar: Modo para Resgate');
+        } else if (idempr === 0) {
+          setMsgErro('Erro... Falta informar: Empresa para Resgate');
+        } else if (cpf === '') {
+          setMsgErro('Erro... Falta informar: C.P.F. para Resgate');
+        } else {
+          if (!isCpfValid(cpf)) {
+            setMsgErro('Erro...C.P.F. informado não é Coerênte...[' + cpf + '].');
+          } else {
+            if (!isExistsCPF(cpf)) {
+              setMsgErro('Erro...CPF informado é INVÁLIDO...[' + cpf + '].');
+            };
+          };
+        };
+        if (msgerro !== '') {
+          setBoolErro(true);
+        } else {
+          setMsgErro('');
+          setBoolErro(false);
+          setBtnContinua(true);
+        }
+      }
     } else {
-      if (mdlog === 0 && idempr > 0 && cpf !== '') {
-        setProxMd(true);
-      } else if ((mdlog === 1 || mdlog === 2) && email !== '') {
-        setBoolStart(false);
-        setBoolMail(true);
-        setProxMd(true);
-      } else if ((mdlog === 3 || mdlog === 4) && cell !== '') {
-        setBoolMail(false);
-        setBoolCell(true);
-        setProxMd(true);
-      } else if (mdlog === 5 && resp1 !== '' && resp2 !== '' && resp3 !== '') {
-        setBoolCell(false);
-        setBoolResp(true);
-        setProxMd(false);
-      } else if (mdlog === 6) {
-        setBoolResp(false);
-        setBoolConf(true);
-        setConfirma(true);
-      }
+      if (mdlog >= 1 && mdlog <= 5) {
+        if (mdlog === 1 || mdlog === 2) {
+          setBoolStart(false);
+          setBoolMail(true);
+        } else if (mdlog === 3 || mdlog === 4) {
+          setBoolStart(false);
+          setBoolCell(true);
+        } else if (mdlog === 5) {
+          setBoolStart(false);
+          setBoolResp(true);
+        };
+        setBtnContinua(true);
+      };
     }
-  }, [mdlog, proxmd, idempr, cpf, email, cell, resp1, resp2, resp3]);
+  }, [boolstart, mdlog]);
 
-  const handlerButtonProximo = useCallback(() => {
+  // Clique no botão "Continuar"
+  const handlerBtnContinua = () => {
+    setBtnContinua(false);
     setMsgErro('');
-    if (mdlog === 0) {
-      if (!isValidarCpf(cpf)) {
-        setMsgErro('Erro na Edição do CPF, ou Inválido...');
-      } else {
-        setMdlog(1);
-      }
-    } else if (mdlog === 1 || mdlog === 2) {
-      if (!isValidarEmail(email)) {
-        setMsgErro('Erro na Edição do email, ou Inválido...');
-      } else {
-        setMdlog(3);
-      }
-    } else if (mdlog === 3 || mdlog === 4) {
-      if (!isValidarCell(cell)) {
-        setMsgErro('Erro na Edição do Nº Telefone, ou Inválido...');
-      } else {
-        setMdlog(5);
-      }
-    } else if (mdlog === 5) {
-      if (resp1 === '' || resp2 === '' || resp3 === '') {
-        if (resp1 === '') {
-          setMsgErro('Erro, Responda Pergunta...');
-        } else if (resp2 === '') {
-          setMsgErro('Erro, Responda Pergunta...');
-        } else if (resp3 === '') {
-          setMsgErro('Erro, Responda Pergunta...');
+    setBoolStart(false);
+    if (msgerro === '') {
+      if (mdlog === 1 || mdlog === 2) {
+        
+        if (!isValidarEmail(email)) {
+          if (mdlog === 1) {
+            setMsgErro('Erro na Edição do Email Titular, ou Inválido...');
+          } else {
+            setMsgErro('Erro na Edição do Email Resgate, ou Inválido...');
+          }
+          setEmail('');
+          setBoolErro(true);
+        } else if (msgerro === '') {
+          setBoolStart(false);
+          setBoolMail(false);
+          setBoolCell(false);
+          setBoolResp(false);
+          setBtnConfirma(true);
+        };
+      } else if (mdlog === 3 || mdlog === 4) {
+        if (!isValidarCell(cell)) {
+          if (mdlog === 3) {
+            setMsgErro('Erro na Edição do Nº Celular SMS, ou Inválido...');
+          } else {
+            setMsgErro('Erro na Edição do Nº Celular Whatsapp, ou Inválido...');
+          }
+          setCell('');
+          setBoolErro(true);
         }
-      } else {
-        if (resp1 !== '') {
-          if (!VerPergResp(perg1, resp1)) {
-            setMsgErro('Erro, Resposta errada...');
-          }
-        } else if (resp2 !== '') {
-          if (!VerPergResp(perg2, resp2)) {
-            setMsgErro('Erro, Resposta errada...');
-          }
-        } else if (resp3 !== '') {
-          if (!VerPergResp(perg3, resp3)) {
-            setMsgErro('Erro, Resposta errada...');
-          }
+        if (msgerro === '') {
+          setBoolStart(false);
+          setBoolMail(false);
+          setBoolCell(false);
+          setBoolResp(false);
+          setBtnConfirma(true);
+        }
+      } else if (mdlog === 5) {
+        if (!resp1 || !resp2 || !resp3) {
+          setMsgErro('Erro...Faltando respostas às perguntas de segurança.');
+          setBoolErro(true);
+        } else {
+          setBtnConfirma(true);
         }
       }
-    } else if (mdlog === 6) {
-      setMdlog(6);
     }
-  }, []);
+  };
+
+  const handlerConfirmar = () => {
+    alert('Confirmar...');
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -245,14 +285,15 @@ const Resgatar: React.FC = () => {
                   </Pg.StyledSelect>
                 </Pg.SelectContainer>
                 <form>
-                  <label htmlFor="resgate-select"> Edite C.P.F. :</label>
-                  <Pg.CpfInput
-                    id="cpf"
-                    placeholder="Digite o seu C.P.F."
-                    defaultValue={cpf}
-                    onChange={(e) => setCpf(e.target.value)}
-                  />
-                  <div>{msgerro}</div>
+                  <Pg.ContainerCardBoxInput>
+                    <label htmlFor="resgate-select"> Edite C.P.F. :</label>
+                    <Pg.CpfInput
+                      id="cpf"
+                      placeholder="Digite o seu C.P.F."
+                      defaultValue={cpf}
+                      onChange={(e) => setCpf(e.target.value)}
+                    />
+                  </Pg.ContainerCardBoxInput>
                 </form>
               </ContentCardPage>
             </ContentCardBoxDialogo>
@@ -368,25 +409,60 @@ const Resgatar: React.FC = () => {
           </ContentCardPageMain>
         ) : null}
 
+        {boolconf ? <h1>Confirmação</h1> : null}
+
         <Pg.DivisionPgHztal />
 
-        <ContentSidePageBottonLabel istitl={true} title={'Voltar.: '}>
-          <ContentSidePageBottonButton
-            pxheight={'40px'}
-            img={bt_setaesq}
-            titbtn={'Volta...'}
-            onclick={goto('/')}
-          />
-        </ContentSidePageBottonLabel>
-        {proxmd ? (
-          <ContentSidePageBottonLabel istitl={true} title={'Proximo ? '}>
+        <ContainerSBItensModMn onoff={true}>
+          <ContentSidePageBottonLabel istitl={true} title={'Voltar.: '}>
             <ContentSidePageBottonButton
               pxheight={'40px'}
-              img={bt_setadir}
-              titbtn={'Próximo...'}
-              onclick={handlerButtonProximo}
+              img={bt_setaesq}
+              titbtn={'Volta...'}
+              onclick={goto('/')}
             />
           </ContentSidePageBottonLabel>
+
+          {btncontinua ? (
+            <ContentSidePageBottonLabel istitl={true} title={'Continuar ? '}>
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={bt_setadir}
+                titbtn={'Continuar...'}
+                onclick={handlerBtnContinua}
+              />
+            </ContentSidePageBottonLabel>
+          ) : null}
+
+          {btnconfirma ? (
+            <ContentSidePageBottonLabel
+              istitl={btnconfirma}
+              title={'Confirmar ?'}
+            >
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={bt_setadir}
+                titbtn={'Confirmar...'}
+                onclick={handlerConfirmar}
+              />
+            </ContentSidePageBottonLabel>
+          ) : null}
+        </ContainerSBItensModMn>
+
+        {boolerro ? (
+          <PageModal
+            ptop={'1%'}
+            pwidth={'40%'}
+            pheight={'45%'}
+            imgbm={bt_close}
+            titbm="Fechar..."
+            titulo={'ERRO....'}
+            onclose={() => setBoolErro(false)}
+          >
+            <CardModalErro pminheight="100px" pwidth="200px">
+              {msgerro}
+            </CardModalErro>
+          </PageModal>
         ) : null}
 
         {logoRes ? (
