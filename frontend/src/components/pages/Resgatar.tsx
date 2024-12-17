@@ -40,11 +40,13 @@ import { CardHlpResgatePage } from '../../cards/CardHlpResgatePage';
 import { CardModalErro } from '../../cards/CardModalErro';
 
 import {
-  isValidarEmail,
-  isValidarCell,
   isCpfValid,
   isExistsCPF,
+  isValidarEmail,
+  MasckedEmail,
+  isValidarCell,
   VerPergResp,
+  isValidarCpf,
 } from '../../funcs/ErroEdicao';
 import { ContentCardPageMain } from '../ContentCardPageMain';
 import { ContentCardPage } from '../ContentCardPage';
@@ -63,21 +65,38 @@ const Resgatar: React.FC = () => {
   const [boolmail, setBoolMail] = useState(false);
   const [boolcell, setBoolCell] = useState(false);
   const [boolresp, setBoolResp] = useState(false);
-  const [btncontinua, setBtnContinua] = useState(false);
-  const [boolconf, setBoolConf] = useState(false);
-  const [btnconfirma, setBtnConfirma] = useState(false);
   const [idempr, setIdEmpr] = useState(0);
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
+  const [emailreal,setEmailReal] = useState('');
   const [cell, setCell] = useState('');
+
   const [perg1, setPerg1] = useState('Qual o Veículo que mais gosta ?');
   const [resp1, setResp1] = useState('');
   const [perg2, setPerg2] = useState('Qual o Nome que você acha bonito ?');
   const [resp2, setResp2] = useState('');
   const [perg3, setPerg3] = useState('Que animal você mais gosta ?');
   const [resp3, setResp3] = useState('');
+
+  const [btncontinua, setBtnContinua] = useState(false);
+  const [btnconfirma, setBtnConfirma] = useState(false);
+  const [boolconf, setBoolConf] = useState(false);
+  const [boolenvia, setBoolEnvia] = useState(false);
+  const [btnenvia, setBtnEnvia] = useState(false);
+  const [boolrecebe, setBoolRecebe] = useState(false);
+  const [btnrecebe, setBtnRecebe] = useState(false);
+
   const [msgerro, setMsgErro] = useState('');
   const [boolerro, setBoolErro] = useState(false);
+
+  const [msgerromd, setMsgErroMd] = useState('');
+  const [msgerroemp, setMsgErroEmp] = useState('');
+  const [msgerrocpf, setMsgErroCpf] = useState('');
+  const [msgerromail, setMsgErroMail] = useState('');
+  const [msgerrocell, setMsgErroCell] = useState('');
+  const [msgerroresp1, setMsgErroResp1] = useState('');
+  const [msgerroresp2, setMsgErroResp2] = useState('');
+  const [msgerroresp3, setMsgErroResp3] = useState('');
 
   const DescrOpc = [
     'Opções:',
@@ -118,105 +137,142 @@ const Resgatar: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setBoolStart(true);
+    setMsgErroMd('');
+    setMsgErroEmp('');
+    setMsgErroCpf('');
+    setMsgErroMail('');
+    setMsgErroCell('');
+    setMsgErroResp1('');
+    setMsgErroResp2('');
+    setMsgErroResp3('');
+
     const newNmlog = DescrOpc[mdlog];
     setNmlog(newNmlog);
-    if (boolstart) {
-      if (!nmlog || idempr === 0 || !cpf) {
-        if (!nmlog) {
-          setMsgErro('Erro... Falta informar: Modo para Resgate');
-        } else if (idempr === 0) {
-          setMsgErro('Erro... Falta informar: Empresa para Resgate');
-        } else if (cpf === '') {
-          setMsgErro('Erro... Falta informar: C.P.F. para Resgate');
-        } else {
-          if (!isCpfValid(cpf)) {
-            setMsgErro('Erro...C.P.F. informado não é Coerênte...[' + cpf + '].');
-          } else {
-            if (!isExistsCPF(cpf)) {
-              setMsgErro('Erro...CPF informado é INVÁLIDO...[' + cpf + '].');
-            };
-          };
+    if (mdlog === 0 || idempr === 0 || cpf === '') {
+      setBoolStart(true);
+      if (mdlog === 0 || idempr === 0 || cpf === '') {
+        if (mdlog === 0) {
+          setMsgErroMd('Aguardando Seleção.');
         };
-        if (msgerro !== '') {
-          setBoolErro(true);
-        } else {
-          setMsgErro('');
-          setBoolErro(false);
-          setBtnContinua(true);
-        }
-      }
-    } else {
-      if (mdlog >= 1 && mdlog <= 5) {
-        if (mdlog === 1 || mdlog === 2) {
-          setBoolStart(false);
-          setBoolMail(true);
-        } else if (mdlog === 3 || mdlog === 4) {
-          setBoolStart(false);
-          setBoolCell(true);
-        } else if (mdlog === 5) {
-          setBoolStart(false);
-          setBoolResp(true);
+        if (idempr === 0) {
+          setMsgErroEmp('Aguardando Empresa.');
+        };
+        if (cpf === '') {
+          setMsgErroCpf('Aguardando C.P.F.');
         };
         setBtnContinua(true);
       };
-    }
-  }, [boolstart, mdlog]);
+    };
+    if (boolmail) {
+      if (email === '' || email === null) {
+        setMsgErroMail('Aguardando Edição E-MAIL.');
+      };
+      setBtnContinua(true);
+    };
+    if (boolcell) {
+      if (cell === '' || cell === null) {
+        setMsgErroCell('Aguardando Edição Nº Celular.');
+      };
+      setBtnContinua(true);
+    };
+    if (boolresp) {
+      if (resp1 === '' || resp1 === null) {
+        setMsgErroResp1('Aguardando 1ª Resposta.');
+      };
+      if (resp2 === '' || resp2 === null) {
+        setMsgErroResp1('Aguardando 2ª Resposta.');
+      };
+      if (resp3 === '' || resp3 === null) {
+        setMsgErroResp1('Aguardando 3ª Resposta.');
+      };
+      setBtnContinua(true);
+    };
+    if (boolconf){
+      setBtnConfirma(true);
+    };
+    if (boolenvia){
+      setBtnEnvia(true);
+    };
+    if (boolrecebe){
+      setBtnRecebe(true);
+    };
+
+  }, [boolstart, mdlog, idempr, cpf, boolmail, email, boolconf, boolenvia, boolrecebe]);
 
   // Clique no botão "Continuar"
   const handlerBtnContinua = () => {
-    setBtnContinua(false);
-    setMsgErro('');
-    setBoolStart(false);
-    if (msgerro === '') {
-      if (mdlog === 1 || mdlog === 2) {
-        
-        if (!isValidarEmail(email)) {
-          if (mdlog === 1) {
-            setMsgErro('Erro na Edição do Email Titular, ou Inválido...');
-          } else {
-            setMsgErro('Erro na Edição do Email Resgate, ou Inválido...');
-          }
-          setEmail('');
-          setBoolErro(true);
-        } else if (msgerro === '') {
-          setBoolStart(false);
-          setBoolMail(false);
-          setBoolCell(false);
-          setBoolResp(false);
-          setBtnConfirma(true);
-        };
-      } else if (mdlog === 3 || mdlog === 4) {
-        if (!isValidarCell(cell)) {
-          if (mdlog === 3) {
-            setMsgErro('Erro na Edição do Nº Celular SMS, ou Inválido...');
-          } else {
-            setMsgErro('Erro na Edição do Nº Celular Whatsapp, ou Inválido...');
-          }
-          setCell('');
-          setBoolErro(true);
-        }
-        if (msgerro === '') {
-          setBoolStart(false);
-          setBoolMail(false);
-          setBoolCell(false);
-          setBoolResp(false);
-          setBtnConfirma(true);
-        }
-      } else if (mdlog === 5) {
-        if (!resp1 || !resp2 || !resp3) {
-          setMsgErro('Erro...Faltando respostas às perguntas de segurança.');
-          setBoolErro(true);
+    if (boolstart) {
+      if (mdlog > 0 || idempr > 0 || cpf.length === 11) {
+        if (!isCpfValid(cpf)) {
+          setMsgErroCpf('Erro na Edição CPF.');
         } else {
-          setBtnConfirma(true);
+          if (!isExistsCPF(cpf)) {
+            setMsgErroCpf('C.P.F. não é "VÁLIDO".');
+          } else {
+            setBtnContinua(false);
+            if (mdlog === 1 || mdlog === 2) {
+              setBoolStart(false);
+              setBoolMail(true);
+            } else if (mdlog === 3 || mdlog === 4) {
+              setBoolStart(false);
+              setBoolCell(true);
+            } else if (mdlog === 5) {
+              setBoolStart(false);
+              setBoolResp(true);
+            }
+          }
         }
       }
-    }
+    } else if (boolmail) {
+      if (email !== '') {
+        if (!isValidarEmail(email)) {
+          setMsgErroMail('Erro na Edição E-MAIL.');
+        } else {
+          const emailnormalizado = MasckedEmail(email);
+          if (emailnormalizado === '' || emailnormalizado === null) {
+            setMsgErroMail('Erro na Normalização da Edição do E-MAIL.');
+          } else {
+            setEmailReal(emailnormalizado);
+            setBtnContinua(false);
+            setBoolMail(false);
+            setBoolConf(true);
+          };
+        };
+      };
+    } else if (boolcell) {
+      if (email !== '') {
+        if (!isValidarEmail(email)) {
+          setMsgErroMail('Erro na Edição E-MAIL.');
+        } else {
+    }; //
   };
 
+
   const handlerConfirmar = () => {
-    alert('Confirmar...');
+    setBtnConfirma(false);
+    if (boolconf) {
+      if (mdlog > 0) {
+      setBoolEnvia(true);
+    };
   };
+
+  const handlerEnviar = () => {
+    setBtnEnvia(false);
+    if (boolenvia) {
+      if (mdlog > 0) {
+        setBoolRecebe(true);
+      };
+  };
+
+  const handlerReceber = () => {
+    setBtnRecebe(false);
+    
+    if (boolenvia) {
+      if (mdlog > 0) {
+        setBoolRecebe(true);
+      };
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -270,6 +326,7 @@ const Resgatar: React.FC = () => {
                     </Pg.StyledOption>
                     <Pg.StyledOption value={5}>Perguntas.</Pg.StyledOption>
                   </Pg.StyledSelect>
+                  <div>{msgerromd}</div>
                 </Pg.SelectContainer>
                 <Pg.SelectContainer>
                   <label htmlFor="resgate-select">Selecione Empresa :</label>
@@ -283,6 +340,7 @@ const Resgatar: React.FC = () => {
                     <Pg.StyledOption value={1}>Jr.Bordados.</Pg.StyledOption>
                     <Pg.StyledOption value={2}>Rb-Serviços.</Pg.StyledOption>
                   </Pg.StyledSelect>
+                  <div>{msgerroemp}</div>
                 </Pg.SelectContainer>
                 <form>
                   <Pg.ContainerCardBoxInput>
@@ -293,6 +351,7 @@ const Resgatar: React.FC = () => {
                       defaultValue={cpf}
                       onChange={(e) => setCpf(e.target.value)}
                     />
+                    <div>{msgerrocpf}</div>
                   </Pg.ContainerCardBoxInput>
                 </form>
               </ContentCardPage>
@@ -323,7 +382,7 @@ const Resgatar: React.FC = () => {
                   defaultValue={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <div>{msgerro}</div>
+                <div>{msgerromail}</div>
               </form>
             </ContentCardPage>
           </ContentCardPageMain>
@@ -354,7 +413,7 @@ const Resgatar: React.FC = () => {
                   defaultValue={cell}
                   onChange={(e) => setCell(e.target.value)}
                 />
-                <div>{msgerro}</div>
+                <div>{msgerrocell}</div>
               </form>
             </ContentCardPage>
           </ContentCardPageMain>
@@ -409,7 +468,12 @@ const Resgatar: React.FC = () => {
           </ContentCardPageMain>
         ) : null}
 
-        {boolconf ? <h1>Confirmação</h1> : null}
+        {boolconf ? (
+          <form>
+          <h2>Aguardamos a Confirmação para o Envio.</h2>
+          <p>Abaixo declaramos o seus Dados conforme solicitado.</p> 
+          </form>
+        ) : null}
 
         <Pg.DivisionPgHztal />
 
@@ -447,6 +511,35 @@ const Resgatar: React.FC = () => {
               />
             </ContentSidePageBottonLabel>
           ) : null}
+
+          {btnenvia ? (
+            <ContentSidePageBottonLabel
+              istitl={btnenvia}
+              title={'Enviar...'}
+            >
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={bt_setadir}
+                titbtn={'Enviar...'}
+                onclick={handlerEnviar}
+              />
+            </ContentSidePageBottonLabel>
+          ) : null}
+
+          {btnrecebe ? (
+            <ContentSidePageBottonLabel
+              istitl={btnrecebe}
+              title={'Receber...'}
+            >
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={bt_setadir}
+                titbtn={'receber...'}
+                onclick={handlerReceber}
+              />
+            </ContentSidePageBottonLabel>
+          ) : null}
+
         </ContainerSBItensModMn>
 
         {boolerro ? (

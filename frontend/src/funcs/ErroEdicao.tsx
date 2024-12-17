@@ -63,12 +63,11 @@ export function MasckedEmail(email: string): string {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(normalizedEmail)) {
-    console.log('emailRegex : ', 'falso');
-    return 'Email incompatível.';
+  if (emailRegex.test(normalizedEmail)) {
+    return normalizedEmail;
   }
 
-  return normalizedEmail;
+  return '';
 }
 ///////////////////////////////////////////////////////////////////////////////
 // Validar telefone 0800
@@ -192,7 +191,7 @@ export function isCpfValid(cpf: string): boolean {
 // se Numero cpf existe conforme verificador
 export function isExistsCPF(cpf: string): boolean {
   const cleaned = cpf.replace(/\D/g, '');
-  if (cleaned.length !== 11) return false;
+  if (cleaned.length !== 11 || /^(\d)\1{10}$/.test(cleaned)) return false; // Evita repetidos
   let sum = 0;
   let remainder;
   for (let i = 1; i <= 9; i++) {
