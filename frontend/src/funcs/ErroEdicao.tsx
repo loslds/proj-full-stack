@@ -134,7 +134,7 @@ export function MasckedFoneC(fonec: string): string {
   const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
 
   if (!fonecRegex.test(cleaned)) {
-    return 'Número de Celular incompatível.';
+    return '';
   }
 
   // Aplica a máscara (XX) XXXXX-XXXX

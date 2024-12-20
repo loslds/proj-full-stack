@@ -44,7 +44,8 @@ import {
   isExistsCPF,
   isValidarEmail,
   MasckedEmail,
-  isValidarCell,
+  isFoneCValid,
+  MasckedFoneC,
   VerPergResp,
   isValidarCpf,
 } from '../../funcs/ErroEdicao';
@@ -68,7 +69,6 @@ const Resgatar: React.FC = () => {
   const [idempr, setIdEmpr] = useState(0);
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
-  const [emailreal,setEmailReal] = useState('');
   const [cell, setCell] = useState('');
 
   const [perg1, setPerg1] = useState('Qual o Veículo que mais gosta ?');
@@ -79,12 +79,25 @@ const Resgatar: React.FC = () => {
   const [resp3, setResp3] = useState('');
 
   const [btncontinua, setBtnContinua] = useState(false);
-  const [btnconfirma, setBtnConfirma] = useState(false);
+
   const [boolconf, setBoolConf] = useState(false);
+  const [btnconfirma, setBtnConfirma] = useState(false);
+
   const [boolenvia, setBoolEnvia] = useState(false);
   const [btnenvia, setBtnEnvia] = useState(false);
+
+  const [boolenviamail, setBoolEnviaMail] = useState(false);
+  const [boolenviacell, setBoolEnviaCell] = useState(false);
+  const [boolenviaperg, setBoolEnviaPerg] = useState(false);
+
   const [boolrecebe, setBoolRecebe] = useState(false);
   const [btnrecebe, setBtnRecebe] = useState(false);
+  const [boolrecebemail, setBoolRecebeMail] = useState(false);
+  const [boolrecebecell, setBoolRecebeCell] = useState(false);
+  const [boolrecebeperg, setBoolRecebePerg] = useState(false);
+
+  const [boolatender, setBoolAtender] = useState(false);
+  const [btnatender, setBtnAtender] = useState(false);
 
   const [msgerro, setMsgErro] = useState('');
   const [boolerro, setBoolErro] = useState(false);
@@ -153,51 +166,71 @@ const Resgatar: React.FC = () => {
       if (mdlog === 0 || idempr === 0 || cpf === '') {
         if (mdlog === 0) {
           setMsgErroMd('Aguardando Seleção.');
-        };
+        }
         if (idempr === 0) {
           setMsgErroEmp('Aguardando Empresa.');
-        };
+        }
         if (cpf === '') {
           setMsgErroCpf('Aguardando C.P.F.');
-        };
+        }
         setBtnContinua(true);
-      };
-    };
+      }
+    }
     if (boolmail) {
       if (email === '' || email === null) {
         setMsgErroMail('Aguardando Edição E-MAIL.');
-      };
+      }
       setBtnContinua(true);
-    };
+    }
     if (boolcell) {
       if (cell === '' || cell === null) {
         setMsgErroCell('Aguardando Edição Nº Celular.');
-      };
+      }
       setBtnContinua(true);
-    };
+    }
     if (boolresp) {
       if (resp1 === '' || resp1 === null) {
         setMsgErroResp1('Aguardando 1ª Resposta.');
-      };
+      }
       if (resp2 === '' || resp2 === null) {
         setMsgErroResp1('Aguardando 2ª Resposta.');
-      };
+      }
       if (resp3 === '' || resp3 === null) {
         setMsgErroResp1('Aguardando 3ª Resposta.');
-      };
+      }
       setBtnContinua(true);
-    };
-    if (boolconf){
-      setBtnConfirma(true);
-    };
-    if (boolenvia){
-      setBtnEnvia(true);
-    };
-    if (boolrecebe){
-      setBtnRecebe(true);
-    };
+    }
 
-  }, [boolstart, mdlog, idempr, cpf, boolmail, email, boolconf, boolenvia, boolrecebe]);
+    if (boolconf) {
+      setBtnConfirma(true);
+    }
+    if (boolenvia) {
+      setBtnEnvia(true);
+    }
+    if (boolrecebe) {
+      setBtnRecebe(true);
+    }
+    if (boolatender) {
+      setBtnAtender(true);
+    }
+  }, [
+    boolstart,
+    mdlog,
+    idempr,
+    cpf,
+    boolmail,
+    email,
+    boolcell,
+    cell,
+    boolresp,
+    resp1,
+    resp2,
+    resp3,
+    boolconf,
+    boolenvia,
+    boolrecebe,
+    boolatender,
+  ]);
 
   // Clique no botão "Continuar"
   const handlerBtnContinua = () => {
@@ -228,51 +261,92 @@ const Resgatar: React.FC = () => {
         if (!isValidarEmail(email)) {
           setMsgErroMail('Erro na Edição E-MAIL.');
         } else {
-          const emailnormalizado = MasckedEmail(email);
-          if (emailnormalizado === '' || emailnormalizado === null) {
-            setMsgErroMail('Erro na Normalização da Edição do E-MAIL.');
-          } else {
-            setEmailReal(emailnormalizado);
-            setBtnContinua(false);
-            setBoolMail(false);
-            setBoolConf(true);
-          };
-        };
-      };
+          setBtnContinua(false);
+          setBoolMail(false);
+          setBoolConf(true);
+        }
+      }
     } else if (boolcell) {
-      if (email !== '') {
-        if (!isValidarEmail(email)) {
-          setMsgErroMail('Erro na Edição E-MAIL.');
+      if (cell !== '') {
+        if (!isFoneCValid(cell)) {
+          setMsgErroCell('Erro de Edição Nº Celular.');
         } else {
-    }; //
+          setBtnContinua(false);
+          setBoolCell(false);
+          setBoolConf(true);
+        }
+      }
+    } else if (boolresp) {
+      if (resp1 === '' || resp1 === null) {
+        setMsgErroResp1('Aguardando 1ª Resposta.');
+      }
+      if (resp2 === '' || resp2 === null) {
+        setMsgErroResp2('Aguardando 2ª Resposta.');
+      }
+      if (resp3 === '' || resp3 === null) {
+        setMsgErroResp3('Aguardando 3ª Resposta.');
+      }
+      if (resp1 !== '' && resp2 !== '' && resp3 !== '') {
+        setBtnContinua(false);
+        setBoolResp(false);
+        setBoolConf(true);
+      }
+    }
   };
-
 
   const handlerConfirmar = () => {
     setBtnConfirma(false);
     if (boolconf) {
-      if (mdlog > 0) {
-      setBoolEnvia(true);
-    };
+      setBoolConf(false);
+      if (mdlog === 1 || mdlog === 2) {
+        setBoolEnvia(true);
+        setBoolEnviaMail(true);
+      }
+      if (mdlog === 3 || mdlog === 4) {
+        setBoolEnvia(true);
+        setBoolEnviaCell(true);
+      }
+      if (mdlog === 5) {
+        setBoolEnvia(true);
+        setBoolEnviaPerg(true);
+      }
+    }
   };
 
   const handlerEnviar = () => {
     setBtnEnvia(false);
     if (boolenvia) {
-      if (mdlog > 0) {
+      if (mdlog === 1 || mdlog === 2) {
         setBoolRecebe(true);
-      };
+        setBoolRecebeMail(true);
+      }
+      if (mdlog === 3 || mdlog === 4) {
+        setBoolRecebe(true);
+        setBoolRecebeCell(true);
+      }
+      if (mdlog === 5) {
+        setBoolRecebe(true);
+        setBoolRecebePerg(true);
+      }
+    }
   };
 
   const handlerReceber = () => {
+    setBoolEnvia(false);
     setBtnRecebe(false);
-    
-    if (boolenvia) {
-      if (mdlog > 0) {
-        setBoolRecebe(true);
-      };
+    setBoolAtender(true);
+    alert('mostra tela para Receber Código Seguro.');
   };
 
+  const handlerAtender = () => {
+    alert('Conferir Código Seguro.');
+    // se recebeu o codigo compare se é fiel
+    // caso sim
+    //  setBoolAtenter(true);
+    // caso não
+    //  setBoolAtenter(false);
+    // mostra men
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -467,13 +541,25 @@ const Resgatar: React.FC = () => {
             </ContentCardPage>
           </ContentCardPageMain>
         ) : null}
-
-        {boolconf ? (
+        <ContentCardPageMain open={boolconf}>
           <form>
-          <h2>Aguardamos a Confirmação para o Envio.</h2>
-          <p>Abaixo declaramos o seus Dados conforme solicitado.</p> 
+            <h2>Aguardamos a Confirmação para o Envio.</h2>
+            {mdlog === 1 || mdlog === 2 ? (
+              <p>Abaixo declaramos o seus Dados Email conforme solicitado.</p>
+            ) : null}
+            {mdlog === 3 || mdlog === 4 ? (
+              <p>
+                Abaixo declaramos o seus Dados Nº Celular conforme solicitado.
+              </p>
+            ) : null}
+            {mdlog === 5 ? (
+              <p>
+                Abaixo declaramos o seus Dados das Respostas conforme
+                solicitado.
+              </p>
+            ) : null}
           </form>
-        ) : null}
+        </ContentCardPageMain>
 
         <Pg.DivisionPgHztal />
 
@@ -513,10 +599,7 @@ const Resgatar: React.FC = () => {
           ) : null}
 
           {btnenvia ? (
-            <ContentSidePageBottonLabel
-              istitl={btnenvia}
-              title={'Enviar...'}
-            >
+            <ContentSidePageBottonLabel istitl={btnenvia} title={'Enviar...'}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={bt_setadir}
@@ -527,19 +610,29 @@ const Resgatar: React.FC = () => {
           ) : null}
 
           {btnrecebe ? (
-            <ContentSidePageBottonLabel
-              istitl={btnrecebe}
-              title={'Receber...'}
-            >
+            <ContentSidePageBottonLabel istitl={btnrecebe} title={'Receber...'}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={bt_setadir}
-                titbtn={'receber...'}
+                titbtn={'Receber...'}
                 onclick={handlerReceber}
               />
             </ContentSidePageBottonLabel>
           ) : null}
 
+          {btnatender ? (
+            <ContentSidePageBottonLabel
+              istitl={btnatender}
+              title={'Atendendo...'}
+            >
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={bt_setadir}
+                titbtn={'Atendendo...'}
+                onclick={handlerAtender}
+              />
+            </ContentSidePageBottonLabel>
+          ) : null}
         </ContainerSBItensModMn>
 
         {boolerro ? (
