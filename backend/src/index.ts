@@ -1,7 +1,7 @@
 
 import express from 'express';
 import cors from 'cors';
-import useRoutes from './routes/userRoutes'; // Importe as rotas principais
+import useRoutes from './routes/empresaRoutes'; // Importe as rotas principais
 
 const app = express();
 const port = 3001;

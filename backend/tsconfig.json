@@ -8,7 +8,8 @@
     "strict": true, // Habilitar todas as verificações estritas
     "skipLibCheck": true, // Ignorar checagem das definições de tipo de bibliotecas
     "forceConsistentCasingInFileNames": true, // Forçar consistência na capitalização de nomes de arquivos
-    "resolveJsonModule": true // Permitir importação de arquivos JSON como módulos (caso necessário)
+    "resolveJsonModule": true, // Permitir importação de arquivos JSON como módulos (caso necessário)
+    "types": ["node", "@types/axios"] // Incluir tipos de Node.js e Axios
   },
-  "include": ["src/**/*.ts"] /* Incluir todos os arquivos .ts da pasta src */
+  "include": ["src/**/*.ts"] // Incluir todos os arquivos .ts da pasta src
 }
