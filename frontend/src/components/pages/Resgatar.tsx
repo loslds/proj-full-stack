@@ -29,7 +29,7 @@ import light from '../../themes/light';
 import dark from '../../themes/dark';
 import { useNavigate } from 'react-router-dom';
 import LayoutResgatar from '../layouts/LayoutResgatar';
-import useEmpresas from '../../hooks/useEmpresas';
+import useEmpresas from '../../servicos/api/empresa/useEmpresas';
 import lg_resgate from '../../assets/svgs/lg_resgate.svg';
 import bt_help from '../../assets/svgs/bt_help.svg';
 import bt_abortar from '../../assets/svgs/bt_abortar.svg';
