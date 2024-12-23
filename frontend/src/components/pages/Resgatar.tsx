@@ -29,6 +29,7 @@ import light from '../../themes/light';
 import dark from '../../themes/dark';
 import { useNavigate } from 'react-router-dom';
 import LayoutResgatar from '../layouts/LayoutResgatar';
+import useEmpresas from '../../hooks/useEmpresas';
 import lg_resgate from '../../assets/svgs/lg_resgate.svg';
 import bt_help from '../../assets/svgs/bt_help.svg';
 import bt_abortar from '../../assets/svgs/bt_abortar.svg';
@@ -66,7 +67,14 @@ const Resgatar: React.FC = () => {
   const [boolmail, setBoolMail] = useState(false);
   const [boolcell, setBoolCell] = useState(false);
   const [boolresp, setBoolResp] = useState(false);
+
+  const { empresas, loading, error } = useEmpresas();
+  const [selectedEmpresa, setSelectedEmpresa] = React.useState<number | null>(null);
+  
   const [idempr, setIdEmpr] = useState(0);
+  const [boolempr, setBoolEmpr] = useState(false);
+  
+  
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [cell, setCell] = useState('');
@@ -150,6 +158,12 @@ const Resgatar: React.FC = () => {
   }, []);
 
   useEffect(() => {
+      if (error) {
+        setMsgErroEmp('Erro ao carregar empresas. Por favor, tente novamente.');
+      }
+    }, [error]);
+
+  useEffect(() => {
     setMsgErroMd('');
     setMsgErroEmp('');
     setMsgErroCpf('');
@@ -231,6 +245,11 @@ const Resgatar: React.FC = () => {
     boolrecebe,
     boolatender,
   ]);
+  
+  const handleEmpresaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedId = parseInt(e.target.value);
+    setIdEmpr(selectedId);
+  };
 
   // Clique no botão "Continuar"
   const handlerBtnContinua = () => {
@@ -364,7 +383,15 @@ const Resgatar: React.FC = () => {
         onchange={ToggleTheme}
         ischeck={ischeck}
       >
-        {boolstart ? (
+        {loading ? (
+          <div>
+            <p>Carregando empresas...</p>)
+          </div>
+        ) : error ? (
+          <Pg.ContainerDivManRed>
+            <p>{msgerroemp}</p>
+          </Pg.ContainerDivManRed>
+        ) : boolstart ? (
           <ContentCardPageMain open={boolstart}>
             <ContentCardBoxDialogo>
               <ContentCardDialogoTitle>
@@ -387,7 +414,7 @@ const Resgatar: React.FC = () => {
                     id="resgate-select"
                     name="opcao"
                     defaultValue={mdlog}
-                    onChange={(e) => setMdlog(parseInt(e.target.value))}
+                    onChange={handleEmpresaChange}
                   >
                     <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
                     <Pg.StyledOption value={1}>E-mail.</Pg.StyledOption>
@@ -408,11 +435,14 @@ const Resgatar: React.FC = () => {
                     id="empresa-select"
                     name="empresa"
                     defaultValue={idempr}
-                    onChange={(e) => setIdEmpr(parseInt(e.target.value))}
+                    onChange={handleEmpresaChange}
                   >
-                    <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
-                    <Pg.StyledOption value={1}>Jr.Bordados.</Pg.StyledOption>
-                    <Pg.StyledOption value={2}>Rb-Serviços.</Pg.StyledOption>
+                    <Pg.StyledOption value={0}>Selecione:</Pg.StyledOption>
+                    {empresas.map((empresa) => (
+                      <Pg.StyledOption key={empresa.id} value={empresa.id}>
+                        {empresa.nome}
+                      </Pg.StyledOption>
+                    ))}                    
                   </Pg.StyledSelect>
                   <div>{msgerroemp}</div>
                 </Pg.SelectContainer>
@@ -684,9 +714,19 @@ const Resgatar: React.FC = () => {
             />
           </PageModal>
         ) : null}
+   
       </LayoutResgatar>
     </ThemeProvider>
   );
 };
 
 export default Resgatar;
+
+
+// defaultValue={idempr}
+// onChange={(e) => setIdEmpr(parseInt(e.target.value))}
+// >
+// <Pg.StyledOption value={0}>Opções:</Pg.StyledOption>
+// <Pg.StyledOption value={1}>Jr.Bordados.</Pg.StyledOption>
+// <Pg.StyledOption value={2}>Rb-Serviços.</Pg.StyledOption>
+
