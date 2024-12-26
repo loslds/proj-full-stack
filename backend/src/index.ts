@@ -14,7 +14,6 @@ app.use(cors({
   //allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
-
 // Rotas
 app.use('/api', useRoutes); // Agora todas as rotas serão prefixadas com /api
 
