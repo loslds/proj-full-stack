@@ -1,0 +1,16 @@
+
+{
+  "compilerOptions": {
+    "target": "ES2020", // Versão do JavaScript emitido
+    "module": "CommonJS", // Node.js usa CommonJS
+    "outDir": "./dist", // Diretório de saída dos arquivos compilados
+    "rootDir": "./src", // Diretório raiz do código TypeScript
+    "strict": true, // Habilita verificações rigorosas
+    "esModuleInterop": true, // Suporte para importação de módulos CommonJS
+    "skipLibCheck": true, // Ignora verificações de tipos nas bibliotecas
+    "resolveJsonModule": true, // Permite importação de arquivos JSON
+    "forceConsistentCasingInFileNames": true // Força consistência de maiúsculas e minúsculas
+  },
+  "include": ["src/**/*"], // Inclui todos os arquivos na pasta src
+  "exclude": ["node_modules", "dist"] // Exclui pastas desnecessárias
+}

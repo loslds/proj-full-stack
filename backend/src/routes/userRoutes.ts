@@ -1,12 +1,13 @@
-// import { Router } from 'express';
-// import { getPessoas } from '../controllers/';
-// import empresaRoutes from './empresaRoutes';
+ import { Router } from 'express';
 
-// const router = Router();
+ import userRoutes from './userRoutes'; // Importe outras rotas conforme necessário
+ //import authRoutes from './authRoutes';
+ //import acessosRoutes from './acessoRoutes';// acesso do usuario
+ import  pessoasRoutes from './pessoaRoutes';
+ 
+ const router = Router();
+ //router.use('/', acessosRoutes); // Rotas relacionadas a usuários
+//router.use('/', authRoutes); // Rotas relacionadas à autenticação
+ router.use('/', pessoasRoutes);
 
-// // Rota para obter todos os usuários
-// router.get('/', getUsers);
-
-// router.use('/empresas', empresaRoutes);
-
-// export default router;
+ export default router;

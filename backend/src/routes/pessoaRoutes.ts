@@ -1,12 +1,19 @@
-// import { getPessoas, createPessoas, updatePessoas } from './../../api/pessoaAPI';
-// import { Router } from 'express';
-// import { getPessoas, createPessoas, updatePessoas, deleteEmpresa } from '../controllers/EmpresaController';
+import  Express,{Router}  from 'express';
+//import { Router } from 'express';
+import { getPessoas, createPessoa } from '../controllers/pessoaController';
 
-// const router = Router();
+const router = Router();
 
-// router.get('/', getEmpresas);
-// router.post('/', createEmpresa);
-// router.put('/:id', updateEmpresa);
-// router.delete('/:id', deleteEmpresa);
+// Rota para obter todas as pessoas
+router.get('/', getPessoas);
 
-// export default router;
+// Rota para criar uma nova pessoa
+router.post('/', createPessoa);
+
+// Rota para atualizar uma pessoa
+//router.put('/:id', updatePessoa);
+
+// Rota para excluir uma pessoa
+//router.delete('/:id', deletePessoa);
+
+export default router;

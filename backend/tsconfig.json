@@ -11,5 +11,5 @@
     "resolveJsonModule": true, // Permitir importação de arquivos JSON como módulos (caso necessário)
     "types": ["node", "@types/axios"] // Incluir tipos de Node.js e Axios
   },
-  "include": ["src/**/*.ts"] // Incluir todos os arquivos .ts da pasta src
+  "include": ["src/**/*.ts", "src/routes/userRoutes.ts"] // Incluir todos os arquivos .ts da pasta src
 }
